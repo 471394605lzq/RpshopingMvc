@@ -56,11 +56,10 @@ namespace RpshopingMvc.Controllers
                     noncestr = noncestr
                 };
                 PayOrder model = new PayOrder();
-                model.OrderState = PayOrderState.wait;
+                model.OrderState = Enums.Enums.OrderState.UnHandle;
                 model.out_trade_no = out_trade_no;
                 model.Paynoncestr = noncestr;
                 model.PayPrepay_id = prepay_id;
-                model.PayTime = "";
                 model.settlement_total_fee = type.GetHashCode();
                 model.CreateTime = DateTime.Now;
                 model.Sign = signstr;

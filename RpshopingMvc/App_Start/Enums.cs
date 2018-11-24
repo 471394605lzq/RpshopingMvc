@@ -39,13 +39,20 @@ namespace RpshopingMvc.Enums
             [Display(Name ="支付宝")]
             ali
         }
-        //订单是否支付
-        public enum PayOrderState
+
+        /// <summary>
+        /// 订单状态
+        /// </summary>
+        public enum OrderState
         {
-            [Display(Name = "待支付")]
-            wait,
-            [Display(Name = "已支付")]
-            already
+            [Display(Name = "待处理")]
+            UnHandle = 0,
+            [Display(Name = "成功")]
+            Success = 1,
+            [Display(Name = "失败")]
+            Failed = 2,
+            [Display(Name = "已取消")]
+            Canceled = 3,
         }
     }
 }

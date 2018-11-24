@@ -28,7 +28,7 @@ namespace RpshopingMvc.Models
         [Display(Name = "订单金额")]
         public int total_fee { get; set; }
         [Display(Name = "订单支付金额")]
-        public int cash_fee { get; set; }
+        public decimal cash_fee { get; set; }
         [Display(Name = "支付用户设备号")]
         public string device_info { get; set; }
         [Display(Name = "支付用户IP")]
@@ -36,8 +36,14 @@ namespace RpshopingMvc.Models
         [Display(Name = "支付签名字符串")]
         public string Sign { get; set; }
         [Display(Name = "订单支付状态")]
-        public PayOrderState OrderState { get; set; }
+        public OrderState OrderState { get; set; }
         [Display(Name = "微信支付订单号")]
         public string transaction_id { get; set; }
+
+        [Display(Name = "支付的结果")]
+        /// <summary>
+        /// 支付的结果
+        /// </summary>
+        public string PayResult { get; set; }
     }
 }

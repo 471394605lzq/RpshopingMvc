@@ -198,7 +198,10 @@
     <Compile Include="App_Start\Comm.cs" />
     <Compile Include="App_Start\Common\HttpService.cs" />
     <Compile Include="App_Start\Common\Log.cs" />
+    <Compile Include="App_Start\Common\Notify.cs" />
+    <Compile Include="App_Start\Common\PayResultNotify.cs" />
     <Compile Include="App_Start\Common\WxPayConfig.cs" />
+    <Compile Include="App_Start\Common\WxPayException.cs" />
     <Compile Include="App_Start\Enums.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -238,6 +241,14 @@
     <Compile Include="Migrations\201811211536504_addorder.Designer.cs">
       <DependentUpon>201811211536504_addorder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811231515054_updatepayorder.cs" />
+    <Compile Include="Migrations\201811231515054_updatepayorder.Designer.cs">
+      <DependentUpon>201811231515054_updatepayorder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811231534117_updatepayorder1.cs" />
+    <Compile Include="Migrations\201811231534117_updatepayorder1.Designer.cs">
+      <DependentUpon>201811231534117_updatepayorder1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -246,6 +257,13 @@
     <Compile Include="Models\tb_Recharge.cs" />
     <Compile Include="Models\tb_userinfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResultNotify.aspx.cs">
+      <DependentUpon>ResultNotify.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResultNotify.aspx.designer.cs">
+      <DependentUpon>ResultNotify.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +292,7 @@
     <Content Include="Models\Scripts\respond.js" />
     <Content Include="Models\Scripts\respond.min.js" />
     <Content Include="Models\Scripts\_references.js" />
+    <Content Include="ResultNotify.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -341,6 +360,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811211536504_addorder.resx">
       <DependentUpon>201811211536504_addorder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811231515054_updatepayorder.resx">
+      <DependentUpon>201811231515054_updatepayorder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811231534117_updatepayorder1.resx">
+      <DependentUpon>201811231534117_updatepayorder1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
