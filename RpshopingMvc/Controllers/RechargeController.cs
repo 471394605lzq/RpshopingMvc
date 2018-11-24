@@ -20,7 +20,7 @@ namespace RpshopingMvc.Controllers
             {
                 //检查数据库中是否存在该用户信息
                 var thisuser = db.tb_userinfos.Where(s => s.UserID == model.UserID).FirstOrDefault();
-                //检验话术分类是否存在
+                //检验话术分类是否存在 
                 if (thisuser == null)
                 {
                     return Json(Comm.ToJsonResult("Error", "用户不存在"), JsonRequestBehavior.AllowGet);
