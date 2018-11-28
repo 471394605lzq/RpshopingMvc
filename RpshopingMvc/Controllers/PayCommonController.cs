@@ -24,7 +24,7 @@ namespace RpshopingMvc.Controllers
         /// <returns></returns>
         [HttpPost]
         [AllowCrossSiteJson]
-        public ActionResult ToOrder(Enums.Enums.OrderType body, RechargeType type,string userID)
+        public ActionResult ToOrder(Enums.Enums.OrderType body, RechargeType type, string userID)
         {
             if (!db.tb_userinfos.Any(s => s.UserID == userID))
             {
@@ -35,7 +35,7 @@ namespace RpshopingMvc.Controllers
             parmdata.SetValue("body", ((Enums.Enums.OrderType)body).GetDisplayName());//商品描述
             parmdata.SetValue("attach", "逸趣网络科技有限公司");//附加数据
             parmdata.SetValue("out_trade_no", out_trade_no);//商户订单号
-            parmdata.SetValue("total_fee", Convert.ToInt32(type.GetDisplayName())*100);//总金额
+            parmdata.SetValue("total_fee", Convert.ToInt32(type.GetDisplayName()) * 100);//总金额
             parmdata.SetValue("time_start", DateTime.Now.ToString("yyyyMMddHHmmss"));//交易起始时间
             parmdata.SetValue("time_expire", DateTime.Now.AddMinutes(10).ToString("yyyyMMddHHmmss"));//交易结束时间
             parmdata.SetValue("goods_tag", "");//商品标记
@@ -55,7 +55,7 @@ namespace RpshopingMvc.Controllers
                     prepay_id = resultdata.GetValue("prepay_id").ToString();
                     var stringA = $"appid={WxPayConfig.APPID}&noncestr={noncestr}&package=Sign=WXPay&partnerid={WxPayConfig.MCHID}&prepayid={prepay_id}&timestamp={Unite.GenerateTimeStamp(DateTime.Now)}&key={WxPayConfig.KEY}";
                     var sign = Unite.ToMD5New(stringA);
-                    
+
                     //保存下单信息到数据库
                     PayOrder model = new PayOrder();
                     model.OrderState = Enums.Enums.OrderState.UnHandle;
@@ -69,7 +69,7 @@ namespace RpshopingMvc.Controllers
                     model.User_ID = userID;
                     model.OrderType = body;
                     db.PayOrders.Add(model);
-                    int resultrow= db.SaveChanges();
+                    int resultrow = db.SaveChanges();
                     //保存订单数据结果
                     if (resultrow > 0)
                     {
@@ -99,9 +99,9 @@ namespace RpshopingMvc.Controllers
         }
         [HttpPost]
         [AllowCrossSiteJson]
-        public ActionResult Test(int ss)
+        public ActionResult Test(int? ss)
         {
-            return Json(Comm.ToJsonResult("Error", "测试一下"), JsonRequestBehavior.AllowGet);
+            return Json(Comm.ToJsonResult("Success", "1", ss), JsonRequestBehavior.AllowGet);
         }
         /// <summary>
         /// 查询返回支付结果
