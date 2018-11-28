@@ -21,17 +21,17 @@ namespace RpshopingMvc.Enums
         public enum RechargeType
         {
             [Display(Name = "10")]
-            Ten=10,
+            Ten,
             [Display(Name = "30")]
-            Thirty=30,
+            Thirty,
             [Display(Name = "50")]
-            Fifty=50,
+            Fifty,
             [Display(Name = "100")]
-            Hundred=100,
+            Hundred,
             [Display(Name = "200")]
-            TwoHundred=200,
+            TwoHundred,
             [Display(Name = "500")]
-            FiveHundred=500
+            FiveHundred
         }
         public enum PayType {
             [Display(Name ="微信支付")]
@@ -53,6 +53,16 @@ namespace RpshopingMvc.Enums
             Failed = 2,
             [Display(Name = "已取消")]
             Canceled = 3,
+        }
+        /// <summary>
+        /// 订单付款类型(充值：充值付款类型 订单付款：现在订单直接付款类型)
+        /// </summary>
+        public enum OrderType
+        {
+            [Display(Name = "充值")]
+            Recharge,
+            [Display(Name = "订单付款")]
+            OrderPay
         }
     }
 }

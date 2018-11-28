@@ -12,7 +12,7 @@ namespace RpshopingMvc.Models
         [Display(Name ="id")]
         public int ID { get; set; }
         [Display(Name = "付款用户ID")]
-        public int User_ID { get; set; }
+        public string User_ID { get; set; }
         [Display(Name = "订单创建时间")]
         public DateTime CreateTime { get; set; }
         [Display(Name = "订单付款时间")]
@@ -45,5 +45,10 @@ namespace RpshopingMvc.Models
         /// 支付的结果
         /// </summary>
         public string PayResult { get; set; }
+        [Display(Name = "订单类型")]
+        public OrderType OrderType { get; set; }
+        [Display(Name = "关联ID")]
+        //订单类型是充值则关联充值记录ID，如果是在线支付订单则关联商品订单记录ID
+        public int RelationID { get; set; }
     }
 }

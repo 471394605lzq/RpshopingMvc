@@ -18,12 +18,10 @@ namespace RpshopingMvc.App_Start.Common
         /// </summary>
         public override void ProcessNotify()
         {
-
             WxPayData notifyData = GetNotifyData();
             //检查支付结果中transaction_id是否存在
             if (!notifyData.IsSet("transaction_id"))
             {
-
                 Log.Debug("notifyData", $"notifyData:完成");
                 //若transaction_id不存在，则立即返回结果给微信支付后台
                 WxPayData res = new WxPayData();
@@ -65,9 +63,22 @@ namespace RpshopingMvc.App_Start.Common
                             order.OrderState = notifyData.GetValue("result_code").ToString() == "SUCCESS" ? Enums.Enums.OrderState.Success : Enums.Enums.OrderState.Failed;
                             order.PayTime = DateTime.Now.ToString();
                             row = db.SaveChanges();
-                            if (row > 0 && order.OrderState == Enums.Enums.OrderState.Success)
+                            if (row > 0 && order.OrderState == Enums.Enums.OrderState.Success && order.OrderType == Enums.Enums.OrderType.Recharge)
                             {
                                 //进行充值数据保存
+                                tb_userinfo user = db.tb_userinfos.FirstOrDefault(s => s.UserID == order.User_ID);
+                                var addmodel = new tb_Recharge
+                                {
+                                    CreateDateTime = DateTime.Now,
+                                    give = 0,
+                                    paytype = Enums.Enums.PayType.wx,
+                                    R_Money = order.cash_fee,
+                                    U_ID = user.ID,
+                                    RechargeType =((Enums.Enums.RechargeType)order.cash_fee),
+                                    UserID = user.UserID
+                                };
+                                db.tb_Recharges.Add(addmodel);
+                                db.SaveChanges();
                             }
                         }
                     }
@@ -91,7 +102,6 @@ namespace RpshopingMvc.App_Start.Common
                     page.Response.Write(res.ToXml());
                     page.Response.End();
                 }
-
             }
         }
 
