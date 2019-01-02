@@ -56,7 +56,7 @@ namespace RpshopingMvc.App_Start.Common
         * @param className 类名
         * @param content 写入内容
         */
-        protected static void WriteLog(string type, string className, string content)
+        public static void WriteLog(string type, string className, string content)
         {
             if (!Directory.Exists(path))//如果日志目录不存在就创建
             {

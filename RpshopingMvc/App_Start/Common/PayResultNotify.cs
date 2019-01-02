@@ -67,6 +67,8 @@ namespace RpshopingMvc.App_Start.Common
                             {
                                 //进行充值数据保存
                                 tb_userinfo user = db.tb_userinfos.FirstOrDefault(s => s.UserID == order.User_ID);
+                                var tempisfirstcharge = user.FirstCharge;
+                                var tempbalance = user.Balance;
                                 var addmodel = new tb_Recharge
                                 {
                                     CreateDateTime = DateTime.Now,
@@ -75,8 +77,10 @@ namespace RpshopingMvc.App_Start.Common
                                     R_Money = order.cash_fee,
                                     U_ID = user.ID,
                                     RechargeType =((Enums.Enums.RechargeType)order.cash_fee),
-                                    UserID = user.UserID
+                                    UserID = user.UserID,
+                                    PayOrderID=order.ID
                                 };
+                                user.Balance = tempbalance+ order.cash_fee;
                                 db.tb_Recharges.Add(addmodel);
                                 db.SaveChanges();
                             }

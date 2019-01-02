@@ -263,6 +263,31 @@ namespace RpshopingMvc.App_Start
             }
             return string.Join("", str);
         }
+        //用户订单支付生成签名字符串
+        public static string GetMd5Hash(string input)
+        {
+            using (System.Security.Cryptography.MD5 md5Hash = System.Security.Cryptography.MD5.Create())
+            {
+                // Convert the input string to a byte array and compute the hash.
+                byte[] data = md5Hash.ComputeHash(System.Text.Encoding.UTF8.GetBytes(input));
+
+                // Create a new Stringbuilder to collect the bytes
+                // and create a string.
+                System.Text.StringBuilder sBuilder = new System.Text.StringBuilder();
+
+                // Loop through each byte of the hashed data 
+                // and format each one as a hexadecimal string.
+                for (int i = 0; i < data.Length; i++)
+                {
+                    sBuilder.Append(data[i].ToString("x2"));
+                }
+
+                // Return the hexadecimal string.
+                return sBuilder.ToString();
+            }
+
+        }
+
         /// <summary>
         /// MD5　32位加密
         /// </summary>

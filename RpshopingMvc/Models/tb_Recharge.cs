@@ -25,5 +25,6 @@ namespace RpshopingMvc.Models
         public DateTime CreateDateTime { get; set; }
         [Display(Name = "付款类型")]
         public RechargeType RechargeType { get; set; }
+        public int PayOrderID { get; set; }
     }
 }
