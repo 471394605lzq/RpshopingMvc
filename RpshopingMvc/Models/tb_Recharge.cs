@@ -14,6 +14,7 @@ namespace RpshopingMvc.Models
         [Display(Name = "充值金额")]
         public decimal R_Money { get; set; }
         [Display(Name = "云数据库用户ID")]
+        [MaxLength(50)]
         public string UserID { get; set; }
         [Display(Name = "本地数据库用户ID")]
         public int U_ID { get; set; }

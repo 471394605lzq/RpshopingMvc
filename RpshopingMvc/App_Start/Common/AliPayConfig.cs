@@ -28,5 +28,11 @@ namespace RpshopingMvc.App_Start.Common
             var ran = new Random();
             return string.Format("{0}{1}{2}", appid, DateTime.Now.ToString("yyyyMMddHHmmss"), ran.Next(999));
         }
+
+
+        //淘宝客appkey
+        public static string tkapp_key = "25530839";
+        //淘宝客AppSecret
+        public static string tkapp_secret = "0e8d5e9032822b0763a4821b3d4a9097";
     }
 }

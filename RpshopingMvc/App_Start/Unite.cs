@@ -14,6 +14,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Script.Serialization;
+using System.Xml;
 
 namespace RpshopingMvc.App_Start
 {
@@ -373,5 +374,7 @@ namespace RpshopingMvc.App_Start
                 return string.Empty;
             }
         }
+
+
     }
 }

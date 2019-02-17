@@ -24,9 +24,20 @@ namespace RpshopingMvc.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+        //用户充值信息表
         public DbSet<tb_Recharge> tb_Recharges { get; set; }
+        //用户信息表
         public DbSet<tb_userinfo> tb_userinfos { get; set; }
+        //支付订单表
         public DbSet<PayOrder> PayOrders { get; set; }
+        //产品分类表
+        public DbSet<tb_goodssort> tb_goodssort { get; set; }
+        //选品库信息
+        public DbSet<tb_Favorites> tb_Favorites { get; set; }
+        //商品信息
+        public DbSet<tb_goods> tb_goods { get; set; }
+        //淘宝客信息
+        public DbSet<tb_TKInfo> tb_TKInfo { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

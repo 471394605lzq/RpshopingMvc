@@ -11,6 +11,7 @@ namespace RpshopingMvc.Models
     {
         public int ID { get; set; }
         [Display(Name ="云数据库用户ID")]
+        [MaxLength(50)]
         public string UserID { get; set; }
         [Display(Name = "余额")]
         public decimal Balance { get; set; }

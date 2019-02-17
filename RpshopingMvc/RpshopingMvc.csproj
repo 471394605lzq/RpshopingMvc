@@ -144,6 +144,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="TopSdk">
+      <HintPath>DLL\TopSdk.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -233,6 +236,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PayCommonController.cs" />
     <Compile Include="Controllers\RechargeController.cs" />
+    <Compile Include="Controllers\TaobaoController.cs" />
     <Compile Include="Controllers\UserinfoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -277,12 +281,28 @@
     <Compile Include="Migrations\201812220738356_tb_Rechargeaddpayorderid.Designer.cs">
       <DependentUpon>201812220738356_tb_Rechargeaddpayorderid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902171258025_addgoods.cs" />
+    <Compile Include="Migrations\201902171258025_addgoods.Designer.cs">
+      <DependentUpon>201902171258025_addgoods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902171304147_updategoods.cs" />
+    <Compile Include="Migrations\201902171304147_updategoods.Designer.cs">
+      <DependentUpon>201902171304147_updategoods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902171315353_updatetable.cs" />
+    <Compile Include="Migrations\201902171315353_updatetable.Designer.cs">
+      <DependentUpon>201902171315353_updatetable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PayOrder.cs" />
+    <Compile Include="Models\tb_Favorites.cs" />
+    <Compile Include="Models\tb_goods.cs" />
+    <Compile Include="Models\tb_goodssort.cs" />
     <Compile Include="Models\tb_Recharge.cs" />
+    <Compile Include="Models\tb_TKInfo.cs" />
     <Compile Include="Models\tb_userinfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResultNotify.aspx.cs">
@@ -302,26 +322,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Scripts\ai.0.22.9-build00167.js" />
-    <Content Include="Models\Scripts\ai.0.22.9-build00167.min.js" />
-    <Content Include="Models\Scripts\bootstrap.js" />
-    <Content Include="Models\Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="cert\apiclient_cert.p12" />
-    <None Include="Models\Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Models\Scripts\jquery-1.10.2.js" />
-    <Content Include="Models\Scripts\jquery-1.10.2.min.js" />
-    <None Include="Models\Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Models\Scripts\jquery.validate.js" />
-    <Content Include="Models\Scripts\jquery.validate.min.js" />
-    <Content Include="Models\Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Models\Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Models\Scripts\modernizr-2.6.2.js" />
-    <Content Include="Models\Scripts\respond.js" />
-    <Content Include="Models\Scripts\respond.min.js" />
-    <Content Include="Models\Scripts\_references.js" />
     <Content Include="ResultNotify.aspx" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
@@ -788,6 +792,7 @@
     <Folder Include="Views\Common\" />
     <Folder Include="Views\PayCommon\" />
     <Folder Include="Views\Recharge\" />
+    <Folder Include="Views\Taobao\" />
     <Folder Include="Views\Userinfo\" />
   </ItemGroup>
   <ItemGroup>
@@ -796,7 +801,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
-    <Content Include="Models\Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201811180714175_tb_recharge.resx">
@@ -828,6 +832,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812220738356_tb_Rechargeaddpayorderid.resx">
       <DependentUpon>201812220738356_tb_Rechargeaddpayorderid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902171258025_addgoods.resx">
+      <DependentUpon>201902171258025_addgoods.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902171304147_updategoods.resx">
+      <DependentUpon>201902171304147_updategoods.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902171315353_updatetable.resx">
+      <DependentUpon>201902171315353_updatetable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
