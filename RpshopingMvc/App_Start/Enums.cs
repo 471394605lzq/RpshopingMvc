@@ -64,5 +64,122 @@ namespace RpshopingMvc.Enums
             [Display(Name = "订单付款")]
             OrderPay
         }
+
+        /// <summary>
+        /// 设备类型
+        /// </summary>
+        [Flags]
+        public enum DriveType
+        {
+            Windows = 1,
+            IPhone = 2,
+            IPad = 4,
+            Android = 8,
+            WindowsPhone = 16,
+        }
+
+        public enum DebugLog
+        {
+            /// <summary>
+            /// 所有
+            /// </summary>
+            All,
+            /// <summary>
+            /// 不输出
+            /// </summary>
+            No,
+            /// <summary>
+            /// 警告以上
+            /// </summary>
+            Warning,
+            /// <summary>
+            /// 错误以上
+            /// </summary>
+            Error
+        }
+
+        public enum DebugLogLevel
+        {
+            /// <summary>
+            /// 普通记录
+            /// </summary>
+            Normal,
+            /// <summary>
+            /// 警告级别
+            /// </summary>
+            Warning,
+            /// <summary>
+            /// 错误级别
+            /// </summary>
+            Error
+        }
+
+        /// <summary>
+        /// 占位图
+        /// </summary>
+        public enum DummyImage
+        {
+            [Display(Name = "默认")]
+            Default,
+            [Display(Name = "头像")]
+            Avatar
+        }
+
+        public enum ResizerMode
+        {
+            Pad,
+            Crop,
+            Max,
+        }
+
+        public enum ReszieScale
+        {
+            Down,
+            Both,
+            Canvas
+        }
+        /// <summary>
+        /// 错误页面的Layout类别，给错误页面使用的一个枚举
+        /// </summary>
+        public enum Layout
+        {
+            Manage,
+            WebSide,
+            MoblieWebSide
+        }
+        //选品库类型
+        public enum FavoritesType {
+            [Display(Name = "普通")]
+            Ordinary = 0,
+            [Display(Name = "推荐")]
+            Recommend = 1,
+        }
+
+        public enum GoodsType {
+            [Display(Name = "普通")]
+            Ordinary = 0,
+            [Display(Name = "推荐")]
+            Synchronous = 1,
+        }
+
+        //用户等级类型
+        public enum UserGrade
+        {
+            [Display(Name = "初级会员")]
+            Primary = 0,
+            [Display(Name = "高级会员")]
+            Senior = 1,
+            [Display(Name = "运营商")]
+            Operator = 2,
+            [Display(Name = "合伙人")]
+            Partner = 3
+        }
+        //订单状态
+        public enum TbOrderState {
+            [Display(Name = "待结算")]
+            IsBalance = 0,
+            [Display(Name = "已结算")]
+            NoBalance = 1,
+        }
     }
 }

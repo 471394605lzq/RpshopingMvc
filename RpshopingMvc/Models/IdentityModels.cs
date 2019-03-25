@@ -38,6 +38,10 @@ namespace RpshopingMvc.Models
         public DbSet<tb_goods> tb_goods { get; set; }
         //淘宝客信息
         public DbSet<tb_TKInfo> tb_TKInfo { get; set; }
+        //商品分类等级
+        public DbSet<GoodsSortGrade> GoodsSortGrade { get; set; }
+        //用户订单表
+        public DbSet<Tborder> Tborder { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

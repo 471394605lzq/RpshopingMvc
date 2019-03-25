@@ -1,0 +1,72 @@
+﻿<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - RP云购后台管理系统</title>
+    @Styles.Render("~/Content/bgcss")
+    @Styles.Render("~/Content/icon")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/bundles/datetimepicker/css")
+    <meta name="description" content="RP云购后台管理系统" />
+    @{
+
+        Func<string, string> hidSidebar = s =>
+        {
+            var roles = s.Split(',').Where(x => !string.IsNullOrWhiteSpace(x));
+            return roles.Any(x => User.IsInRole(x)) ? "" : "hidden";
+        };
+
+    }
+</head>
+<body class="layoutBackground">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("RP云购", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="fluid">
+        <div id="sidebar" class="sidebar" style="border-right:1px solid #e8e8e8;">
+            <ul class="nav nav-sidebar">
+                @foreach (var item in User.Menus())
+                {
+                    <li class="">
+                        <a href="@Url.Content(item.Url)" title="@item.Title">
+                            <i class="iconfont dtkj-@item.IconImage" style="font-size:26px;margin-right:15px;"></i>@item.Name
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+
+        <div class="main">
+            <div class="alertList"></div>
+            @RenderBody()
+        </div>
+
+    </div>
+    <div class="mask hidden"></div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/comm")
+    @Scripts.Render("~/bundles/datetimepicker/js")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        $(function () {
+            $("#sidebar a[title='@ViewBag.Sidebar']").parent().addClass("active");
+        })
+    </script>
+</body>
+
+</html>

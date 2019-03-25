@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using RpshopingMvc.Models;
+using RpshopingMvc.App_Start.Extensions;
 
 namespace RpshopingMvc.Controllers
 {
@@ -17,6 +18,7 @@ namespace RpshopingMvc.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public AccountController()
         {
@@ -75,11 +77,38 @@ namespace RpshopingMvc.Controllers
 
             // 这不会计入到为执行帐户锁定而统计的登录失败次数中
             // 若要在多次输入错误密码的情况下触发帐户锁定，请更改为 shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.AccountName, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    {
+                        var user = db.Users.FirstOrDefault(s => s.UserName == model.AccountName);
+                        if (user == null)
+                        {
+                            ModelState.AddModelError("", "帐号不存在或密码错误！");
+                            return View(model);
+                        }
+
+                        //把重要的用户信息进行加密，存放到cookie
+                        this.SetAccountData(new AccountData
+                        {
+                            UserID = user.Id,
+                            UserName = user.UserName
+                        });
+                        if (Url.IsLocalUrl(returnUrl))
+                        {
+                            return RedirectToLocal(returnUrl);
+                        }
+                        else
+                        {
+                            //默认返回地址
+                            return RedirectToAction("Index", "Userinfo");
+                            //return RedirectToAction("Index", "HomePageModularsManage");
+
+                        }
+                        //return RedirectToLocal(returnUrl);
+                    }
+                    
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -151,7 +180,7 @@ namespace RpshopingMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.AccountName, Email = "46546@qq.com" };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -163,7 +192,7 @@ namespace RpshopingMvc.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "确认你的帐户", "请通过单击 <a href=\"" + callbackUrl + "\">這裏</a>来确认你的帐户");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Userinfo");
                 }
                 AddErrors(result);
             }
@@ -248,7 +277,7 @@ namespace RpshopingMvc.Controllers
             {
                 return View(model);
             }
-            var user = await UserManager.FindByNameAsync(model.Email);
+            var user = await UserManager.FindByNameAsync(model.AccountName);
             if (user == null)
             {
                 // 请不要显示该用户不存在

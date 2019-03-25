@@ -1,0 +1,18 @@
+namespace RpshopingMvc.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class deletepid : DbMigration
+    {
+        public override void Up()
+        {
+            DropColumn("dbo.tb_userinfo", "Pid");
+        }
+        
+        public override void Down()
+        {
+            AddColumn("dbo.tb_userinfo", "Pid", c => c.String());
+        }
+    }
+}

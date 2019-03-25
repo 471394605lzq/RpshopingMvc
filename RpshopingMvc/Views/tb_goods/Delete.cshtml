@@ -1,0 +1,209 @@
+﻿@model RpshopingMvc.Models.tb_goods
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutBackground.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>tb_goods</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.GoodsName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GoodsName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImagePath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SmallImages)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SmallImages)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DetailPath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DetailPath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GoodsSort)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GoodsSort)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TkPath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TkPath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalesVolume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalesVolume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IncomeRatio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IncomeRatio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Brokerage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Brokerage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SellerID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SellerID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StoreName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StoreName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StoreImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StoreImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PlatformType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PlatformType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CouponID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CouponID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CouponCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CouponCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CouponSurplus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CouponSurplus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CouponDenomination)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CouponDenomination)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CouponStartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CouponStartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CouponEndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CouponEndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CouponPath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CouponPath)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CouponSpreadPath)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CouponSpreadPath)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

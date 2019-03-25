@@ -1,0 +1,129 @@
+﻿@model IEnumerable<RpshopingMvc.Models.tb_goodsview>
+
+@{
+    ViewBag.Title = "商品管理";
+    Layout = "~/Views/Shared/_LayoutBackground.cshtml";
+}
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="@Url.Action("Create")">新增<label style="margin-left:15px;">|</label></a>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left">
+                <div class="form-group" style="margin-left:20px;">
+                    商品名称：<input type="text" name="filter" class="form-control" placeholder="Search" value="@Request["filter"]">
+                </div>
+                <button type="submit" class="btn btn-default">搜索</button>
+                <a href="@Url.Action("SynchronizationGoods")" class="btn btn-default" style="margin-left:60px;">同步商品</a>
+                <a href="@Url.Action("CheckGoods")" class="btn btn-default" style="margin-left:60px;">检查商品</a>
+            </form>
+        </div>
+    </div>
+</nav>
+<div class="toperrormsgdiv">@ViewBag.Message</div>
+<table class="table  table-hover table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GoodsName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImagePath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GoodsSort)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SalesVolume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IncomeRatio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brokerage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StoreName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlatformType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CouponCount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CouponSurplus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CouponDenomination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CouponStartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CouponEndTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GoodsName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.TableImg(item.ImagePath == "" ? "" : item.ImagePath.Split(',')[0].ToString())
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GoodsSort)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SalesVolume)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IncomeRatio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brokerage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StoreName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlatformType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CouponCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CouponSurplus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CouponDenomination)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CouponStartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CouponEndTime)
+            </td>
+            <td>
+                @Html.ActionLink("编辑", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("删除", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+@Html.PageList((PagedList.IPagedList<RpshopingMvc.Models.tb_goodsview>)Model, Url.PageUrl())

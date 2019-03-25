@@ -48,11 +48,13 @@ namespace RpshopingMvc.Models
 
     public class LoginViewModel
     {
+        //[Required]
+        //[Display(Name = "电子邮件")]
+        //[EmailAddress]
+        //public string Email { get; set; }
         [Required]
-        [Display(Name = "电子邮件")]
-        [EmailAddress]
-        public string Email { get; set; }
-
+        [Display(Name = "用户名")]
+        public string AccountName { get; set; }
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "密码")]
@@ -64,10 +66,13 @@ namespace RpshopingMvc.Models
 
     public class RegisterViewModel
     {
+        //[Required]
+        //[EmailAddress]
+        //[Display(Name = "电子邮件")]
+        //public string Email { get; set; }
         [Required]
-        [EmailAddress]
-        [Display(Name = "电子邮件")]
-        public string Email { get; set; }
+        [Display(Name = "用户名")]
+        public string AccountName { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "{0} 必须至少包含 {2} 个字符。", MinimumLength = 6)]
@@ -83,10 +88,13 @@ namespace RpshopingMvc.Models
 
     public class ResetPasswordViewModel
     {
+        //[Required]
+        //[EmailAddress]
+        //[Display(Name = "电子邮件")]
+        //public string Email { get; set; }
         [Required]
-        [EmailAddress]
-        [Display(Name = "电子邮件")]
-        public string Email { get; set; }
+        [Display(Name = "用户名")]
+        public string AccountName { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "{0} 必须至少包含 {2} 个字符。", MinimumLength = 6)]
@@ -108,5 +116,12 @@ namespace RpshopingMvc.Models
         [EmailAddress]
         [Display(Name = "电子邮件")]
         public string Email { get; set; }
+    }
+    public class AccountData
+    {
+        public string UserID { get; set; }
+
+        public string UserName { get; set; }
+
     }
 }

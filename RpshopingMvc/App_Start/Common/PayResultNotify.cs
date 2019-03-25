@@ -6,7 +6,7 @@ using System.Web;
 
 namespace RpshopingMvc.App_Start.Common
 {
-    public class PayResultNotify: Notify
+    public sealed class PayResultNotify: Notify
     {
         public PayResultNotify(System.Web.UI.Page page) : base(page)
         {

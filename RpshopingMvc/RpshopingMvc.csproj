@@ -47,8 +47,25 @@
     <Reference Include="APICloud">
       <HintPath>DLL\APICloud.dll</HintPath>
     </Reference>
-    <Reference Include="LitJSON">
-      <HintPath>DLL\LitJSON.dll</HintPath>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.1.0.145, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.1.1.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ImageResizer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageResizer.4.2.5\lib\net45\ImageResizer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ImageResizer.Plugins.DiskCache, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageResizer.Plugins.DiskCache.4.2.5\lib\net45\ImageResizer.Plugins.DiskCache.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ImageResizer.Plugins.PrettyGifs, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageResizer.Plugins.PrettyGifs.4.2.5\lib\net45\ImageResizer.Plugins.PrettyGifs.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="LitJSON, Version=0.13.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LitJson.0.13.0\lib\net45\LitJSON.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
@@ -83,12 +100,36 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Qiniu.7.3.1.1\lib\Net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.4.1\lib\net45\NPOI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.4.1\lib\net45\NPOI.OOXML.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.4.1\lib\net45\NPOI.OpenXml4Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.4.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NPOI.2.4.1\lib\net45\NPOI.OpenXmlFormats.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Qiniu, Version=7.2.15.0, Culture=neutral, PublicKeyToken=2894d75bb9f220bf, processorArchitecture=MSIL">
-      <HintPath>..\packages\Qiniu.Shared.7.2.15\lib\net45\Qiniu.dll</HintPath>
+      <HintPath>..\packages\Qiniu.Shared.ExtJson.7.2.15\lib\net45\Qiniu.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -144,16 +185,20 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="ThoughtWorks.QRCode, Version=1.0.4778.30637, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ThoughtWorks.QRCode.1.1.0\lib\ThoughtWorks.QRCode.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="TopSdk">
       <HintPath>DLL\TopSdk.dll</HintPath>
-    </Reference>
-    <Reference Include="WebGrease">
-      <Private>True</Private>
-      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
     </Reference>
     <Reference Include="Antlr3.Runtime">
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -215,16 +260,27 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\Comm.cs" />
     <Compile Include="App_Start\Common\AliPayConfig.cs" />
+    <Compile Include="App_Start\Common\AlmmCommon.cs" />
+    <Compile Include="App_Start\Common\ExcelHelper.cs" />
     <Compile Include="App_Start\Common\HttpService.cs" />
+    <Compile Include="App_Start\Common\JsonHelper.cs" />
     <Compile Include="App_Start\Common\Log.cs" />
     <Compile Include="App_Start\Common\Notify.cs" />
     <Compile Include="App_Start\Common\PayResultNotify.cs" />
+    <Compile Include="App_Start\Common\Wininet.cs" />
     <Compile Include="App_Start\Common\WxPayConfig.cs" />
     <Compile Include="App_Start\Common\WxPayException.cs" />
     <Compile Include="App_Start\Enums.cs" />
+    <Compile Include="App_Start\Extensions\ControllerExtensions.cs" />
+    <Compile Include="App_Start\Extensions\DictionaryExtensions.cs" />
     <Compile Include="App_Start\Extensions\EnumExtensions.cs" />
+    <Compile Include="App_Start\Extensions\HtmlHelperExtensions.cs" />
+    <Compile Include="App_Start\Extensions\IPrincipalExtensions.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\Qiniu\Base64.cs" />
+    <Compile Include="App_Start\Qiniu\QinQiuApi.cs" />
+    <Compile Include="App_Start\QrCode.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\Common\WxPayApi.cs" />
@@ -232,12 +288,18 @@
     <Compile Include="App_Start\Unite.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
+    <Compile Include="Controllers\GoodsSortGradesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PayCommonController.cs" />
     <Compile Include="Controllers\RechargeController.cs" />
     <Compile Include="Controllers\TaobaoController.cs" />
+    <Compile Include="Controllers\tb_FavoritesController.cs" />
+    <Compile Include="Controllers\tb_goodsController.cs" />
+    <Compile Include="Controllers\tb_goodssortController.cs" />
+    <Compile Include="Controllers\UploaderController.cs" />
     <Compile Include="Controllers\UserinfoController.cs" />
+    <Compile Include="Controllers\UserTbOrderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -293,17 +355,135 @@
     <Compile Include="Migrations\201902171315353_updatetable.Designer.cs">
       <DependentUpon>201902171315353_updatetable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902171407561_updaterecharge.cs" />
+    <Compile Include="Migrations\201902171407561_updaterecharge.Designer.cs">
+      <DependentUpon>201902171407561_updaterecharge.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902240705450_addgoodssortgrade.cs" />
+    <Compile Include="Migrations\201902240705450_addgoodssortgrade.Designer.cs">
+      <DependentUpon>201902240705450_addgoodssortgrade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902240707236_addgoodssortgrade1.cs" />
+    <Compile Include="Migrations\201902240707236_addgoodssortgrade1.Designer.cs">
+      <DependentUpon>201902240707236_addgoodssortgrade1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903070838193_updatefavoretes.cs" />
+    <Compile Include="Migrations\201903070838193_updatefavoretes.Designer.cs">
+      <DependentUpon>201903070838193_updatefavoretes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903090248236_addzkprice.cs" />
+    <Compile Include="Migrations\201903090248236_addzkprice.Designer.cs">
+      <DependentUpon>201903090248236_addzkprice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903090300483_updategoodsnamelength.cs" />
+    <Compile Include="Migrations\201903090300483_updategoodsnamelength.Designer.cs">
+      <DependentUpon>201903090300483_updategoodsnamelength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903090351102_addnick.cs" />
+    <Compile Include="Migrations\201903090351102_addnick.Designer.cs">
+      <DependentUpon>201903090351102_addnick.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903090843277_addgoodstype.cs" />
+    <Compile Include="Migrations\201903090843277_addgoodstype.Designer.cs">
+      <DependentUpon>201903090843277_addgoodstype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903090911572_addbrokerageexplain.cs" />
+    <Compile Include="Migrations\201903090911572_addbrokerageexplain.Designer.cs">
+      <DependentUpon>201903090911572_addbrokerageexplain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903100320473_addgoodsfavoritesid.cs" />
+    <Compile Include="Migrations\201903100320473_addgoodsfavoritesid.Designer.cs">
+      <DependentUpon>201903100320473_addgoodsfavoritesid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903110253247_addspszd.cs" />
+    <Compile Include="Migrations\201903110253247_addspszd.Designer.cs">
+      <DependentUpon>201903110253247_addspszd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903111408242_addqhprice.cs" />
+    <Compile Include="Migrations\201903111408242_addqhprice.Designer.cs">
+      <DependentUpon>201903111408242_addqhprice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903130756444_addpid.cs" />
+    <Compile Include="Migrations\201903130756444_addpid.Designer.cs">
+      <DependentUpon>201903130756444_addpid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903130809170_deletepid.cs" />
+    <Compile Include="Migrations\201903130809170_deletepid.Designer.cs">
+      <DependentUpon>201903130809170_deletepid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903140618024_addusername.cs" />
+    <Compile Include="Migrations\201903140618024_addusername.Designer.cs">
+      <DependentUpon>201903140618024_addusername.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903140812402_addparnetid.cs" />
+    <Compile Include="Migrations\201903140812402_addparnetid.Designer.cs">
+      <DependentUpon>201903140812402_addparnetid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903150114412_addTborder.cs" />
+    <Compile Include="Migrations\201903150114412_addTborder.Designer.cs">
+      <DependentUpon>201903150114412_addTborder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903150119146_updateorderstate.cs" />
+    <Compile Include="Migrations\201903150119146_updateorderstate.Designer.cs">
+      <DependentUpon>201903150119146_updateorderstate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903170212024_addsortfid.cs" />
+    <Compile Include="Migrations\201903170212024_addsortfid.Designer.cs">
+      <DependentUpon>201903170212024_addsortfid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903170222213_updatesortfids.cs" />
+    <Compile Include="Migrations\201903170222213_updatesortfids.Designer.cs">
+      <DependentUpon>201903170222213_updatesortfids.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903181005490_CategoryName.cs" />
+    <Compile Include="Migrations\201903181005490_CategoryName.Designer.cs">
+      <DependentUpon>201903181005490_CategoryName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903210758365_addpid1.cs" />
+    <Compile Include="Migrations\201903210758365_addpid1.Designer.cs">
+      <DependentUpon>201903210758365_addpid1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903210906394_usercode.cs" />
+    <Compile Include="Migrations\201903210906394_usercode.Designer.cs">
+      <DependentUpon>201903210906394_usercode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903211407051_addtkinfo.cs" />
+    <Compile Include="Migrations\201903211407051_addtkinfo.Designer.cs">
+      <DependentUpon>201903211407051_addtkinfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903240848019_addicostr.cs" />
+    <Compile Include="Migrations\201903240848019_addicostr.Designer.cs">
+      <DependentUpon>201903240848019_addicostr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903240857515_addficostr.cs" />
+    <Compile Include="Migrations\201903240857515_addficostr.Designer.cs">
+      <DependentUpon>201903240857515_addficostr.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Common\BaseFileUpload.cs" />
+    <Compile Include="Models\Common\FileUpload.cs" />
+    <Compile Include="Models\Common\ImageResizer.cs" />
+    <Compile Include="Models\Common\Menu.cs" />
+    <Compile Include="Models\Common\SysRole.cs" />
+    <Compile Include="Models\GoodsSortGrade.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PayOrder.cs" />
+    <Compile Include="Models\Tborder.cs" />
     <Compile Include="Models\tb_Favorites.cs" />
     <Compile Include="Models\tb_goods.cs" />
     <Compile Include="Models\tb_goodssort.cs" />
     <Compile Include="Models\tb_Recharge.cs" />
     <Compile Include="Models\tb_TKInfo.cs" />
     <Compile Include="Models\tb_userinfo.cs" />
+    <Compile Include="Notify\PersistentNotifyUrl.aspx.cs">
+      <DependentUpon>PersistentNotifyUrl.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Notify\PersistentNotifyUrl.aspx.designer.cs">
+      <DependentUpon>PersistentNotifyUrl.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResultNotify.aspx.cs">
       <DependentUpon>ResultNotify.aspx</DependentUpon>
@@ -316,8 +496,39 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AliNotifyUrl.aspx" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\iconfont.css" />
+    <Content Include="Content\Images\404\avatar.png" />
+    <Content Include="Content\Images\404\default.jpg" />
+    <Content Include="Content\Images\404\placeholder.png" />
+    <Content Include="Content\Images\404\placeholder_image.png" />
+    <Content Include="Content\Images\bg.png" />
+    <Content Include="Content\Images\filetype\doc.png" />
+    <Content Include="Content\Images\filetype\file.png" />
+    <Content Include="Content\Images\filetype\mp3.png" />
+    <Content Include="Content\Images\filetype\mp4.png" />
+    <Content Include="Content\Images\filetype\ppt.png" />
+    <Content Include="Content\Images\filetype\xls.png" />
+    <Content Include="Content\Images\filetype\zip.png" />
+    <Content Include="Content\Images\ic_withdraw_list_40.png" />
+    <Content Include="Content\Images\map_mark_bs.png" />
+    <Content Include="Content\Images\map_mark_bs_active.png" />
+    <Content Include="Content\Images\phone.jpg" />
+    <Content Include="Content\Images\temofilerebg.png" />
+    <Content Include="Content\Images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\Images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\Images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\Images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\Images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\Images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery-ui.structure.css" />
+    <Content Include="Content\jquery-ui.theme.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\Site.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -326,6 +537,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="cert\apiclient_cert.p12" />
+    <Content Include="Notify\PersistentNotifyUrl.aspx" />
     <Content Include="ResultNotify.aspx" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
@@ -667,7 +879,26 @@
     <Content Include="Scripts\datetimepicker\css\bootstrap-datetimepicker.css" />
     <Content Include="Scripts\datetimepicker\js\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\datetimepicker\js\locales\bootstrap-datetimepicker.zh-CN.js" />
+    <Content Include="Content\Less\base.less" />
+    <Content Include="Content\Less\bootstrapEx.less" />
+    <Content Include="Content\Less\imageResizeUploader.less" />
+    <Content Include="Content\Less\layoutBackground.less" />
+    <Content Include="Content\Less\map.less" />
+    <Content Include="Content\Less\uploader.less" />
+    <Content Include="Content\Less\urlMatch.less" />
+    <Content Include="Content\Less\View\enterpriseManage.less" />
+    <Content Include="Content\Less\View\homePageModularsManageIndex.less" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\iconfont.ttf" />
+    <Content Include="Content\Site.less" />
+    <Content Include="Content\temofile" />
+    <None Include="Properties\PublishProfiles\rpshoping.pubxml" />
     <None Include="Properties\PublishProfiles\sg.pubxml" />
+    <None Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Scripts\jquery-1.12.4.js" />
+    <Content Include="Scripts\jquery-1.12.4.min.js" />
+    <Content Include="Scripts\jquery-1.12.4.min.map" />
     <None Include="Scripts\jquery-2.2.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.4.js" />
     <Content Include="Scripts\jquery-2.2.4.min.js" />
@@ -682,6 +913,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.js" />
+    <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\TxIm\base.js" />
     <Content Include="Scripts\TxIm\common\show_one_msg.js" />
@@ -786,14 +1019,45 @@
     <Content Include="Scripts\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Scripts\ckeditor\skins\moono-lisa\readme.md" />
     <Content Include="Scripts\jquery-2.2.4.min.map" />
+    <Content Include="Views\Shared\_LayoutBackground.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\FileUpload.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\ImageResizer.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ChinaPCASCom.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CloudFileControl.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Map.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\SelectRoleListViewModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\WeChatWorkDep.cshtml" />
+    <Content Include="Views\Userinfo\Index.cshtml" />
+    <Content Include="Views\tb_goodssort\Create.cshtml" />
+    <Content Include="Views\tb_goodssort\Delete.cshtml" />
+    <Content Include="Views\tb_goodssort\Details.cshtml" />
+    <Content Include="Views\tb_goodssort\Edit.cshtml" />
+    <Content Include="Views\tb_goodssort\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\FileUpload.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ImageResizer.cshtml" />
+    <Content Include="Views\GoodsSortGrades\Create.cshtml" />
+    <Content Include="Views\GoodsSortGrades\Delete.cshtml" />
+    <Content Include="Views\GoodsSortGrades\Details.cshtml" />
+    <Content Include="Views\GoodsSortGrades\Edit.cshtml" />
+    <Content Include="Views\GoodsSortGrades\Index.cshtml" />
+    <Content Include="Views\tb_Favorites\Create.cshtml" />
+    <Content Include="Views\tb_Favorites\Delete.cshtml" />
+    <Content Include="Views\tb_Favorites\Details.cshtml" />
+    <Content Include="Views\tb_Favorites\Edit.cshtml" />
+    <Content Include="Views\tb_Favorites\Index.cshtml" />
+    <Content Include="Views\tb_goods\Create.cshtml" />
+    <Content Include="Views\tb_goods\Delete.cshtml" />
+    <Content Include="Views\tb_goods\Details.cshtml" />
+    <Content Include="Views\tb_goods\Edit.cshtml" />
+    <Content Include="Views\tb_goods\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Common\" />
     <Folder Include="Views\PayCommon\" />
     <Folder Include="Views\Recharge\" />
-    <Folder Include="Views\Taobao\" />
-    <Folder Include="Views\Userinfo\" />
+    <Folder Include="Views\Uploader\" />
+    <Folder Include="Views\UserTbOrder\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -841,6 +1105,84 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902171315353_updatetable.resx">
       <DependentUpon>201902171315353_updatetable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902171407561_updaterecharge.resx">
+      <DependentUpon>201902171407561_updaterecharge.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902240705450_addgoodssortgrade.resx">
+      <DependentUpon>201902240705450_addgoodssortgrade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902240707236_addgoodssortgrade1.resx">
+      <DependentUpon>201902240707236_addgoodssortgrade1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903070838193_updatefavoretes.resx">
+      <DependentUpon>201903070838193_updatefavoretes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903090248236_addzkprice.resx">
+      <DependentUpon>201903090248236_addzkprice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903090300483_updategoodsnamelength.resx">
+      <DependentUpon>201903090300483_updategoodsnamelength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903090351102_addnick.resx">
+      <DependentUpon>201903090351102_addnick.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903090843277_addgoodstype.resx">
+      <DependentUpon>201903090843277_addgoodstype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903090911572_addbrokerageexplain.resx">
+      <DependentUpon>201903090911572_addbrokerageexplain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903100320473_addgoodsfavoritesid.resx">
+      <DependentUpon>201903100320473_addgoodsfavoritesid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903110253247_addspszd.resx">
+      <DependentUpon>201903110253247_addspszd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903111408242_addqhprice.resx">
+      <DependentUpon>201903111408242_addqhprice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903130756444_addpid.resx">
+      <DependentUpon>201903130756444_addpid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903130809170_deletepid.resx">
+      <DependentUpon>201903130809170_deletepid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903140618024_addusername.resx">
+      <DependentUpon>201903140618024_addusername.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903140812402_addparnetid.resx">
+      <DependentUpon>201903140812402_addparnetid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903150114412_addTborder.resx">
+      <DependentUpon>201903150114412_addTborder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903150119146_updateorderstate.resx">
+      <DependentUpon>201903150119146_updateorderstate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903170212024_addsortfid.resx">
+      <DependentUpon>201903170212024_addsortfid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903170222213_updatesortfids.resx">
+      <DependentUpon>201903170222213_updatesortfids.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903181005490_CategoryName.resx">
+      <DependentUpon>201903181005490_CategoryName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903210758365_addpid1.resx">
+      <DependentUpon>201903210758365_addpid1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903210906394_usercode.resx">
+      <DependentUpon>201903210906394_usercode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903211407051_addtkinfo.resx">
+      <DependentUpon>201903211407051_addtkinfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903240848019_addicostr.resx">
+      <DependentUpon>201903240848019_addicostr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903240857515_addficostr.resx">
+      <DependentUpon>201903240857515_addficostr.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

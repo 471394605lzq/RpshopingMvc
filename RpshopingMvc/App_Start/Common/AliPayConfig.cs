@@ -34,5 +34,11 @@ namespace RpshopingMvc.App_Start.Common
         public static string tkapp_key = "25530839";
         //淘宝客AppSecret
         public static string tkapp_secret = "0e8d5e9032822b0763a4821b3d4a9097";
+        //淘宝客接口请求url
+        public static string tkapp_url = "http://gw.api.taobao.com/router/rest";
+        //媒体id
+        public static string MediaID = "283700162";
+        //推广者id
+        public static string Memberid = "26337984";
     }
 }

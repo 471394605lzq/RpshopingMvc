@@ -1,0 +1,32 @@
+﻿@model RpshopingMvc.Models.GoodsSortGrade
+
+@{
+    ViewBag.Title = "分类等级详情";
+    Layout = "~/Views/Shared/_LayoutBackground.cshtml";
+}
+
+<h2>分类等级详情</h2>
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Index)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Index)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("编辑", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("返回", "Index")
+</p>
