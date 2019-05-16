@@ -200,7 +200,7 @@ namespace RpshopingMvc.Controllers
         //获取选品库列表
         [HttpGet]
         [AllowCrossSiteJson]
-        public ActionResult GetGoodsSortList(int parentid, bool isparentid, int page = 1, int pageSize = 20)
+        public ActionResult GetGoodsSortList(int parentid, string isparentid, int page = 1, int pageSize = 20)
         {
             var query = from a in db.tb_goodssort
                         select new
@@ -213,7 +213,7 @@ namespace RpshopingMvc.Controllers
                             Grade=a.Grade,
                             Fid=a.FID
                         };
-            if (isparentid)
+            if (isparentid=="1")
             {
                 query = query.Where(s => s.Parentid == parentid);
             }

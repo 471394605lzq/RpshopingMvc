@@ -42,6 +42,16 @@ namespace RpshopingMvc.Models
         public DbSet<GoodsSortGrade> GoodsSortGrade { get; set; }
         //用户订单表
         public DbSet<Tborder> Tborder { get; set; }
+        //用户收入明细
+        public DbSet<UserSettlement> UserSettlement { get; set; }
+        //新手学院
+        public DbSet<CollegeInfo> CollegeInfo { get; set; }
+        //用户反馈
+        public DbSet<Feedback> Feedback { get; set; }
+        //提现记录
+        public DbSet<Withdrawcash> Withdrawcash { get; set; }
+        //邀请奖励记录
+        public DbSet<UserInvitationAward> UserInvitationAward { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

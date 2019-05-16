@@ -177,9 +177,9 @@ namespace RpshopingMvc.Enums
         //订单状态
         public enum TbOrderState {
             [Display(Name = "待结算")]
-            IsBalance = 0,
+            NoBalance = 0,
             [Display(Name = "已结算")]
-            NoBalance = 1,
+            IsBalance = 1,
         }
     }
 }

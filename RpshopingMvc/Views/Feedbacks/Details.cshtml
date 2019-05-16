@@ -1,0 +1,51 @@
+﻿@model RpshopingMvc.Models.Feedback
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutBackground.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Feedback</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Titlestr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titlestr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contentstr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contentstr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contactway)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contactway)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

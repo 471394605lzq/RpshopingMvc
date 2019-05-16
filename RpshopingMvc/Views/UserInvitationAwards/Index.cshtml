@@ -1,0 +1,58 @@
+﻿@model IEnumerable<RpshopingMvc.Models.UserInvitationAward>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutBackground.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AwardMoney)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FromUserID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.States)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AwardMoney)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FromUserID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.States)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

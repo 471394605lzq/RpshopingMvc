@@ -48,6 +48,49 @@ namespace RpshopingMvc.Models
         [Display(Name = "用户编号")]
         [MaxLength(50)]
         public string UserCode { get; set; }
+        [Display(Name = "本月预估收入")]
+        public decimal ThisMonthEstimateIncome { get; set; }
+        [Display(Name = "本月待结算")]
+        public decimal ThisMonthSettlementMoney { get; set; }
+
+        [Display(Name = "上月预估收入")]
+        public decimal LastMonthEstimateIncome { get; set; }
+        [Display(Name = "上月待结算")]
+        public decimal LastMonthSettlementMoney { get; set; }
+        [Display(Name = "用户头像")]
+        public string UserImage { get; set; }
+        [Display(Name = "支付宝账号")]
+        [MaxLength(50)]
+        public string AliAccount { get; set; }
+        [Display(Name = "支付宝实名")]
+        [MaxLength(50)]
+        public string AliUserName { get; set; }
+        [Display(Name = "密码")]
+        [MaxLength(50)]
+        public string UsPwd { get; set; }
+        [Display(Name = "openid")]
+        [MaxLength(50)]
+        public string OpenID { get; set; }
+        [Display(Name = "性别")]
+        [MaxLength(50)]
+        public string sex { get; set; }
+        [Display(Name = "生日")]
+        [MaxLength(50)]
+        public string birthday { get; set; }
+        [Display(Name = "家乡")]
+        [MaxLength(50)]
+        public string hometown { get; set; }
+        [Display(Name = "居住地")]
+        [MaxLength(50)]
+        public string residence { get; set; }
+        [Display(Name = "签名")]
+        [MaxLength(50)]
+        public string signature { get; set; }
+        [Display(Name = "用户二维码")]
+        public string UserPath { get; set; }
+        [Display(Name = "淘宝用户id")]
+        [MaxLength(50)]
+        public string tbuserid { get; set; }
     }
     public class userinfoview {
          public int ID { get; set; }

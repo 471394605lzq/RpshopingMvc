@@ -1,0 +1,18 @@
+namespace RpshopingMvc.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class userpath : DbMigration
+    {
+        public override void Up()
+        {
+            AddColumn("dbo.tb_userinfo", "UserPath", c => c.String());
+        }
+        
+        public override void Down()
+        {
+            DropColumn("dbo.tb_userinfo", "UserPath");
+        }
+    }
+}

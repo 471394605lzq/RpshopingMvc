@@ -1,0 +1,57 @@
+﻿@model RpshopingMvc.Models.Feedback
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutBackground.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Feedback</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Titlestr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titlestr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contentstr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contentstr)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contactway)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contactway)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

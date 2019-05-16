@@ -17,6 +17,7 @@ namespace RpshopingMvc
             menus.Add(new Menu { Name = "商品分类管理", Title = "商品分类管理", Url = "~/tb_goodssort/Index", IconImage = "fenlei-" });
             menus.Add(new Menu { Name = "商品管理", Title = "商品管理", Url = "~/tb_goods/Index", IconImage = "shangpin" });
             menus.Add(new Menu { Name = "选品库管理", Title = "选品库管理", Url = "~/tb_Favorites/Index", IconImage = "shangpin" });
+            menus.Add(new Menu { Name = "学院管理", Title = "学院管理", Url = "~/CollegeInfoes/Index", IconImage = "shangpin" });
             //if (p.IsInRole(SysRole.UserManageRead))
             //{
             //    menus.Add(new Menu { Name = "用户管理", Title = "用户管理", Url = "~/UserManage/Index", IconImage = "yonghu" });

@@ -192,6 +192,7 @@ namespace RpshopingMvc.Controllers
             try
             {
                 long tempfid = FavoritesID;
+                //是否随机读取1表示是
                 if (israndom == 1)
                 {
                     SqlParameter[] parameters = {
@@ -199,16 +200,27 @@ namespace RpshopingMvc.Controllers
                     string sqlstr = string.Empty;
                     sqlstr = string.Format(@"SELECT * FROM dbo.tb_Favorites");
                     List<tb_Favorites> data = db.Database.SqlQuery<tb_Favorites>(sqlstr, parameters).ToList();
-                    int resultrow = data.Count;
+                    int resultrow = data.Count-1;
                     Random rd = new Random();
                     int rs = rd.Next(1, resultrow);
                     tempfid = long.Parse(data[rs].FavoritesID);
                 }
                 var usmodel = db.tb_userinfos.FirstOrDefault(a => a.UserID == userid);
+                //用户在平台享受的提成点(初级会员 10%  高级会员 50%  运营商 50%  合伙人 50%)
+                int zkrate = 10;
+               
                 long tempadzoneid = 0;
                 if (usmodel != null)
                 {
                     tempadzoneid = long.Parse(usmodel.Adzoneid);
+                    if (usmodel.UserGrade == UserGrade.Primary)
+                    {
+                        zkrate = 10;
+                    }
+                    else
+                    {
+                        zkrate = 50;
+                    }
                 }
                 else
                 {
@@ -262,7 +274,8 @@ namespace RpshopingMvc.Controllers
                                 string[] splitcoupon2 = string.IsNullOrWhiteSpace(couponinfo) ? new string[] { } : splitcoupon[1].Split('元');
                                 int tCouponDenomination = string.IsNullOrWhiteSpace(couponinfo) ? 0 : Convert.ToInt32(splitcoupon2[0]);
                                 decimal tqhprice = decimal.Round((decimal)list[i].zk_final_price_wap - tCouponDenomination, 2);
-                                decimal tBrokerage = decimal.Round(decimal.Parse(((decimal)list[i].zk_final_price_wap * ((decimal)list[i].tk_rate / 100)).ToString()), 2);
+                                decimal tempbrokerage= decimal.Round(decimal.Parse(((decimal)list[i].zk_final_price_wap * ((decimal)list[i].tk_rate / 100)).ToString()), 2);
+                                decimal tBrokerage = decimal.Round(decimal.Parse(((decimal)tempbrokerage * ((decimal)zkrate / 100)).ToString()), 2);
 
                                 int tCouponCount = string.IsNullOrWhiteSpace(couponinfo) ? 0 : Convert.ToInt32(list[i].coupon_total_count);
                                 
@@ -685,7 +698,7 @@ namespace RpshopingMvc.Controllers
         //}
         [HttpGet]
         [AllowCrossSiteJson]
-        public ActionResult SearchGoodsByKey(string userid,string key,long? PageNo=1)
+        public ActionResult SearchGoodsByKey(string userid,string key,long? PageNo=1,long? PageSize=20L)
         {
             List<searchresultmodel> list2 = new List<searchresultmodel>();
             var usmodel = db.tb_userinfos.FirstOrDefault(a => a.UserID == userid);
@@ -698,11 +711,16 @@ namespace RpshopingMvc.Controllers
             {
                 tempadzoneid= 96815000311L;
             }
-
+            bool ishavecoupon = true;
+            //如果搜索的关键词长度大于20个字符说明搜索的是标题，这种情况下可以不限制一定有优惠券
+            if (key.Length>20)
+            {
+                ishavecoupon = false;
+            }
                 ITopClient client = new DefaultTopClient(AliPayConfig.tkapp_url, AliPayConfig.tkapp_key, AliPayConfig.tkapp_secret, "json");
                 TbkDgMaterialOptionalRequest req = new TbkDgMaterialOptionalRequest();
                 //req.StartDsr = 10L;
-                req.PageSize = 20L;
+                req.PageSize = PageSize;
                 req.PageNo = PageNo;
                 req.Platform = 2L;
                 //req.EndTkRate = 1234L;
@@ -716,7 +734,7 @@ namespace RpshopingMvc.Controllers
                 //req.Cat = "16,18";
                 req.Q = key;
                 req.MaterialId = 6707L;
-                req.HasCoupon = false;
+                req.HasCoupon = ishavecoupon;
                 //req.Ip = "13.2.33.4";
                 req.AdzoneId = tempadzoneid;
                 //req.NeedFreeShipment = true;
@@ -865,6 +883,44 @@ namespace RpshopingMvc.Controllers
                 return Json(Comm.ToJsonResult("Success", "成功", list2), JsonRequestBehavior.AllowGet);
             }
         }
+
+        //生成淘口令
+        [HttpGet]
+        [AllowCrossSiteJson]
+        public ActionResult CreateTKL(string url, string title, string logoimg)
+        {
+            string tklstr = "";
+            try
+            {
+                ITopClient client = new DefaultTopClient(AliPayConfig.tkapp_url, AliPayConfig.tkapp_key, AliPayConfig.tkapp_secret, "json");
+                TbkTpwdCreateRequest req = new TbkTpwdCreateRequest();
+                //req.UserId = tbusid;
+                req.Text = title;
+                req.Url = url;
+                req.Logo = logoimg;
+                //req.Ext = "{}";
+                TbkTpwdCreateResponse rsp = client.Execute(req);
+                if (rsp.Data != null)
+                {
+                    var jsondataformain = Newtonsoft.Json.JsonConvert.DeserializeObject(rsp.Body) as JContainer;//转json格式
+                    string s = jsondataformain.SelectToken("tbk_tpwd_create_response").ToString();
+                    var js = Newtonsoft.Json.JsonConvert.DeserializeObject(s) as JContainer;
+                    var modelstr = js.SelectToken("data").ToString();
+                    var jss = Newtonsoft.Json.JsonConvert.DeserializeObject(modelstr) as JContainer;
+                    tklstr = jss.SelectToken("model").ToString();
+                    return Json(Comm.ToJsonResult("Success", "成功", tklstr), JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(Comm.ToJsonResult("Success", "成功", tklstr), JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Success", "成功", tklstr), JsonRequestBehavior.AllowGet);
+            }
+        }
+
         private class searchresultmodel {
             public string item_id { get; set; }
             public string nick { get; set; }

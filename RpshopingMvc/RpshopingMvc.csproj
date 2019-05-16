@@ -278,6 +278,7 @@
     <Compile Include="App_Start\Extensions\IPrincipalExtensions.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\OrderCommon.cs" />
     <Compile Include="App_Start\Qiniu\Base64.cs" />
     <Compile Include="App_Start\Qiniu\QinQiuApi.cs" />
     <Compile Include="App_Start\QrCode.cs" />
@@ -287,10 +288,13 @@
     <Compile Include="App_Start\Common\WxPayData.cs" />
     <Compile Include="App_Start\Unite.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CollegeInfoesController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
+    <Compile Include="Controllers\FeedbacksController.cs" />
     <Compile Include="Controllers\GoodsSortGradesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\PayCommonController.cs" />
     <Compile Include="Controllers\RechargeController.cs" />
     <Compile Include="Controllers\TaobaoController.cs" />
@@ -299,7 +303,9 @@
     <Compile Include="Controllers\tb_goodssortController.cs" />
     <Compile Include="Controllers\UploaderController.cs" />
     <Compile Include="Controllers\UserinfoController.cs" />
+    <Compile Include="Controllers\UserInvitationAwardsController.cs" />
     <Compile Include="Controllers\UserTbOrderController.cs" />
+    <Compile Include="Controllers\WithdrawcashesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -459,13 +465,111 @@
     <Compile Include="Migrations\201903240857515_addficostr.Designer.cs">
       <DependentUpon>201903240857515_addficostr.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904020751367_addtborders.cs" />
+    <Compile Include="Migrations\201904020751367_addtborders.Designer.cs">
+      <DependentUpon>201904020751367_addtborders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904020846566_updateorders.cs" />
+    <Compile Include="Migrations\201904020846566_updateorders.Designer.cs">
+      <DependentUpon>201904020846566_updateorders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904021012574_addusersettlement.cs" />
+    <Compile Include="Migrations\201904021012574_addusersettlement.Designer.cs">
+      <DependentUpon>201904021012574_addusersettlement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904021023020_updateusersettlement.cs" />
+    <Compile Include="Migrations\201904021023020_updateusersettlement.Designer.cs">
+      <DependentUpon>201904021023020_updateusersettlement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904021133337_updatesss.cs" />
+    <Compile Include="Migrations\201904021133337_updatesss.Designer.cs">
+      <DependentUpon>201904021133337_updatesss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904030302268_updateuserinfo.cs" />
+    <Compile Include="Migrations\201904030302268_updateuserinfo.Designer.cs">
+      <DependentUpon>201904030302268_updateuserinfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904030533243_updateuserinfoss.cs" />
+    <Compile Include="Migrations\201904030533243_updateuserinfoss.Designer.cs">
+      <DependentUpon>201904030533243_updateuserinfoss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904050804076_addsettlementstate.cs" />
+    <Compile Include="Migrations\201904050804076_addsettlementstate.Designer.cs">
+      <DependentUpon>201904050804076_addsettlementstate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904070900439_adduserimage.cs" />
+    <Compile Include="Migrations\201904070900439_adduserimage.Designer.cs">
+      <DependentUpon>201904070900439_adduserimage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904070932443_addcollegeinfo.cs" />
+    <Compile Include="Migrations\201904070932443_addcollegeinfo.Designer.cs">
+      <DependentUpon>201904070932443_addcollegeinfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904070934009_addcollegeinfos.cs" />
+    <Compile Include="Migrations\201904070934009_addcollegeinfos.Designer.cs">
+      <DependentUpon>201904070934009_addcollegeinfos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904071108059_updatecollegeinfo.cs" />
+    <Compile Include="Migrations\201904071108059_updatecollegeinfo.Designer.cs">
+      <DependentUpon>201904071108059_updatecollegeinfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904140207547_addfeedback.cs" />
+    <Compile Include="Migrations\201904140207547_addfeedback.Designer.cs">
+      <DependentUpon>201904140207547_addfeedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904140335553_updatefeedback.cs" />
+    <Compile Include="Migrations\201904140335553_updatefeedback.Designer.cs">
+      <DependentUpon>201904140335553_updatefeedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904140451570_updatefeedbackuserid.cs" />
+    <Compile Include="Migrations\201904140451570_updatefeedbackuserid.Designer.cs">
+      <DependentUpon>201904140451570_updatefeedbackuserid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904141039149_addwithdrawcash.cs" />
+    <Compile Include="Migrations\201904141039149_addwithdrawcash.Designer.cs">
+      <DependentUpon>201904141039149_addwithdrawcash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904141042197_addwithdrawcashsignstr.cs" />
+    <Compile Include="Migrations\201904141042197_addwithdrawcashsignstr.Designer.cs">
+      <DependentUpon>201904141042197_addwithdrawcashsignstr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904141043443_addwithdrawcashs.cs" />
+    <Compile Include="Migrations\201904141043443_addwithdrawcashs.Designer.cs">
+      <DependentUpon>201904141043443_addwithdrawcashs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201904251406311_adduserinvitationaward.cs" />
+    <Compile Include="Migrations\201904251406311_adduserinvitationaward.Designer.cs">
+      <DependentUpon>201904251406311_adduserinvitationaward.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905041213488_adduspwd.cs" />
+    <Compile Include="Migrations\201905041213488_adduspwd.Designer.cs">
+      <DependentUpon>201905041213488_adduspwd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905041309120_adduopenid.cs" />
+    <Compile Include="Migrations\201905041309120_adduopenid.Designer.cs">
+      <DependentUpon>201905041309120_adduopenid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905061307063_updateuser.cs" />
+    <Compile Include="Migrations\201905061307063_updateuser.Designer.cs">
+      <DependentUpon>201905061307063_updateuser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905071354359_userpath.cs" />
+    <Compile Include="Migrations\201905071354359_userpath.Designer.cs">
+      <DependentUpon>201905071354359_userpath.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905131334189_addtbuserid.cs" />
+    <Compile Include="Migrations\201905131334189_addtbuserid.Designer.cs">
+      <DependentUpon>201905131334189_addtbuserid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CollegeInfo.cs" />
     <Compile Include="Models\Common\BaseFileUpload.cs" />
     <Compile Include="Models\Common\FileUpload.cs" />
     <Compile Include="Models\Common\ImageResizer.cs" />
     <Compile Include="Models\Common\Menu.cs" />
     <Compile Include="Models\Common\SysRole.cs" />
+    <Compile Include="Models\Feedback.cs" />
     <Compile Include="Models\GoodsSortGrade.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -477,6 +581,9 @@
     <Compile Include="Models\tb_Recharge.cs" />
     <Compile Include="Models\tb_TKInfo.cs" />
     <Compile Include="Models\tb_userinfo.cs" />
+    <Compile Include="Models\UserInvitationAward.cs" />
+    <Compile Include="Models\UserSettlement.cs" />
+    <Compile Include="Models\Withdrawcash.cs" />
     <Compile Include="Notify\PersistentNotifyUrl.aspx.cs">
       <DependentUpon>PersistentNotifyUrl.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1050,10 +1157,31 @@
     <Content Include="Views\tb_goods\Details.cshtml" />
     <Content Include="Views\tb_goods\Edit.cshtml" />
     <Content Include="Views\tb_goods\Index.cshtml" />
+    <Content Include="Views\CollegeInfoes\Create.cshtml" />
+    <Content Include="Views\CollegeInfoes\Delete.cshtml" />
+    <Content Include="Views\CollegeInfoes\Details.cshtml" />
+    <Content Include="Views\CollegeInfoes\Edit.cshtml" />
+    <Content Include="Views\CollegeInfoes\Index.cshtml" />
+    <Content Include="Views\Feedbacks\Create.cshtml" />
+    <Content Include="Views\Feedbacks\Delete.cshtml" />
+    <Content Include="Views\Feedbacks\Details.cshtml" />
+    <Content Include="Views\Feedbacks\Edit.cshtml" />
+    <Content Include="Views\Feedbacks\Index.cshtml" />
+    <Content Include="Views\Withdrawcashes\Create.cshtml" />
+    <Content Include="Views\Withdrawcashes\Delete.cshtml" />
+    <Content Include="Views\Withdrawcashes\Details.cshtml" />
+    <Content Include="Views\Withdrawcashes\Edit.cshtml" />
+    <Content Include="Views\Withdrawcashes\Index.cshtml" />
+    <Content Include="Views\UserInvitationAwards\Create.cshtml" />
+    <Content Include="Views\UserInvitationAwards\Delete.cshtml" />
+    <Content Include="Views\UserInvitationAwards\Details.cshtml" />
+    <Content Include="Views\UserInvitationAwards\Edit.cshtml" />
+    <Content Include="Views\UserInvitationAwards\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Common\" />
+    <Folder Include="Views\Member\" />
     <Folder Include="Views\PayCommon\" />
     <Folder Include="Views\Recharge\" />
     <Folder Include="Views\Uploader\" />
@@ -1183,6 +1311,78 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903240857515_addficostr.resx">
       <DependentUpon>201903240857515_addficostr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904020751367_addtborders.resx">
+      <DependentUpon>201904020751367_addtborders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904020846566_updateorders.resx">
+      <DependentUpon>201904020846566_updateorders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904021012574_addusersettlement.resx">
+      <DependentUpon>201904021012574_addusersettlement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904021023020_updateusersettlement.resx">
+      <DependentUpon>201904021023020_updateusersettlement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904021133337_updatesss.resx">
+      <DependentUpon>201904021133337_updatesss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904030302268_updateuserinfo.resx">
+      <DependentUpon>201904030302268_updateuserinfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904030533243_updateuserinfoss.resx">
+      <DependentUpon>201904030533243_updateuserinfoss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904050804076_addsettlementstate.resx">
+      <DependentUpon>201904050804076_addsettlementstate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904070900439_adduserimage.resx">
+      <DependentUpon>201904070900439_adduserimage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904070932443_addcollegeinfo.resx">
+      <DependentUpon>201904070932443_addcollegeinfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904070934009_addcollegeinfos.resx">
+      <DependentUpon>201904070934009_addcollegeinfos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904071108059_updatecollegeinfo.resx">
+      <DependentUpon>201904071108059_updatecollegeinfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904140207547_addfeedback.resx">
+      <DependentUpon>201904140207547_addfeedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904140335553_updatefeedback.resx">
+      <DependentUpon>201904140335553_updatefeedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904140451570_updatefeedbackuserid.resx">
+      <DependentUpon>201904140451570_updatefeedbackuserid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904141039149_addwithdrawcash.resx">
+      <DependentUpon>201904141039149_addwithdrawcash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904141042197_addwithdrawcashsignstr.resx">
+      <DependentUpon>201904141042197_addwithdrawcashsignstr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904141043443_addwithdrawcashs.resx">
+      <DependentUpon>201904141043443_addwithdrawcashs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904251406311_adduserinvitationaward.resx">
+      <DependentUpon>201904251406311_adduserinvitationaward.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905041213488_adduspwd.resx">
+      <DependentUpon>201905041213488_adduspwd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905041309120_adduopenid.resx">
+      <DependentUpon>201905041309120_adduopenid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905061307063_updateuser.resx">
+      <DependentUpon>201905061307063_updateuser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905071354359_userpath.resx">
+      <DependentUpon>201905071354359_userpath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905131334189_addtbuserid.resx">
+      <DependentUpon>201905131334189_addtbuserid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

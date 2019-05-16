@@ -1,0 +1,91 @@
+﻿@model RpshopingMvc.Models.Withdrawcash
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutBackground.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Withdrawcash</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.out_biz_no)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.out_biz_no)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.order_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.order_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pay_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pay_date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Userid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Userid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AliAccount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AliAccount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.txamount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txamount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.txmonth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.txmonth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.signstr)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.signstr)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

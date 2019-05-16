@@ -2,6 +2,7 @@
 using RpshopingMvc.App_Start;
 using RpshopingMvc.App_Start.Extensions;
 using RpshopingMvc.App_Start.Qiniu;
+using RpshopingMvc.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -16,8 +17,10 @@ using static RpshopingMvc.Enums.Enums;
 
 namespace RpshopingMvc
 {
+   
     public class Comm
     {
+       public static ApplicationDbContext db = new ApplicationDbContext();
         /// <summary>
         /// 统一的请求结果
         /// </summary>
@@ -349,7 +352,7 @@ namespace RpshopingMvc
         /// <param name="qrCodepath">二维码地址</param>
         /// <param name="tempPath">二维码地址无LOGO</param>
         /// <param name="logo">LOGO图</param>
-        public static void GenerateQRCode(string data, string qrCodepath, string tempPath, Image logo = null)
+        public static string GenerateQRCode(string data, string qrCodepath, string tempPath, Image logo = null)
         {
             try
             {
@@ -376,16 +379,16 @@ namespace RpshopingMvc
                     image = QrCode.SetLogo(image, logo);
                 }
                 //保存
-                qrCodepath = HttpContext.Current.Request.MapPath(qrCodepath);
+                string returnpath = HttpContext.Current.Request.MapPath(qrCodepath);
 
-                image.Save(qrCodepath);
+                image.Save(returnpath);
                 image.Dispose();
+                return returnpath;
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            return;
         }
 
         public static string GetMd5Hash(string input)
@@ -548,6 +551,22 @@ namespace RpshopingMvc
                 str = str + ((char)(0x30 + ((ushort)(num % 10)))).ToString();
             }
             return str;
+        }
+        
+        public static string GetCreateUserCode(string phone, int id)
+        {
+            string tempphonestr = phone.Substring(7, 4);
+            string tempstr = "rp" + tempphonestr + id.ToString();
+            string returnstr = "";
+            if (db.tb_userinfos.Any(s => s.UserCode == tempstr))
+            {
+                GetCreateUserCode(phone, id + 1);
+            }
+            else
+            {
+                returnstr = tempstr;
+            }
+            return returnstr;
         }
     }
 }

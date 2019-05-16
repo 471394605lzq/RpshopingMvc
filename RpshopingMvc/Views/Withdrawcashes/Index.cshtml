@@ -1,0 +1,82 @@
+﻿@model IEnumerable<RpshopingMvc.Models.Withdrawcash>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutBackground.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.out_biz_no)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.order_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pay_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Userid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AliAccount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.txamount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.txmonth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.signstr)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.out_biz_no)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.order_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pay_date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Userid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AliAccount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.txamount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.txmonth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.signstr)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
