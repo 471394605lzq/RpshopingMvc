@@ -248,7 +248,8 @@ namespace RpshopingMvc.Controllers
                         username=user.UserName,
                         handimg=user.UserImage,
                         phonestr=user.Phone,
-                        userpath=user.UserPath
+                        userpath=user.UserPath,
+                        usertype=user.UserType
 
                     };
                     return Json(Comm.ToJsonResult("Success", "成功", returndata), JsonRequestBehavior.AllowGet);

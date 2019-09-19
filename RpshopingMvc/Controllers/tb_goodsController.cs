@@ -192,6 +192,7 @@ namespace RpshopingMvc.Controllers
             try
             {
                 long tempfid = FavoritesID;
+                string isshowitem = "";
                 //是否随机读取1表示是
                 if (israndom == 1)
                 {
@@ -220,6 +221,14 @@ namespace RpshopingMvc.Controllers
                     else
                     {
                         zkrate = 50;
+                    }
+                    if (usmodel.Phone == "18820716886")
+                    {
+                        isshowitem = "0";
+                    }
+                    else
+                    {
+                        isshowitem = "1";
                     }
                 }
                 else
@@ -259,7 +268,11 @@ namespace RpshopingMvc.Controllers
                         {
                             string tempid = list[i].num_iid.ToString();//.SelectToken("num_iid").ToString();
                             string status = list[i].status.ToString();
-                            if (status == "1")
+                            string couponinfo = string.IsNullOrWhiteSpace(list[i].coupon_info) ? "" : list[i].coupon_info;
+                            string[] splitcoupon = string.IsNullOrWhiteSpace(couponinfo) ? new string[] { } : couponinfo.Split('减');
+                            string[] splitcoupon2 = string.IsNullOrWhiteSpace(couponinfo) ? new string[] { } : splitcoupon[1].Split('元');
+                            int tCouponDenomination = string.IsNullOrWhiteSpace(couponinfo) ? 0 : Convert.ToInt32(splitcoupon2[0]);
+                            if (status == "1"&& tCouponDenomination>0)
                             {
                                 string smallimg = list[i].small_images == null ? "" : list[i].small_images.ToString();
                                 string str = "";
@@ -269,12 +282,9 @@ namespace RpshopingMvc.Controllers
                                     var tempsmallimg = smallimgjson.SelectToken("string").ToList();
                                     str = string.Join(",", tempsmallimg);//主图集合
                                 }
-                                string couponinfo = string.IsNullOrWhiteSpace(list[i].coupon_info) ? "" : list[i].coupon_info;
-                                string[] splitcoupon = string.IsNullOrWhiteSpace(couponinfo) ? new string[] { } : couponinfo.Split('减');
-                                string[] splitcoupon2 = string.IsNullOrWhiteSpace(couponinfo) ? new string[] { } : splitcoupon[1].Split('元');
-                                int tCouponDenomination = string.IsNullOrWhiteSpace(couponinfo) ? 0 : Convert.ToInt32(splitcoupon2[0]);
+                                
                                 decimal tqhprice = decimal.Round((decimal)list[i].zk_final_price_wap - tCouponDenomination, 2);
-                                decimal tempbrokerage= decimal.Round(decimal.Parse(((decimal)list[i].zk_final_price_wap * ((decimal)list[i].tk_rate / 100)).ToString()), 2);
+                                decimal tempbrokerage= decimal.Round(decimal.Parse(((decimal)tqhprice * ((decimal)list[i].tk_rate / 100)).ToString()), 2);
                                 decimal tBrokerage = decimal.Round(decimal.Parse(((decimal)tempbrokerage * ((decimal)zkrate / 100)).ToString()), 2);
 
                                 int tCouponCount = string.IsNullOrWhiteSpace(couponinfo) ? 0 : Convert.ToInt32(list[i].coupon_total_count);
@@ -301,6 +311,7 @@ namespace RpshopingMvc.Controllers
 
 
                                 searchresultmodel tempgoods = new searchresultmodel();
+                                tempgoods.isshowitem = isshowitem;
                                 tempgoods.commission_rate = tIncomeRatio;
                                 tempgoods.coupon_amount = tCouponDenomination;
                                 tempgoods.coupon_end_time = tCouponEndTime;
@@ -397,7 +408,8 @@ namespace RpshopingMvc.Controllers
             }
             return Json(Comm.ToJsonResult("Success", "成功"), JsonRequestBehavior.AllowGet);
         }
-        private void Check(int fid, long? pageno = 1L) {
+        private void Check(int fid, long? pageno = 1L)
+        {
             try
             {
                 ITopClient client = new DefaultTopClient(AliPayConfig.tkapp_url, AliPayConfig.tkapp_key, AliPayConfig.tkapp_secret, "json");
@@ -703,9 +715,17 @@ namespace RpshopingMvc.Controllers
             List<searchresultmodel> list2 = new List<searchresultmodel>();
             var usmodel = db.tb_userinfos.FirstOrDefault(a => a.UserID == userid);
             long tempadzoneid = 0;
+            string isshowitem = "0";
             if (usmodel != null)
             {
                 tempadzoneid = long.Parse(usmodel.Adzoneid);
+                if (usmodel.Phone == "18820716886")
+                {
+                    isshowitem = "0";
+                }
+                else {
+                    isshowitem = "1";
+                }
             }
             else
             {
@@ -766,6 +786,7 @@ namespace RpshopingMvc.Controllers
                 for (int i = 0; i < list.Count; i++)
                 {
                     searchresultmodel m = new searchresultmodel();
+                    m.isshowitem = isshowitem;//用户判断是否显示返点内容，用于辅助苹果上架
                     m.commission_rate = list[i].commission_rate;
                     m.coupon_amount = list[i].coupon_amount;
                     m.coupon_end_time = list[i].coupon_end_time;
@@ -942,6 +963,7 @@ namespace RpshopingMvc.Controllers
             public decimal yjamount { get; set; }
             public decimal qhprice { get; set; }
             public string category_name { get; set; }//分类名称
+            public string isshowitem { get; set; }//是否显示返点信息
         }
         private class storeinfo {
             public long user_id { get; set; }

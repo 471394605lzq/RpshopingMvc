@@ -307,22 +307,30 @@ namespace RpshopingMvc.Controllers
                                 //req.Ip = "11.22.33.43";
                                 TbkItemInfoGetResponse rsp = client.Execute(req);
                                 var jsondataformain = Newtonsoft.Json.JsonConvert.DeserializeObject(rsp.Body) as JContainer;//转json格式
-                                string s = jsondataformain.SelectToken("tbk_item_info_get_response").ToString();
-                                var js = Newtonsoft.Json.JsonConvert.DeserializeObject(s) as JContainer;
-                                string s1 = js.SelectToken("results").ToString();
-                                var js1 = Newtonsoft.Json.JsonConvert.DeserializeObject(s1) as JContainer;
-                                string s2 = js1.SelectToken("n_tbk_item").ToString();
-                                s2 = s2.TrimEnd(']');
-                                s2 = s2.TrimStart('[');
-                                Newtonsoft.Json.Linq.JObject datas = JsonHelper.DeserializeObject(s2.Trim());
-                                if (datas != null)
+                                var jsonreturn = jsondataformain.SelectToken("tbk_item_info_get_response");
+                                if (jsonreturn != null)
                                 {
-                                    int tempid = data[i].ID;
-                                    string tempstr = datas.SelectToken("pict_url").ToString();
-                                    Tborder ordermodel = db.Tborder.Find(tempid);
-                                    ordermodel.GoodsImage = tempstr;
-                                    db.SaveChanges();
-                                    model.GoodsImage = tempstr;
+                                    string s = jsonreturn.ToString();
+                                    var js = Newtonsoft.Json.JsonConvert.DeserializeObject(s) as JContainer;
+                                    string s1 = js.SelectToken("results").ToString();
+                                    var js1 = Newtonsoft.Json.JsonConvert.DeserializeObject(s1) as JContainer;
+                                    string s2 = js1.SelectToken("n_tbk_item").ToString();
+                                    s2 = s2.TrimEnd(']');
+                                    s2 = s2.TrimStart('[');
+                                    Newtonsoft.Json.Linq.JObject datas = JsonHelper.DeserializeObject(s2.Trim());
+                                    if (datas != null)
+                                    {
+                                        int tempid = data[i].ID;
+                                        string tempstr = datas.SelectToken("pict_url").ToString();
+                                        Tborder ordermodel = db.Tborder.Find(tempid);
+                                        ordermodel.GoodsImage = tempstr;
+                                        db.SaveChanges();
+                                        model.GoodsImage = tempstr;
+                                    }
+                                }
+                                else
+                                {
+                                    model.GoodsImage = string.Empty;
                                 }
                             }
                             else

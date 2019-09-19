@@ -40,5 +40,9 @@ namespace RpshopingMvc.App_Start.Common
         public static string MediaID = "283700162";
         //推广者id
         public static string Memberid = "26337984";
+        //获得授权码url
+        public static string authourl = "http://container.open.taobao.com/container?appkey={" + tkapp_key + "}";// "http://my.open.taobao.com/auth/authorize.htm?appkey={" + tkapp_key + "}";
+        //授权码
+        public static string AuthoCode = "TOP-10e11528e28b4999b611e7dfe193f3e8a9drY80lJDKwr83Ft4TrJCYzUBKO2R89-END";
     }
 }

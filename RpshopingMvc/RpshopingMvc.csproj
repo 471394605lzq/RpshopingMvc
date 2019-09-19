@@ -287,6 +287,13 @@
     <Compile Include="App_Start\Common\WxPayApi.cs" />
     <Compile Include="App_Start\Common\WxPayData.cs" />
     <Compile Include="App_Start\Unite.cs" />
+    <Compile Include="authoback.aspx.cs">
+      <DependentUpon>authoback.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="authoback.aspx.designer.cs">
+      <DependentUpon>authoback.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CollegeInfoesController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
@@ -561,6 +568,14 @@
     <Compile Include="Migrations\201905131334189_addtbuserid.Designer.cs">
       <DependentUpon>201905131334189_addtbuserid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906191453212_addtime.cs" />
+    <Compile Include="Migrations\201906191453212_addtime.Designer.cs">
+      <DependentUpon>201906191453212_addtime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909181543261_addusertype.cs" />
+    <Compile Include="Migrations\201909181543261_addusertype.Designer.cs">
+      <DependentUpon>201909181543261_addusertype.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CollegeInfo.cs" />
@@ -603,6 +618,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AliNotifyUrl.aspx" />
+    <Content Include="authoback.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -1383,6 +1399,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905131334189_addtbuserid.resx">
       <DependentUpon>201905131334189_addtbuserid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906191453212_addtime.resx">
+      <DependentUpon>201906191453212_addtime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909181543261_addusertype.resx">
+      <DependentUpon>201909181543261_addusertype.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

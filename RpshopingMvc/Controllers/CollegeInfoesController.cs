@@ -212,7 +212,7 @@ namespace RpshopingMvc.Controllers
                 List<tempcollegeinfo> data = db.Database.SqlQuery<tempcollegeinfo>(sql, parameters).ToList();
                 if (data.Count>0)
                 {
-                    string tempinfocontent = HttpUtility.UrlEncode(data[0].info); //Server.HtmlEncode(data[0].info);
+                    string tempinfocontent = data[0].info; //Server.HtmlEncode(data[0].info);
                     var returns = new {
                         info= tempinfocontent
                     };

@@ -27,9 +27,9 @@ namespace RpshopingMvc.Controllers
             try
             {
 
-                if (db.tb_userinfos.Any(s => s.UserID == model.UserID))
+                if (db.tb_userinfos.Any(s => s.Phone == model.Phone))
                 {
-                    return Json(Comm.ToJsonResult("Error", "用户已存在"), JsonRequestBehavior.AllowGet);
+                    return Json(Comm.ToJsonResult("Exist", "手机号已被注册"), JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
@@ -48,8 +48,9 @@ namespace RpshopingMvc.Controllers
                     model.LastMonthSettlementMoney = 0;
                     model.AliAccount = string.Empty;
                     model.AliUserName = string.Empty;
-                    model.UsPwd = Unite.ToMD5New(model.UsPwd);
+                    model.UsPwd = "";// Unite.ToMD5New(model.UsPwd);
                     model.UserID = guidstr;
+                    model.createtime = DateTime.Now.ToString();
 
                     db.tb_userinfos.Add(model);
                     int row = db.SaveChanges();

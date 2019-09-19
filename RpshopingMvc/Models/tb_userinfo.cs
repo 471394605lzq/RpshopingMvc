@@ -91,6 +91,9 @@ namespace RpshopingMvc.Models
         [Display(Name = "淘宝用户id")]
         [MaxLength(50)]
         public string tbuserid { get; set; }
+        public string createtime { get; set; }
+        [Display(Name = "用户类型")]
+        public UserType UserType { get; set; }
     }
     public class userinfoview {
          public int ID { get; set; }

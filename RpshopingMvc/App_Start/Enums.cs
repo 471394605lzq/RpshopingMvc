@@ -181,5 +181,13 @@ namespace RpshopingMvc.Enums
             [Display(Name = "已结算")]
             IsBalance = 1,
         }
+        //用户类型
+        public enum UserType
+        {
+            [Display(Name = "普通用户")]
+            PlainUser = 0,
+            [Display(Name = "高级用户用户")]
+            SeniorUser = 1
+        }
     }
 }
