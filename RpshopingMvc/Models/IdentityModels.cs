@@ -52,6 +52,12 @@ namespace RpshopingMvc.Models
         public DbSet<Withdrawcash> Withdrawcash { get; set; }
         //邀请奖励记录
         public DbSet<UserInvitationAward> UserInvitationAward { get; set; }
+        //积分云购商品类别
+        public DbSet<YGoodsType> YGoodsType { get; set; }
+        //积分云购商品期数
+        public DbSet<YGoodsIssue> YGoodsIssue { get; set; }
+        //积分云购商品
+        public DbSet<YGoods> YGoods { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

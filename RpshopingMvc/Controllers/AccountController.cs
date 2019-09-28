@@ -180,7 +180,7 @@ namespace RpshopingMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.AccountName, Email = "46546@qq.com" };
+                var user = new ApplicationUser { UserName = model.AccountName, Email = "4654611@qq.com" };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

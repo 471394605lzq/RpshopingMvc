@@ -189,5 +189,17 @@ namespace RpshopingMvc.Enums
             [Display(Name = "高级用户用户")]
             SeniorUser = 1
         }
+        //云购商品类型
+        public enum YGoodsType
+        {
+            [Display(Name = "一元")]
+            One = 0,
+            [Display(Name = "五元")]
+            Five = 1,
+            [Display(Name = "十元")]
+            Ten = 2,
+            [Display(Name = "百元")]
+            Hundred = 3
+        }
     }
 }

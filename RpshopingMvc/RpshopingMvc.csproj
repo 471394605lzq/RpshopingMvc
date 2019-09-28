@@ -287,13 +287,6 @@
     <Compile Include="App_Start\Common\WxPayApi.cs" />
     <Compile Include="App_Start\Common\WxPayData.cs" />
     <Compile Include="App_Start\Unite.cs" />
-    <Compile Include="authoback.aspx.cs">
-      <DependentUpon>authoback.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="authoback.aspx.designer.cs">
-      <DependentUpon>authoback.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CollegeInfoesController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
@@ -313,6 +306,8 @@
     <Compile Include="Controllers\UserInvitationAwardsController.cs" />
     <Compile Include="Controllers\UserTbOrderController.cs" />
     <Compile Include="Controllers\WithdrawcashesController.cs" />
+    <Compile Include="Controllers\YGoodsController.cs" />
+    <Compile Include="Controllers\YGoodsTypesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -576,6 +571,22 @@
     <Compile Include="Migrations\201909181543261_addusertype.Designer.cs">
       <DependentUpon>201909181543261_addusertype.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909201618100_addygoods.cs" />
+    <Compile Include="Migrations\201909201618100_addygoods.Designer.cs">
+      <DependentUpon>201909201618100_addygoods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909261445051_goodsinfo.cs" />
+    <Compile Include="Migrations\201909261445051_goodsinfo.Designer.cs">
+      <DependentUpon>201909261445051_goodsinfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909261555575_ssd.cs" />
+    <Compile Include="Migrations\201909261555575_ssd.Designer.cs">
+      <DependentUpon>201909261555575_ssd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909261625552_goodstyperq.cs" />
+    <Compile Include="Migrations\201909261625552_goodstyperq.Designer.cs">
+      <DependentUpon>201909261625552_goodstyperq.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CollegeInfo.cs" />
@@ -599,6 +610,9 @@
     <Compile Include="Models\UserInvitationAward.cs" />
     <Compile Include="Models\UserSettlement.cs" />
     <Compile Include="Models\Withdrawcash.cs" />
+    <Compile Include="Models\YGoods.cs" />
+    <Compile Include="Models\YGoodsNumber.cs" />
+    <Compile Include="Models\YGoodsType.cs" />
     <Compile Include="Notify\PersistentNotifyUrl.aspx.cs">
       <DependentUpon>PersistentNotifyUrl.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -618,7 +632,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AliNotifyUrl.aspx" />
-    <Content Include="authoback.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -1193,6 +1206,16 @@
     <Content Include="Views\UserInvitationAwards\Details.cshtml" />
     <Content Include="Views\UserInvitationAwards\Edit.cshtml" />
     <Content Include="Views\UserInvitationAwards\Index.cshtml" />
+    <Content Include="Views\YGoods\Create.cshtml" />
+    <Content Include="Views\YGoods\Delete.cshtml" />
+    <Content Include="Views\YGoods\Details.cshtml" />
+    <Content Include="Views\YGoods\Edit.cshtml" />
+    <Content Include="Views\YGoods\Index.cshtml" />
+    <Content Include="Views\YGoodsTypes\Create.cshtml" />
+    <Content Include="Views\YGoodsTypes\Delete.cshtml" />
+    <Content Include="Views\YGoodsTypes\Details.cshtml" />
+    <Content Include="Views\YGoodsTypes\Edit.cshtml" />
+    <Content Include="Views\YGoodsTypes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1405,6 +1428,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909181543261_addusertype.resx">
       <DependentUpon>201909181543261_addusertype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909201618100_addygoods.resx">
+      <DependentUpon>201909201618100_addygoods.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909261445051_goodsinfo.resx">
+      <DependentUpon>201909261445051_goodsinfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909261555575_ssd.resx">
+      <DependentUpon>201909261555575_ssd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909261625552_goodstyperq.resx">
+      <DependentUpon>201909261625552_goodstyperq.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
