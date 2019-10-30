@@ -1,0 +1,70 @@
+﻿@model IEnumerable<RpshopingMvc.Models.YGoodsIssue>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutBackground.cshtml";
+}
+
+<h2>云购商品期数</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IssueNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.State)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnnounceTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AlreadyNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SurplusNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SumNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LuckCode)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IssueNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.State)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnnounceTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AlreadyNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SurplusNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SumNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LuckCode)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })*@
+        </td>
+    </tr>
+}
+
+</table>

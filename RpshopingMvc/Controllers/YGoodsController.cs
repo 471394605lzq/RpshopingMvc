@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using RpshopingMvc.Models;
+using static RpshopingMvc.Enums.Enums;
 
 namespace RpshopingMvc.Controllers
 {
@@ -86,7 +87,8 @@ namespace RpshopingMvc.Controllers
                     SamllImage = string.Join(",", yGoods.SamllImage.Images),
                     Info = yGoods.Info,
                     MainImage = string.Join(",", yGoods.MainImage.Images),
-                    Price = yGoods.Price
+                    Price = yGoods.Price,
+                    Mark = yGoods.Mark
                 };
                 db.YGoods.Add(model);
                 db.SaveChanges();
@@ -112,7 +114,8 @@ namespace RpshopingMvc.Controllers
                 //MainImage = model.MainImage,
                 Price = model.Price,
                 //SamllImage = model.SamllImage,
-                Stock = model.Stock
+                Stock = model.Stock,
+                Mark=model.Mark
             };
             models.MainImage.Images = model.MainImage?.Split(',') ?? new string[0];
             models.SamllImage.Images = model.SamllImage?.Split(',') ?? new string[0];
@@ -143,6 +146,7 @@ namespace RpshopingMvc.Controllers
                 t.Stock = goods.Stock;
                 t.Type = goods.Type;
                 t.Info = goods.Info;
+                t.Mark = goods.Mark;
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
@@ -174,6 +178,92 @@ namespace RpshopingMvc.Controllers
             db.YGoods.Remove(yGoods);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+        /// <summary>
+        /// 创建云购期数
+        /// </summary>
+        /// <param name="id">云购商品id</param>
+        /// <returns></returns>
+        public ActionResult CreateIssues(int id)
+        {
+            try
+            {
+                YGoodsIssue ygi = db.YGoodsIssue.FirstOrDefault(s => s.YGoodsId == id);
+                YGoods ygoods = db.YGoods.FirstOrDefault(s => s.ID == id);
+                //如果存在则返回已存在通知
+                if (ygi != null)
+                {
+                    return RedirectToAction("CreateIssuesResult", new { type = "2" });
+                }
+                else
+                {
+                    //如果商品不存在不保存云购商品期数数据
+                    if (ygoods != null)
+                    {
+                        int sum = Convert.ToInt32(ygoods.Price);
+                        var mark = ygoods.Mark;
+                        if (mark == YGoodsEnumType.One)
+                        {
+                            sum = Convert.ToInt32(ygoods.Price);
+                        }
+                        else if (mark == YGoodsEnumType.Five)
+                        {
+                            sum = Convert.ToInt32(ygoods.Price) / 5;
+                        }
+                        else if (mark == YGoodsEnumType.Ten)
+                        {
+                            sum = Convert.ToInt32(ygoods.Price) / 10;
+                        }
+                        else if (mark == YGoodsEnumType.Hundred)
+                        {
+                            sum = Convert.ToInt32(ygoods.Price) / 100;
+                        }
+                        var model = new YGoodsIssue
+                        {
+                            YGoodsId = id,
+                            AlreadyNumber = 0,
+                            AnnounceTime = "",
+                            IssueNumber = 1,
+                            LuckCode = "",
+                            State = "进行中",
+                            SumNumber = sum,
+                            SurplusNumber = Convert.ToInt32(ygoods.Price)
+                        };
+                        db.YGoodsIssue.Add(model);
+                        db.SaveChanges();
+                        return RedirectToAction("CreateIssuesResult", new { type = "0" });
+                    }
+                    else
+                    {
+                        return RedirectToAction("CreateIssuesResult", new { type = "3" });
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return RedirectToAction("CreateIssuesResult", new { type = "1" });
+            }
+        }
+        //创建期数结果
+        public ActionResult CreateIssuesResult(string type)
+        {
+            if (type == "0")
+            {
+                ViewBag.text = "创建成功";
+            }
+            else if (type=="2")
+            {
+                ViewBag.text = "该商品已经存在期数";
+            }
+            else if (type == "3")
+            {
+                ViewBag.text = "云购商品不存在";
+            }
+            else
+            {
+                ViewBag.text = "操作失败";
+            }
+            return View();
         }
 
         protected override void Dispose(bool disposing)

@@ -288,10 +288,14 @@
     <Compile Include="App_Start\Common\WxPayData.cs" />
     <Compile Include="App_Start\Unite.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BrandsController.cs" />
     <Compile Include="Controllers\CollegeInfoesController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
+    <Compile Include="Controllers\DeliveryAddressesController.cs" />
     <Compile Include="Controllers\FeedbacksController.cs" />
+    <Compile Include="Controllers\goodsController.cs" />
     <Compile Include="Controllers\GoodsSortGradesController.cs" />
+    <Compile Include="Controllers\goodstypesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
@@ -307,7 +311,9 @@
     <Compile Include="Controllers\UserTbOrderController.cs" />
     <Compile Include="Controllers\WithdrawcashesController.cs" />
     <Compile Include="Controllers\YGoodsController.cs" />
+    <Compile Include="Controllers\YGoodsIssuesController.cs" />
     <Compile Include="Controllers\YGoodsTypesController.cs" />
+    <Compile Include="Controllers\YGOrdersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -587,17 +593,99 @@
     <Compile Include="Migrations\201909261625552_goodstyperq.Designer.cs">
       <DependentUpon>201909261625552_goodstyperq.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910040613033_addyggoodsid.cs" />
+    <Compile Include="Migrations\201910040613033_addyggoodsid.Designer.cs">
+      <DependentUpon>201910040613033_addyggoodsid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910081407304_addgoodsmark.cs" />
+    <Compile Include="Migrations\201910081407304_addgoodsmark.Designer.cs">
+      <DependentUpon>201910081407304_addgoodsmark.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910081431294_sort.cs" />
+    <Compile Include="Migrations\201910081431294_sort.Designer.cs">
+      <DependentUpon>201910081431294_sort.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910081443400_ssd1.cs" />
+    <Compile Include="Migrations\201910081443400_ssd1.Designer.cs">
+      <DependentUpon>201910081443400_ssd1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910151605168_addygorder.cs" />
+    <Compile Include="Migrations\201910151605168_addygorder.Designer.cs">
+      <DependentUpon>201910151605168_addygorder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910161328000_addintegraldetails.cs" />
+    <Compile Include="Migrations\201910161328000_addintegraldetails.Designer.cs">
+      <DependentUpon>201910161328000_addintegraldetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910161425459_addislock.cs" />
+    <Compile Include="Migrations\201910161425459_addislock.Designer.cs">
+      <DependentUpon>201910161425459_addislock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910161547384_addluckuserid.cs" />
+    <Compile Include="Migrations\201910161547384_addluckuserid.Designer.cs">
+      <DependentUpon>201910161547384_addluckuserid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910171340126_updateluckcodetype.cs" />
+    <Compile Include="Migrations\201910171340126_updateluckcodetype.Designer.cs">
+      <DependentUpon>201910171340126_updateluckcodetype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910200331000_addgoodsandgoodstype.cs" />
+    <Compile Include="Migrations\201910200331000_addgoodsandgoodstype.Designer.cs">
+      <DependentUpon>201910200331000_addgoodsandgoodstype.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910200749127_addstock.cs" />
+    <Compile Include="Migrations\201910200749127_addstock.Designer.cs">
+      <DependentUpon>201910200749127_addstock.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910200758527_updatename.cs" />
+    <Compile Include="Migrations\201910200758527_updatename.Designer.cs">
+      <DependentUpon>201910200758527_updatename.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910201442450_addgoodsstate.cs" />
+    <Compile Include="Migrations\201910201442450_addgoodsstate.Designer.cs">
+      <DependentUpon>201910201442450_addgoodsstate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910211301257_brand.cs" />
+    <Compile Include="Migrations\201910211301257_brand.Designer.cs">
+      <DependentUpon>201910211301257_brand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910211416546_addgetpath.cs" />
+    <Compile Include="Migrations\201910211416546_addgetpath.Designer.cs">
+      <DependentUpon>201910211416546_addgetpath.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910211418152_addgetpaths.cs" />
+    <Compile Include="Migrations\201910211418152_addgetpaths.Designer.cs">
+      <DependentUpon>201910211418152_addgetpaths.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910221347329_goodstypetemp.cs" />
+    <Compile Include="Migrations\201910221347329_goodstypetemp.Designer.cs">
+      <DependentUpon>201910221347329_goodstypetemp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910241501442_goodsspec.cs" />
+    <Compile Include="Migrations\201910241501442_goodsspec.Designer.cs">
+      <DependentUpon>201910241501442_goodsspec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910281353336_adddeliveryaddress.cs" />
+    <Compile Include="Migrations\201910281353336_adddeliveryaddress.Designer.cs">
+      <DependentUpon>201910281353336_adddeliveryaddress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\CollegeInfo.cs" />
     <Compile Include="Models\Common\BaseFileUpload.cs" />
     <Compile Include="Models\Common\FileUpload.cs" />
     <Compile Include="Models\Common\ImageResizer.cs" />
     <Compile Include="Models\Common\Menu.cs" />
     <Compile Include="Models\Common\SysRole.cs" />
+    <Compile Include="Models\DeliveryAddress.cs" />
     <Compile Include="Models\Feedback.cs" />
+    <Compile Include="Models\goods.cs" />
     <Compile Include="Models\GoodsSortGrade.cs" />
+    <Compile Include="Models\goodstype.cs" />
+    <Compile Include="Models\goodstypetemp.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\IntegralDetails.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PayOrder.cs" />
     <Compile Include="Models\Tborder.cs" />
@@ -611,8 +699,9 @@
     <Compile Include="Models\UserSettlement.cs" />
     <Compile Include="Models\Withdrawcash.cs" />
     <Compile Include="Models\YGoods.cs" />
-    <Compile Include="Models\YGoodsNumber.cs" />
+    <Compile Include="Models\YGoodsIssue.cs" />
     <Compile Include="Models\YGoodsType.cs" />
+    <Compile Include="Models\YGOrder.cs" />
     <Compile Include="Notify\PersistentNotifyUrl.aspx.cs">
       <DependentUpon>PersistentNotifyUrl.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1096,6 +1185,7 @@
     <Content Include="Scripts\Views\testImList.js" />
     <Content Include="Scripts\Views\userManageIndex.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\vue.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1216,6 +1306,37 @@
     <Content Include="Views\YGoodsTypes\Details.cshtml" />
     <Content Include="Views\YGoodsTypes\Edit.cshtml" />
     <Content Include="Views\YGoodsTypes\Index.cshtml" />
+    <Content Include="Views\YGoodsIssues\Create.cshtml" />
+    <Content Include="Views\YGoodsIssues\Delete.cshtml" />
+    <Content Include="Views\YGoodsIssues\Details.cshtml" />
+    <Content Include="Views\YGoodsIssues\Edit.cshtml" />
+    <Content Include="Views\YGoodsIssues\Index.cshtml" />
+    <Content Include="Views\YGoods\CreateIssuesResult.cshtml" />
+    <Content Include="Views\YGOrders\Create.cshtml" />
+    <Content Include="Views\YGOrders\Delete.cshtml" />
+    <Content Include="Views\YGOrders\Details.cshtml" />
+    <Content Include="Views\YGOrders\Edit.cshtml" />
+    <Content Include="Views\YGOrders\Index.cshtml" />
+    <Content Include="Views\goods\Create.cshtml" />
+    <Content Include="Views\goods\Delete.cshtml" />
+    <Content Include="Views\goods\Details.cshtml" />
+    <Content Include="Views\goods\Edit.cshtml" />
+    <Content Include="Views\goods\Index.cshtml" />
+    <Content Include="Views\goodstypes\Create.cshtml" />
+    <Content Include="Views\goodstypes\Delete.cshtml" />
+    <Content Include="Views\goodstypes\Details.cshtml" />
+    <Content Include="Views\goodstypes\Edit.cshtml" />
+    <Content Include="Views\goodstypes\Index.cshtml" />
+    <Content Include="Views\Brands\Create.cshtml" />
+    <Content Include="Views\Brands\Delete.cshtml" />
+    <Content Include="Views\Brands\Details.cshtml" />
+    <Content Include="Views\Brands\Edit.cshtml" />
+    <Content Include="Views\Brands\Index.cshtml" />
+    <Content Include="Views\DeliveryAddresses\Create.cshtml" />
+    <Content Include="Views\DeliveryAddresses\Delete.cshtml" />
+    <Content Include="Views\DeliveryAddresses\Details.cshtml" />
+    <Content Include="Views\DeliveryAddresses\Edit.cshtml" />
+    <Content Include="Views\DeliveryAddresses\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1440,6 +1561,63 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909261625552_goodstyperq.resx">
       <DependentUpon>201909261625552_goodstyperq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910040613033_addyggoodsid.resx">
+      <DependentUpon>201910040613033_addyggoodsid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910081407304_addgoodsmark.resx">
+      <DependentUpon>201910081407304_addgoodsmark.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910081431294_sort.resx">
+      <DependentUpon>201910081431294_sort.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910081443400_ssd1.resx">
+      <DependentUpon>201910081443400_ssd1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910151605168_addygorder.resx">
+      <DependentUpon>201910151605168_addygorder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910161328000_addintegraldetails.resx">
+      <DependentUpon>201910161328000_addintegraldetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910161425459_addislock.resx">
+      <DependentUpon>201910161425459_addislock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910161547384_addluckuserid.resx">
+      <DependentUpon>201910161547384_addluckuserid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910171340126_updateluckcodetype.resx">
+      <DependentUpon>201910171340126_updateluckcodetype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910200331000_addgoodsandgoodstype.resx">
+      <DependentUpon>201910200331000_addgoodsandgoodstype.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910200749127_addstock.resx">
+      <DependentUpon>201910200749127_addstock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910200758527_updatename.resx">
+      <DependentUpon>201910200758527_updatename.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910201442450_addgoodsstate.resx">
+      <DependentUpon>201910201442450_addgoodsstate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910211301257_brand.resx">
+      <DependentUpon>201910211301257_brand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910211416546_addgetpath.resx">
+      <DependentUpon>201910211416546_addgetpath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910211418152_addgetpaths.resx">
+      <DependentUpon>201910211418152_addgetpaths.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910221347329_goodstypetemp.resx">
+      <DependentUpon>201910221347329_goodstypetemp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910241501442_goodsspec.resx">
+      <DependentUpon>201910241501442_goodsspec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910281353336_adddeliveryaddress.resx">
+      <DependentUpon>201910281353336_adddeliveryaddress.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

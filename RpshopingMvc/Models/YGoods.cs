@@ -25,6 +25,8 @@ namespace RpshopingMvc.Models
         public int Stock { get; set; }
         [Display(Name = "详情")]
         public string Info { get; set; }
+        [Display(Name = "类别")]
+        public YGoodsEnumType Mark { get; set; }
     }
 
     public class YGoodsView
@@ -60,6 +62,8 @@ namespace RpshopingMvc.Models
         public int Stock { get; set; }
         [Display(Name = "详情")]
         public string Info { get; set; }
+        [Display(Name = "类别")]
+        public YGoodsEnumType Mark { get; set; }
     }
 
     public class YGoodsShow
@@ -81,5 +85,7 @@ namespace RpshopingMvc.Models
         public int Stock { get; set; }
         [Display(Name = "详情")]
         public string Info { get; set; }
+        [Display(Name = "类别")]
+        public string Mark { get; set; }
     }
 }

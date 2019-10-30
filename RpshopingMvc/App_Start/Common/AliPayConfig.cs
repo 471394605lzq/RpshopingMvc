@@ -33,7 +33,7 @@ namespace RpshopingMvc.App_Start.Common
         //淘宝客appkey
         public static string tkapp_key = "25530839";
         //淘宝客AppSecret
-        public static string tkapp_secret = "0e8d5e9032822b0763a4821b3d4a9097";
+        public static string tkapp_secret = "93df00763f07048cc4f028b833f913a2";
         //淘宝客接口请求url
         public static string tkapp_url = "http://gw.api.taobao.com/router/rest";
         //媒体id

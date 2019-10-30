@@ -58,6 +58,20 @@ namespace RpshopingMvc.Models
         public DbSet<YGoodsIssue> YGoodsIssue { get; set; }
         //积分云购商品
         public DbSet<YGoods> YGoods { get; set; }
+        //云购订单
+        public DbSet<YGOrder> YGOrder { get; set; }
+        //用户积分明细
+        public DbSet<IntegralDetails> IntegralDetails { get; set; }
+        //自营商品分类
+        public DbSet<goodstype> goodstype { get; set; }
+        //自营商品
+        public DbSet<goods> goods { get; set; }
+        //品牌
+        public DbSet<Brand> Brand { get; set; }
+        //自营商品分类中间表
+        public DbSet<goodstypetemp> goodstypetemp { get; set; }
+        //收货地址
+        public DbSet<DeliveryAddress> DeliveryAddress { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

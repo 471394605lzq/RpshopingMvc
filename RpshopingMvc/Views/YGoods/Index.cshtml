@@ -40,6 +40,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Stock)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Mark)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -62,8 +65,12 @@
                 @Html.DisplayFor(modelItem => item.Stock)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Mark)
+            </td>
+            <td>
                 @Html.ActionLink("编辑", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("删除", "Delete", new { id = item.ID })
+                @Html.ActionLink("删除", "Delete", new { id = item.ID })|
+                @Html.ActionLink("生成期数", "CreateIssues", new { id = item.ID })
             </td>
         </tr>
     }

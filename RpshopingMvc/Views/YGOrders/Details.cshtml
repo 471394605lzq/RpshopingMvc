@@ -1,0 +1,67 @@
+﻿@model RpshopingMvc.Models.YGOrder
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutBackground.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>YGOrder</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IssueID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IssueID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LockCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LockCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BuyNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BuyNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Paytype)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Paytype)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

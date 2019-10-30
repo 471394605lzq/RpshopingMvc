@@ -1,0 +1,75 @@
+﻿@model RpshopingMvc.Models.YGoodsIssue
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutBackground.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>YGoodsIssue</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IssueNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IssueNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AnnounceTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnnounceTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AlreadyNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AlreadyNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SurplusNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SurplusNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SumNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SumNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LuckCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LuckCode)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

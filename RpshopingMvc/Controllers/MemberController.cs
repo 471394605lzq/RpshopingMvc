@@ -33,7 +33,7 @@ namespace RpshopingMvc.Controllers
                 }
                 else
                 {
-                    string guidstr= Guid.NewGuid().ToString();
+                    string guidstr = Guid.NewGuid().ToString();
                     model.Balance = 0;
                     model.FirstCharge = Enums.Enums.YesOrNo.No;
                     model.RewardMoney = 0;
@@ -71,7 +71,7 @@ namespace RpshopingMvc.Controllers
                         }
                         tk.PIDState = YesOrNo.Yes;
                         tk.UID = model.ID;
-                        string uscode =Comm.GetCreateUserCode(model.Phone, model.ID);
+                        string uscode = Comm.GetCreateUserCode(model.Phone, model.ID);
                         var usmodel = db.tb_userinfos.Find(model.ID);
                         usmodel.UserCode = uscode;
                         usmodel.Adzoneid = tempazoneid;
@@ -79,8 +79,9 @@ namespace RpshopingMvc.Controllers
                         usmodel.PID = "mm_" + AliPayConfig.Memberid + "_" + AliPayConfig.MediaID + "_" + tempazoneid;
                         db.SaveChanges();
                     }
-                    var returnstr = new {
-                        usid= guidstr
+                    var returnstr = new
+                    {
+                        usid = guidstr
                     };
                     return Json(Comm.ToJsonResult("Success", "成功", returnstr), JsonRequestBehavior.AllowGet);
                 }
@@ -98,12 +99,12 @@ namespace RpshopingMvc.Controllers
         /// <returns></returns>
         [HttpGet]
         [AllowCrossSiteJson]
-        public ActionResult Login(string phone,string pwd)
+        public ActionResult Login(string phone, string pwd)
         {
             try
             {
                 string temppwd = Unite.ToMD5New(pwd);
-                var user = db.tb_userinfos.FirstOrDefault(s => s.Phone == phone&&s.UsPwd== temppwd);
+                var user = db.tb_userinfos.FirstOrDefault(s => s.Phone == phone && s.UsPwd == temppwd);
                 if (user == null)
                 {
                     return Json(Comm.ToJsonResult("Fail", "账号或密码错误"), JsonRequestBehavior.AllowGet);
@@ -113,9 +114,9 @@ namespace RpshopingMvc.Controllers
                     var returndata = new
                     {
                         guid = user.UserID,
-                        openid=user.OpenID,
-                        UsPID=user.PID,
-                        tbuserid=user.tbuserid
+                        openid = user.OpenID,
+                        UsPID = user.PID,
+                        tbuserid = user.tbuserid
                     };
                     return Json(Comm.ToJsonResult("Success", "成功", returndata), JsonRequestBehavior.AllowGet);
                 }
@@ -157,7 +158,7 @@ namespace RpshopingMvc.Controllers
                         Balance = user.Balance,
                         aliaccount = user.AliAccount,
                         aliusname = user.AliUserName,
-                        guid=user.UserID
+                        guid = user.UserID
                     };
                     return Json(Comm.ToJsonResult("Success", "成功", returndata), JsonRequestBehavior.AllowGet);
                 }
@@ -195,9 +196,9 @@ namespace RpshopingMvc.Controllers
                         residence = user.residence,
                         signature = user.signature,
                         nickname = user.UserName,
-                        leve=user.UserGrade.GetDisplayName(),
+                        leve = user.UserGrade.GetDisplayName(),
                         guid = user.UserID,
-                        tbuserid=user.tbuserid
+                        tbuserid = user.tbuserid
                     };
                     return Json(Comm.ToJsonResult("Success", "成功", returndata), JsonRequestBehavior.AllowGet);
                 }
@@ -214,7 +215,7 @@ namespace RpshopingMvc.Controllers
         /// <returns></returns>
         [HttpPost]
         [AllowCrossSiteJson]
-        public ActionResult UpdatePwd(string phone,string newpwd)
+        public ActionResult UpdatePwd(string phone, string newpwd)
         {
             try
             {
@@ -242,7 +243,7 @@ namespace RpshopingMvc.Controllers
         /// <returns></returns>
         [HttpPost]
         [AllowCrossSiteJson]
-        public ActionResult UpdateInfo(string fields, string values,string usid)
+        public ActionResult UpdateInfo(string fields, string values, string usid)
         {
             try
             {
@@ -290,7 +291,8 @@ namespace RpshopingMvc.Controllers
                         string qiniupath = qiniu.UploadFile(ststr, true);
                         model.UserPath = qiniupath;
                     }
-                    var returndata = new {
+                    var returndata = new
+                    {
                         uspath = model.UserPath
                     };
                     db.SaveChanges();
@@ -304,6 +306,33 @@ namespace RpshopingMvc.Controllers
             catch (Exception ex)
             {
                 return Json(Comm.ToJsonResult("Error", ex.Message), JsonRequestBehavior.AllowGet);
+            }
+        }
+        /// <summary>
+        /// 获取用户余额
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [AllowCrossSiteJson]
+        public ActionResult GetUserB(string uid)
+        {
+            try
+            {
+                var usmodel = db.tb_userinfos.FirstOrDefault(s => s.UserID == uid);
+                if (usmodel != null)
+                {
+                    var balan = usmodel.Balance;
+                    return Json(Comm.ToJsonResult("Success", "成功", balan), JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(Comm.ToJsonResult("NotFind", "用户不存在"), JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Error", "操作失败"), JsonRequestBehavior.AllowGet);
             }
         }
     }

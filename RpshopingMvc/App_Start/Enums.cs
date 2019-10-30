@@ -37,9 +37,18 @@ namespace RpshopingMvc.Enums
             [Display(Name ="微信支付")]
             wx,
             [Display(Name ="支付宝")]
-            ali
+            ali,
+            [Display(Name = "余额")]
+            yy
         }
-
+        public enum GoodsState {
+            [Display(Name = "上架")]
+            sj,
+            [Display(Name = "下架")]
+            xj,
+            [Display(Name = "收完")]
+            sw
+        }
         /// <summary>
         /// 订单状态
         /// </summary>
@@ -190,7 +199,7 @@ namespace RpshopingMvc.Enums
             SeniorUser = 1
         }
         //云购商品类型
-        public enum YGoodsType
+        public enum YGoodsEnumType
         {
             [Display(Name = "一元")]
             One = 0,
@@ -200,6 +209,12 @@ namespace RpshopingMvc.Enums
             Ten = 2,
             [Display(Name = "百元")]
             Hundred = 3
+        }
+        public enum IsRecommend {
+            [Display(Name = "否")]
+            No,
+            [Display(Name = "是")]
+            Yes
         }
     }
 }
