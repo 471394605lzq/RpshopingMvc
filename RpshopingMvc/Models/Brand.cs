@@ -47,6 +47,7 @@ namespace RpshopingMvc.Models
         [Display(Name = "排序")]
         public int Sort { get; set; }
 
+
     }
 
 }
