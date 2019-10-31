@@ -25,7 +25,7 @@ namespace RpshopingMvc.Models
         public string PayTime { get; set; }
 
         [Display(Name = "订单金额")]
-        public int total_fee { get; set; }
+        public decimal total_fee { get; set; }
 
         [Display(Name = "订单状态")]
         public GoodsOrderState OrderState { get; set; }
@@ -33,10 +33,19 @@ namespace RpshopingMvc.Models
         [Display(Name = "商品id")]
         public int GoodsID { get; set; }
 
-        [Display(Name = "付款方式")]
-        public PayType PayType { get; set; }
+        [Display(Name = "商品数量")]
+        public int GoodsNumber { get; set; }
 
+        [Display(Name = "收货地址ID")]
+        public int DeliveryAddressID { get; set; }
 
+        [Display(Name = "买家留言")]
+        public string BuyerLeave { get; set; }
 
+        [Display(Name = "快递单号")]
+        public string ExpressCode { get; set; }
+
+        [Display(Name = "邮费")]
+        public int Postage { get; set; }
     }
 }

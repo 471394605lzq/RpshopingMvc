@@ -16,7 +16,7 @@ namespace RpshopingMvc.App_Start.Common
         //支付宝公钥
         public static string alipaypublickey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgbPKjUaaQc0llCwO2gZrRXte1kfK2NTe0qEFuRc2GUpkE4lGFD/CDL6bsyEs7dPBEiZ9eRV69L4lp7hckfSSHK6GgKDYwezDejePT2Zm/P058Ya0PuXv0w6fS7ne8KuxUb+vzHdXPCHm+X0IhppKS4fS0eWn7XJZMHkiw7I3EmHurirzlNNDt1BberBtBWhKCEO9eOOsnvpdH4UeCMNKhvNdS0QBeKu+e1NmkiPlgFc2IJBxHGAdkmL4qFTkQqUWw5DFHdxJY9SflmtoAq6crpB9DmwpRG4H9e8CAVnEi1AtTdgqPJOH/DPiJAtlBJp4xDakkzUD/piN3v9uvo0zKQIDAQAB";//支付宝公钥(用于校验的时候)
         //结果回调通知地址
-        public static string notifyurl = "https://www.rpyungou.com/AliNotifyUrl.aspx";
+        public static string notifyurl = "http://47.104.129.130:8099/AliNotifyUrl.aspx";
         //商家和支付宝签约的产品码，为固定值
         public static string productcode = "QUICK_MSECURITY_PAY";
         /// <summary>

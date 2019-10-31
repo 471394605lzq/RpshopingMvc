@@ -335,5 +335,31 @@ namespace RpshopingMvc.Controllers
                 return Json(Comm.ToJsonResult("Error", "操作失败"), JsonRequestBehavior.AllowGet);
             }
         }
+        /// <summary>
+        /// 检查用户是否存在
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [AllowCrossSiteJson]
+        public ActionResult GetExist(string uid)
+        {
+            try
+            {
+                var usmodel = db.tb_userinfos.FirstOrDefault(s => s.UserID == uid);
+                if (usmodel != null)
+                {
+                    return Json(Comm.ToJsonResult("Success", "成功", "1"), JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(Comm.ToJsonResult("NotFind", "用户不存在"), JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Error", "操作失败"), JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

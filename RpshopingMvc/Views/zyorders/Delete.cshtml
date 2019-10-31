@@ -1,0 +1,89 @@
+﻿@model RpshopingMvc.Models.zyorder
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutBackground.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>zyorder</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PayTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PayTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.total_fee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.total_fee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderState)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GoodsID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GoodsID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PayType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PayType)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

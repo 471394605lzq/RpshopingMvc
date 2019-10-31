@@ -30,7 +30,7 @@ namespace RpshopingMvc.App_Start.Common
         //=======【支付结果通知url】===================================== 
         /* 支付结果通知回调url，用于商户接收支付结果
         */
-        public const string NOTIFY_URL = "https://rpyungou.com/ResultNotify.aspx";
+        public const string NOTIFY_URL = "http://47.104.129.130:8099/ResultNotify.aspx";
 
         //=======【商户系统后台机器IP】===================================== 
         /* 此参数可手动配置也可在程序中自动获取

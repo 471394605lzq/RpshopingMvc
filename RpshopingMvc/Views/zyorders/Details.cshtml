@@ -1,0 +1,83 @@
+﻿@model RpshopingMvc.Models.zyorder
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutBackground.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>zyorder</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PayTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PayTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.total_fee)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.total_fee)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderState)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GoodsID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GoodsID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PayType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PayType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

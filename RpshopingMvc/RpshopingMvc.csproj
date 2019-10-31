@@ -315,6 +315,7 @@
     <Compile Include="Controllers\YGoodsIssuesController.cs" />
     <Compile Include="Controllers\YGoodsTypesController.cs" />
     <Compile Include="Controllers\YGOrdersController.cs" />
+    <Compile Include="Controllers\zyordersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -669,6 +670,26 @@
     <Compile Include="Migrations\201910281353336_adddeliveryaddress.cs" />
     <Compile Include="Migrations\201910281353336_adddeliveryaddress.Designer.cs">
       <DependentUpon>201910281353336_adddeliveryaddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910311416532_zyorder.cs" />
+    <Compile Include="Migrations\201910311416532_zyorder.Designer.cs">
+      <DependentUpon>201910311416532_zyorder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910311552343_addgoodsnumber.cs" />
+    <Compile Include="Migrations\201910311552343_addgoodsnumber.Designer.cs">
+      <DependentUpon>201910311552343_addgoodsnumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910311606038_addgoodsnumber1.cs" />
+    <Compile Include="Migrations\201910311606038_addgoodsnumber1.Designer.cs">
+      <DependentUpon>201910311606038_addgoodsnumber1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910311701594_adds.cs" />
+    <Compile Include="Migrations\201910311701594_adds.Designer.cs">
+      <DependentUpon>201910311701594_adds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910311810016_updatezyorder.cs" />
+    <Compile Include="Migrations\201910311810016_updatezyorder.Designer.cs">
+      <DependentUpon>201910311810016_updatezyorder.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1339,6 +1360,11 @@
     <Content Include="Views\DeliveryAddresses\Details.cshtml" />
     <Content Include="Views\DeliveryAddresses\Edit.cshtml" />
     <Content Include="Views\DeliveryAddresses\Index.cshtml" />
+    <Content Include="Views\zyorders\Create.cshtml" />
+    <Content Include="Views\zyorders\Delete.cshtml" />
+    <Content Include="Views\zyorders\Details.cshtml" />
+    <Content Include="Views\zyorders\Edit.cshtml" />
+    <Content Include="Views\zyorders\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1620,6 +1646,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910281353336_adddeliveryaddress.resx">
       <DependentUpon>201910281353336_adddeliveryaddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910311416532_zyorder.resx">
+      <DependentUpon>201910311416532_zyorder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910311552343_addgoodsnumber.resx">
+      <DependentUpon>201910311552343_addgoodsnumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910311606038_addgoodsnumber1.resx">
+      <DependentUpon>201910311606038_addgoodsnumber1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910311701594_adds.resx">
+      <DependentUpon>201910311701594_adds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910311810016_updatezyorder.resx">
+      <DependentUpon>201910311810016_updatezyorder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
