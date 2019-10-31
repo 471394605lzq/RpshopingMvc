@@ -63,6 +63,27 @@ namespace RpshopingMvc.Enums
             [Display(Name = "已取消")]
             Canceled = 3,
         }
+
+        /// <summary>
+        /// 商品订单状态
+        /// </summary>
+        public enum GoodsOrderState
+        {
+            [Display(Name = "待付款")]
+            StayPay = 0,
+            [Display(Name = "待发货")]
+            StaySend = 1,
+            [Display(Name = "待收货")]
+            StayTake = 2,
+            [Display(Name = "待评价")]
+            StayEvaluate = 3,
+            [Display(Name = "已完成")]
+            Finish=4,
+            [Display(Name = "退款中")]
+            RefundIng=5,
+            [Display(Name = "退款成功")]
+            RefundSucces=6
+        }
         /// <summary>
         /// 订单付款类型(充值：充值付款类型 订单付款：现在订单直接付款类型)
         /// </summary>
