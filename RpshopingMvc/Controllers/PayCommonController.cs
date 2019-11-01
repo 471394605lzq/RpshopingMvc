@@ -135,11 +135,131 @@ namespace RpshopingMvc.Controllers
                 return Json(Comm.ToJsonResult("Error", "下单失败"), JsonRequestBehavior.AllowGet);
             }
         }
+
+        [HttpPost]
+        [AllowCrossSiteJson]
+        public ActionResult ZYOrderPay(Enums.Enums.OrderType body, string ordercode, string userID)
+        {
+            try
+            {
+                var ordermodel = db.zyorder.FirstOrDefault(s => s.OrderCode == ordercode);//查询订单信息
+                if (!db.tb_userinfos.Any(s => s.UserID == userID))
+                {
+                    return Json(Comm.ToJsonResult("Error", "用户不存在"), JsonRequestBehavior.AllowGet);
+                }
+                if (body != Enums.Enums.OrderType.Recharge && body != Enums.Enums.OrderType.OrderPay)
+                {
+                    return Json(Comm.ToJsonResult("Error", "请求参数错误"), JsonRequestBehavior.AllowGet);
+                }
+                if (ordermodel == null)
+                {
+                    return Json(Comm.ToJsonResult("Error", "订单不存在"), JsonRequestBehavior.AllowGet);
+                }
+                WxPayData parmdata = new WxPayData();
+                string out_trade_no = WxPayApi.GenerateOutTradeNo();
+                parmdata.SetValue("body", ((Enums.Enums.OrderType)body).GetDisplayName());//商品描述
+                parmdata.SetValue("attach", "逸趣网络科技有限公司");//附加数据
+                parmdata.SetValue("out_trade_no", out_trade_no);//商户订单号
+                parmdata.SetValue("total_fee", ordermodel.total_fee);//总金额 * 100
+                parmdata.SetValue("time_start", DateTime.Now.ToString("yyyyMMddHHmmss"));//交易起始时间
+                parmdata.SetValue("time_expire", DateTime.Now.AddMinutes(10).ToString("yyyyMMddHHmmss"));//交易结束时间
+                parmdata.SetValue("goods_tag", "");//商品标记
+                parmdata.SetValue("trade_type", "APP");//交易类型
+                                                       //parmdata.SetValue("product_id", productid);//商品ID
+
+                WxPayData resultdata = WxPayApi.UnifiedOrder(parmdata);
+                string resultcode = resultdata.GetValue("return_code").ToString();
+                if (resultcode.Equals("SUCCESS"))
+                {
+                    string signstr = resultdata.GetValue("sign").ToString();
+                    string noncestr = WxPayApi.GenerateNonceStr();
+                    string result_code = resultdata.GetValue("result_code").ToString();
+                    string prepay_id = string.Empty;
+                    if (result_code.Equals("SUCCESS"))
+                    {
+                        prepay_id = resultdata.GetValue("prepay_id").ToString();
+                        //var stringA = $"appid={WxPayConfig.APPID}&noncestr={noncestr}&package=Sign=WXPay&partnerid={WxPayConfig.MCHID}&prepayid={prepay_id}&timestamp={Unite.GenerateTimeStamp(DateTime.Now)}&key={WxPayConfig.KEY}";
+                        //var sign = Unite.ToMD5New(stringA).ToUpper();
+
+                        //保存下单信息到数据库
+                        PayOrder model = new PayOrder();
+                        model.OrderState = Enums.Enums.OrderState.UnHandle;
+                        model.out_trade_no = out_trade_no;
+                        model.Paynoncestr = noncestr;
+                        model.PayPrepay_id = prepay_id;
+                        model.settlement_total_fee = ordermodel.total_fee;
+                        model.CreateTime = DateTime.Now;
+                        model.Sign = signstr;
+                        model.total_fee = ordermodel.total_fee;
+                        model.User_ID = userID;
+                        model.OrderType = body;
+                        model.RelationID = ordermodel.ID;
+                        db.PayOrders.Add(model);
+                        int resultrow = db.SaveChanges();
+                        //保存订单数据结果
+                        if (resultrow > 0)
+                        {
+
+                            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1)); // 当地时区
+                            long ts = (long)(DateTime.Now - startTime).TotalSeconds; // 相差秒数
+
+                            System.Text.StringBuilder paySignpar = new System.Text.StringBuilder();
+                            paySignpar.Append($"appid={resultdata.GetValue("appid")?.ToString()}");
+                            paySignpar.Append($"&noncestr={noncestr}");
+                            paySignpar.Append($"&package=Sign=WXPay&partnerid={WxPayConfig.MCHID}");
+                            paySignpar.Append($"&prepayid={resultdata.GetValue("prepay_id")?.ToString()}");
+                            //paySignpar.Append($"&signType=MD5");
+                            paySignpar.Append($"&timestamp={ts.ToString()}");
+                            paySignpar.Append($"&key={WxPayConfig.KEY ?? string.Empty}");
+                            string strPaySignpar = paySignpar.ToString();
+
+                            var sign = Unite.GetMd5Hash(strPaySignpar).ToUpper();
+                            //dynamic retModel = new
+                            //{
+                            //    timeStamp = ts.ToString(),
+                            //    nonceStr = resultdata.GetValue("nonce_str")?.ToString(),
+                            //    package = "prepay_id=" + resultdata.GetValue("prepay_id")?.ToString(),
+                            //    signType = "MD5",
+                            //    paySign = sign,
+                            //    total_fee = model.total_fee / 100m,
+                            //};
+
+                            var returndata = new
+                            {
+                                result = resultcode,
+                                timestamp = ts.ToString(),
+                                prepay_id = prepay_id,
+                                noncestr = noncestr,
+                                sign = sign
+                            };
+                            return Json(Comm.ToJsonResult("Success", "成功", returndata), JsonRequestBehavior.AllowGet);
+                        }
+                        else
+                        {
+                            return Json(Comm.ToJsonResult("Error", "付款失败"), JsonRequestBehavior.AllowGet);
+                        }
+                    }
+                    else
+                    {
+                        return Json(Comm.ToJsonResult("Error", "付款失败"), JsonRequestBehavior.AllowGet);
+                    }
+                }
+                else
+                {
+                    return Json(Comm.ToJsonResult("Error", "付款失败"), JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Error", "付款失败", ex.Message), JsonRequestBehavior.AllowGet);
+            }
+        }
         /// <summary>
         /// 查询返回支付结果
         /// </summary>
         /// <param name="ordercode"></param>
         /// <returns></returns>
+        [HttpPost]
         [AllowCrossSiteJson]
         public ActionResult QueryOrder(string ordercode, string userid)
         {

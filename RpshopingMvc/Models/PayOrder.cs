@@ -29,9 +29,9 @@ namespace RpshopingMvc.Models
         [MaxLength(50)]
         public string Paynoncestr { get; set; }
         [Display(Name = "应结订单金额")]
-        public int settlement_total_fee { get; set; }
+        public decimal settlement_total_fee { get; set; }
         [Display(Name = "订单金额")]
-        public int total_fee { get; set; }
+        public decimal total_fee { get; set; }
         [Display(Name = "订单支付金额")]
         public decimal cash_fee { get; set; }
         [Display(Name = "支付用户设备号")]
