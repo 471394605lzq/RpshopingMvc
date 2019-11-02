@@ -690,6 +690,10 @@
     <Compile Include="Migrations\201910311810016_updatezyorder.Designer.cs">
       <DependentUpon>201910311810016_updatezyorder.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911011344067_updatezyorder1.cs" />
+    <Compile Include="Migrations\201911011344067_updatezyorder1.Designer.cs">
+      <DependentUpon>201911011344067_updatezyorder1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Brand.cs" />
@@ -1660,6 +1664,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910311810016_updatezyorder.resx">
       <DependentUpon>201910311810016_updatezyorder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911011344067_updatezyorder1.resx">
+      <DependentUpon>201911011344067_updatezyorder1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

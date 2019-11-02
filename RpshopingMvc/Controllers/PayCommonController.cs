@@ -160,7 +160,7 @@ namespace RpshopingMvc.Controllers
                 parmdata.SetValue("body", ((Enums.Enums.OrderType)body).GetDisplayName());//商品描述
                 parmdata.SetValue("attach", "逸趣网络科技有限公司");//附加数据
                 parmdata.SetValue("out_trade_no", out_trade_no);//商户订单号
-                parmdata.SetValue("total_fee", ordermodel.total_fee);//总金额 * 100
+                parmdata.SetValue("total_fee", Convert.ToInt32(ordermodel.total_fee*100));//总金额 * 100
                 parmdata.SetValue("time_start", DateTime.Now.ToString("yyyyMMddHHmmss"));//交易起始时间
                 parmdata.SetValue("time_expire", DateTime.Now.AddMinutes(10).ToString("yyyyMMddHHmmss"));//交易结束时间
                 parmdata.SetValue("goods_tag", "");//商品标记
@@ -291,6 +291,17 @@ namespace RpshopingMvc.Controllers
                 {
                     resultcode = "Success";
                     resultmessage = "支付成功";
+                    //如果是自营商品订单则修改商品订单状态为待发货
+                    if (query.OrderType== OrderType.OrderPay)
+                    {
+                        var usermodel = db.tb_userinfos.FirstOrDefault(s => s.UserID == userid);
+                        var zyordermodel = db.zyorder.FirstOrDefault(s => s.ID == query.RelationID && s.User_ID == usermodel.ID);
+                        var goodsmodel = db.goods.FirstOrDefault(s => s.ID == zyordermodel.GoodsID);
+                        zyordermodel.OrderState = GoodsOrderState.StaySend;
+                        zyordermodel.PayTime = query.PayTime;
+                        usermodel.Integral = usermodel.Integral + Convert.ToInt32(goodsmodel.Brokerage);
+                        db.SaveChanges();
+                    }
                 }
                 if (query.OrderState == Enums.Enums.OrderState.Canceled)
                 {
