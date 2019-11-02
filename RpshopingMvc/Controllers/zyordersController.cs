@@ -158,7 +158,111 @@ namespace RpshopingMvc.Controllers
                 return Json(Comm.ToJsonResult("Error", "获取失败", ex.Message), JsonRequestBehavior.AllowGet);
             }
         }
+        /// <summary>
+        /// 获取待付款订单信息
+        /// </summary>
+        /// <param name="ordercode">待付款订单号</param>
+        /// <returns></returns>
+        [HttpPost]
+        [AllowCrossSiteJson]
+        public ActionResult GetStayPayOrder(string ordercode)
+        {
+            try
+            {
+                var returndata = from a in db.zyorder
+                                 join b in db.goods on a.GoodsID equals b.ID
+                                 join c in db.DeliveryAddress on a.DeliveryAddressID equals c.ID
+                                 select new ordermodel
+                                 {
+                                     CreateTime = a.CreateTime,
+                                     DA_DetailedAddress = c.DA_Province + c.DA_City + c.DA_Town + c.DA_DetailedAddress,
+                                     DA_Name = c.DA_Name,
+                                     DA_Phone = c.DA_Phone,
+                                     GoodsName = b.GoodsName,
+                                     GoodsNumber = a.GoodsNumber,
+                                     ImagePath = b.ImagePath,
+                                     OrderCode = a.OrderCode,
+                                     Postage = a.Postage,
+                                     Specs = b.Specs,
+                                     total_fee = a.total_fee,
+                                     zkprice = b.zkprice,
+                                     DeliveryAddressID = c.ID
+                                 };
+                return Json(Comm.ToJsonResult("Success", "获取成功", returndata), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Error", "操作失败", ex.Message), JsonRequestBehavior.AllowGet);
+            }
+        }
+        //取消订单
+        [HttpPost]
+        [AllowCrossSiteJson]
+        public ActionResult CancelZYOrder(string ordercode)
+        {
+            try
+            {
+                var zymodel = db.zyorder.FirstOrDefault(s => s.OrderCode == ordercode);
+                if (zymodel == null)
+                {
+                    return Json(Comm.ToJsonResult("NotFind", "订单不存在"), JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    zymodel.OrderState = GoodsOrderState.Cancel;
+                    db.SaveChanges();
+                    return Json(Comm.ToJsonResult("Success", "取消成功"), JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Error", "操作失败", ex.Message), JsonRequestBehavior.AllowGet);
+            }
+        }
 
+        //删除订单
+        [HttpPost]
+        [AllowCrossSiteJson]
+        public ActionResult DeleteZYOrder(string ordercode)
+        {
+            try
+            {
+                var zymodel = db.zyorder.FirstOrDefault(s => s.OrderCode == ordercode);
+                if (zymodel == null)
+                {
+                    return Json(Comm.ToJsonResult("NotFind", "订单不存在"), JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    var usmodel = db.tb_userinfos.FirstOrDefault(s => s.ID == zymodel.User_ID);
+                    var payorder = db.PayOrders.FirstOrDefault(s => s.RelationID == zymodel.ID && s.User_ID == usmodel.UserID);
+                    db.zyorder.Remove(zymodel);
+                    db.PayOrders.Remove(payorder);
+                    db.SaveChanges();
+                    return Json(Comm.ToJsonResult("Success", "取消成功"), JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Error", "操作失败", ex.Message), JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        private class ordermodel {
+            public string OrderCode { get; set; }
+            public DateTime CreateTime { get; set; }
+            public decimal total_fee { get; set; }
+            public int GoodsNumber { get; set; }
+            public int Postage { get; set; }
+            public string DA_Name { get; set; }
+            public string DA_Phone { get; set; }
+            public string DA_DetailedAddress { get; set; }
+            public string GoodsName { get; set; }
+            public decimal zkprice { get; set; }
+            public string ImagePath { get; set; }
+            public string Specs { get; set; }
+            public int DeliveryAddressID { get; set; }
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

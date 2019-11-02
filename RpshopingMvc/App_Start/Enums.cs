@@ -78,11 +78,13 @@ namespace RpshopingMvc.Enums
             [Display(Name = "待评价")]
             StayEvaluate = 3,
             [Display(Name = "已完成")]
-            Finish=4,
+            Finish = 4,
             [Display(Name = "退款中")]
-            RefundIng=5,
+            RefundIng = 5,
             [Display(Name = "退款成功")]
-            RefundSucces=6
+            RefundSucces = 6,
+            [Display(Name = "取消订单")]
+            Cancel = 7
         }
         /// <summary>
         /// 订单付款类型(充值：充值付款类型 订单付款：现在订单直接付款类型)
