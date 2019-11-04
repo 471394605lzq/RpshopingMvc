@@ -74,6 +74,8 @@ namespace RpshopingMvc.Models
         public DbSet<DeliveryAddress> DeliveryAddress { get; set; }
         //自营商品订单
         public DbSet<zyorder> zyorder { get; set; }
+        //用户余额明细
+        public DbSet<BalanceDetail> BalanceDetail { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

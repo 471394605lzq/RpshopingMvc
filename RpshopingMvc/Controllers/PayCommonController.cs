@@ -407,5 +407,171 @@ namespace RpshopingMvc.Controllers
                 return Json(Comm.ToJsonResult("Error", ex.Message), JsonRequestBehavior.AllowGet);
             }
         }
+
+
+        /// <summary>
+        /// 支付宝支付订单
+        /// </summary>
+        /// <param name="body"></param>
+        /// <param name="type"></param>
+        /// <param name="userID"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [AllowCrossSiteJson]
+        public ActionResult ZYOrderAliPay(Enums.Enums.OrderType body, string ordercode, string userID)
+        {
+            try
+            {
+                var ordermodel = db.zyorder.FirstOrDefault(s => s.OrderCode == ordercode);//查询订单信息
+                if (!db.tb_userinfos.Any(s => s.UserID == userID))
+                {
+                    return Json(Comm.ToJsonResult("Error", "用户不存在"), JsonRequestBehavior.AllowGet);
+                }
+                if (body != Enums.Enums.OrderType.Recharge && body != Enums.Enums.OrderType.OrderPay)
+                {
+                    return Json(Comm.ToJsonResult("Error", "请求参数错误"), JsonRequestBehavior.AllowGet);
+                }
+                if (ordermodel == null)
+                {
+                    return Json(Comm.ToJsonResult("Error", "订单不存在"), JsonRequestBehavior.AllowGet);
+                }
+                string appid = AliPayConfig.appid;//appid
+                string app_private_key = AliPayConfig.app_private_key;//私钥
+                string alipay_public_key = AliPayConfig.app_public_key;//公钥
+                string charset = "utf-8";
+                string outtradeno = AliPayConfig.GenerateOutTradeNo();//订单号
+                string notifyurl = AliPayConfig.notifyurl;//回调通知页面地址
+                IAopClient client = new DefaultAopClient("https://openapi.alipay.com/gateway.do", appid, app_private_key.Trim(), "json", "1.0", "RSA2", alipay_public_key.Trim(), charset, false);
+                //实例化具体API对应的request类,类名称和接口名称对应,当前调用接口名称如：alipay.trade.app.pay
+                AlipayTradeAppPayRequest request = new AlipayTradeAppPayRequest();
+                //SDK已经封装掉了公共参数，这里只需要传入业务参数。以下方法为sdk的model入参方式(model和biz_content同时存在的情况下取biz_content)。
+                AlipayTradeAppPayModel model = new AlipayTradeAppPayModel();
+                model.Body = ((Enums.Enums.OrderType)body).GetDisplayName();
+                model.Subject = "自营订单支付";
+                model.TotalAmount = ordermodel.total_fee.ToString(); //type.GetDisplayName();
+                model.ProductCode = AliPayConfig.productcode;
+                model.OutTradeNo = outtradeno;
+                model.TimeoutExpress = "30m";
+                request.SetBizModel(model);
+                request.SetNotifyUrl(notifyurl);
+                //这里和普通的接口调用不同，使用的是sdkExecute
+                AlipayTradeAppPayResponse response = client.SdkExecute(request);
+                //HttpUtility.HtmlEncode是为了输出到页面时防止被浏览器将关键参数html转义，实际打印到日志以及http传输不会有这个问题
+                //Response.Write(HttpUtility.HtmlEncode(response.Body));
+                string resultcode = HttpUtility.HtmlEncode(response.Body);
+                if (!string.IsNullOrWhiteSpace(resultcode))
+                {
+                    //保存下单信息到数据库
+                    PayOrder paymodel = new PayOrder();
+                    paymodel.OrderState = Enums.Enums.OrderState.UnHandle;
+                    paymodel.out_trade_no = outtradeno;
+                    paymodel.Paynoncestr = string.Empty;
+                    paymodel.PayPrepay_id = outtradeno;
+                    paymodel.settlement_total_fee = ordermodel.total_fee;
+                    paymodel.CreateTime = DateTime.Now;
+                    paymodel.Sign = resultcode;
+                    paymodel.total_fee = ordermodel.total_fee;
+                    paymodel.User_ID = userID;
+                    paymodel.OrderType = body;
+                    paymodel.RelationID = ordermodel.ID;
+                    db.PayOrders.Add(paymodel);
+                    int resultrow = db.SaveChanges();
+                    if (resultrow > 0)
+                    {
+                        string tempresult = resultcode.Replace("amp;", "");
+                        var returndata = new
+                        {
+                            result = tempresult,
+                            prepay_id = outtradeno
+                        };
+                        return Json(Comm.ToJsonResult("Success", "成功", returndata), JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(Comm.ToJsonResult("Error", "下单失败"), JsonRequestBehavior.AllowGet);
+                    }
+                }
+                else
+                {
+                    return Json(Comm.ToJsonResult("Error", "下单失败"), JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Error", ex.Message), JsonRequestBehavior.AllowGet);
+            }
+        }
+        /// <summary>
+        /// 余额支付
+        /// </summary>
+        /// <param name="body"></param>
+        /// <param name="type"></param>
+        /// <param name="userID"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [AllowCrossSiteJson]
+        public ActionResult ZYOrderBalance(Enums.Enums.OrderType body, string ordercode, string userID)
+        {
+            try
+            {
+                var ordermodel = db.zyorder.FirstOrDefault(s => s.OrderCode == ordercode);//查询订单信息
+                if (!db.tb_userinfos.Any(s => s.UserID == userID))
+                {
+                    return Json(Comm.ToJsonResult("UserNotFind", "用户不存在"), JsonRequestBehavior.AllowGet);
+                }
+                if (body != Enums.Enums.OrderType.Recharge && body != Enums.Enums.OrderType.OrderPay)
+                {
+                    return Json(Comm.ToJsonResult("Error", "请求参数错误"), JsonRequestBehavior.AllowGet);
+                }
+                if (ordermodel == null)
+                {
+                    return Json(Comm.ToJsonResult("OrderNotFind", "订单不存在"), JsonRequestBehavior.AllowGet);
+                }
+                var usmodel = db.tb_userinfos.FirstOrDefault(s => s.UserID == userID);
+                if (usmodel.Balance < ordermodel.total_fee)
+                {
+                    return Json(Comm.ToJsonResult("BalanceShortage", "余额不足"), JsonRequestBehavior.AllowGet);
+                }
+                usmodel.Balance = usmodel.Balance - ordermodel.total_fee;
+
+                BalanceDetail model = new BalanceDetail();
+                model.MoverBalance = ordermodel.total_fee;
+                model.MoverTime = DateTime.Now;
+                model.MoverType = 1;
+                model.Remark = "自营订单支付";
+                model.UserID = ordermodel.User_ID;
+                model.CountBalance = usmodel.Balance - ordermodel.total_fee;
+                db.BalanceDetail.Add(model);
+
+
+                //保存下单信息到数据库
+                PayOrder paymodel = new PayOrder();
+                paymodel.OrderState = Enums.Enums.OrderState.Success;
+                paymodel.out_trade_no = "";
+                paymodel.Paynoncestr = string.Empty;
+                paymodel.PayPrepay_id = "";
+                paymodel.settlement_total_fee = ordermodel.total_fee;
+                paymodel.CreateTime = DateTime.Now;
+                paymodel.Sign = "";
+                paymodel.total_fee = ordermodel.total_fee;
+                paymodel.User_ID = userID;
+                paymodel.OrderType = body;
+                paymodel.RelationID = ordermodel.ID;
+                db.PayOrders.Add(paymodel);
+                int resultrow = db.SaveChanges();
+                if (resultrow > 0)
+                {
+                    return Json(Comm.ToJsonResult("Success", "成功"), JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(Comm.ToJsonResult("Error", "下单失败"), JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Error", ex.Message), JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

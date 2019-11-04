@@ -694,8 +694,13 @@
     <Compile Include="Migrations\201911011344067_updatezyorder1.Designer.cs">
       <DependentUpon>201911011344067_updatezyorder1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911040801068_addbalancedetail.cs" />
+    <Compile Include="Migrations\201911040801068_addbalancedetail.Designer.cs">
+      <DependentUpon>201911040801068_addbalancedetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BalanceDetail.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\CollegeInfo.cs" />
     <Compile Include="Models\Common\BaseFileUpload.cs" />
@@ -1667,6 +1672,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911011344067_updatezyorder1.resx">
       <DependentUpon>201911011344067_updatezyorder1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911040801068_addbalancedetail.resx">
+      <DependentUpon>201911040801068_addbalancedetail.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
