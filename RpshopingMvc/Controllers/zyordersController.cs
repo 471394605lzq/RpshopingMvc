@@ -172,6 +172,7 @@ namespace RpshopingMvc.Controllers
                 var returndata = from a in db.zyorder
                                  join b in db.goods on a.GoodsID equals b.ID
                                  join c in db.DeliveryAddress on a.DeliveryAddressID equals c.ID
+                                 where a.OrderCode==ordercode
                                  select new ordermodel
                                  {
                                      CreateTime = a.CreateTime,

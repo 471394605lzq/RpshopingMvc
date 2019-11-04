@@ -68,7 +68,7 @@ namespace RpshopingMvc.Models
         [Display(Name = "密码")]
         [MaxLength(50)]
         public string UsPwd { get; set; }
-        [Display(Name = "openid")]
+        [Display(Name = "淘宝openid")]
         [MaxLength(50)]
         public string OpenID { get; set; }
         [Display(Name = "性别")]
@@ -94,6 +94,8 @@ namespace RpshopingMvc.Models
         public string createtime { get; set; }
         [Display(Name = "用户类型")]
         public UserType UserType { get; set; }
+        [Display(Name = "微信用户openid")]
+        public string WXOpenid { get; set; }
     }
     public class userinfoview {
          public int ID { get; set; }
