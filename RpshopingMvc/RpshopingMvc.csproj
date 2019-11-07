@@ -698,9 +698,9 @@
     <Compile Include="Migrations\201911040801068_addbalancedetail.Designer.cs">
       <DependentUpon>201911040801068_addbalancedetail.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201911070906309_ss.cs" />
-    <Compile Include="Migrations\201911070906309_ss.Designer.cs">
-      <DependentUpon>201911070906309_ss.cs</DependentUpon>
+    <Compile Include="Migrations\201911041312158_addwxopenid.cs" />
+    <Compile Include="Migrations\201911041312158_addwxopenid.Designer.cs">
+      <DependentUpon>201911041312158_addwxopenid.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1680,8 +1680,8 @@
     <EmbeddedResource Include="Migrations\201911040801068_addbalancedetail.resx">
       <DependentUpon>201911040801068_addbalancedetail.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201911070906309_ss.resx">
-      <DependentUpon>201911070906309_ss.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911041312158_addwxopenid.resx">
+      <DependentUpon>201911041312158_addwxopenid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

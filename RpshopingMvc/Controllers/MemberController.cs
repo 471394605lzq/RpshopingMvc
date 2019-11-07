@@ -22,14 +22,49 @@ namespace RpshopingMvc.Controllers
         /// <returns></returns>
         [HttpPost]
         [AllowCrossSiteJson]
-        public ActionResult Register(tb_userinfo model)
+        public ActionResult Register(tb_userinfo model, int usertype)
         {
             try
             {
-
-                if (db.tb_userinfos.Any(s => s.Phone == model.Phone))
+                var user = db.tb_userinfos.FirstOrDefault(s => s.Phone == model.Phone);
+                var wxusermodel = db.tb_userinfos.FirstOrDefault(s => s.WXOpenid == model.WXOpenid && s.Phone == model.Phone);
+                var tbusermodel = db.tb_userinfos.FirstOrDefault(s => s.OpenID == model.OpenID && s.Phone == model.Phone);
+                if (wxusermodel != null && tbusermodel != null)
                 {
                     return Json(Comm.ToJsonResult("Exist", "手机号已被注册"), JsonRequestBehavior.AllowGet);
+                }
+                else if (user != null)
+                {
+                    //微信用户
+                    if (usertype == 0 && string.IsNullOrWhiteSpace(user.WXOpenid))
+                    {
+                        user.WXOpenid = model.WXOpenid;
+                        user.UserImage = model.UserImage;
+                        user.UserName = model.UserName;
+                        db.SaveChanges();
+                        var returnstr = new
+                        {
+                            usid = user.UserID
+                        };
+                        return Json(Comm.ToJsonResult("Success", "成功", returnstr), JsonRequestBehavior.AllowGet);
+                    }
+                    //淘宝用户
+                    else if (usertype == 1 && string.IsNullOrWhiteSpace(user.OpenID))
+                    {
+                        user.OpenID = model.OpenID;
+                        user.UserImage = model.UserImage;
+                        user.UserName = model.UserName;
+                        db.SaveChanges();
+                        var returnstr = new
+                        {
+                            usid = user.UserID
+                        };
+                        return Json(Comm.ToJsonResult("Success", "成功", returnstr), JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(Comm.ToJsonResult("Exist", "手机号已被注册"), JsonRequestBehavior.AllowGet);
+                    }
                 }
                 else
                 {
@@ -40,8 +75,8 @@ namespace RpshopingMvc.Controllers
                     model.Integral = 0;
                     model.UserGrade = UserGrade.Primary;
                     model.ParentID = 0;
-                    model.Siteid = AliPayConfig.MediaID;
-                    model.Memberid = AliPayConfig.Memberid;
+                    model.Siteid = "283700162";// AliPayConfig.MediaID;
+                    model.Memberid = "26337984";// AliPayConfig.Memberid;
                     model.ThisMonthSettlementMoney = 0;
                     model.ThisMonthEstimateIncome = 0;
                     model.LastMonthEstimateIncome = 0;
@@ -63,20 +98,20 @@ namespace RpshopingMvc.Controllers
                         QinQiuApi qiniu = new QinQiuApi();
                         string qiniupath = qiniu.UploadFile(ststr, true);
 
-                        string tempazoneid = "";
-                        tb_TKInfo tk = db.tb_TKInfo.FirstOrDefault(s => s.PIDState == YesOrNo.No);
-                        if (tk != null)
-                        {
-                            tempazoneid = tk.Adzoneid;
-                        }
-                        tk.PIDState = YesOrNo.Yes;
-                        tk.UID = model.ID;
+                        //string tempazoneid = "";
+                        //tb_TKInfo tk = db.tb_TKInfo.FirstOrDefault(s => s.PIDState == YesOrNo.No);
+                        //if (tk != null)
+                        //{
+                        //    tempazoneid = tk.Adzoneid;
+                        //}
+                        //tk.PIDState = YesOrNo.Yes;
+                        //tk.UID = model.ID;
                         string uscode = Comm.GetCreateUserCode(model.Phone, model.ID);
                         var usmodel = db.tb_userinfos.Find(model.ID);
                         usmodel.UserCode = uscode;
-                        usmodel.Adzoneid = tempazoneid;
+                        usmodel.Adzoneid = "106412550454";//tempazoneid;
                         usmodel.UserPath = qiniupath;
-                        usmodel.PID = "mm_" + AliPayConfig.Memberid + "_" + AliPayConfig.MediaID + "_" + tempazoneid;
+                        usmodel.PID = "mm_26337984_283700162_106412550454";// "mm_" + AliPayConfig.Memberid + "_" + AliPayConfig.MediaID + "_" + tempazoneid;
                         db.SaveChanges();
                     }
                     var returnstr = new
@@ -130,37 +165,70 @@ namespace RpshopingMvc.Controllers
         /// 获取用户信息
         /// </summary>
         /// <param name="openid"></param>
+        /// /// <param name="type">获取类型0:微信用户 1：淘宝</param>
         /// <returns></returns>
         [HttpGet]
         [AllowCrossSiteJson]
-        public ActionResult GetMemberInfo(string openid)
+        public ActionResult GetMemberInfo(string openid, int type)
         {
             try
             {
-                var user = db.tb_userinfos.FirstOrDefault(s => s.OpenID == openid);
-                if (user == null)
+                var wxuser = db.tb_userinfos.FirstOrDefault(s => s.WXOpenid == openid);
+                var tbuser = db.tb_userinfos.FirstOrDefault(s => s.OpenID == openid);
+                //微信用户
+                if (type == 0)
                 {
-                    return Json(Comm.ToJsonResult("nofind", "用户不存在"), JsonRequestBehavior.AllowGet);
+                    if (wxuser == null)
+                    {
+                        return Json(Comm.ToJsonResult("nofind", "用户不存在"), JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        var returndata = new
+                        {
+
+                            Memberid = wxuser.Memberid,
+                            Siteid = wxuser.Siteid,
+                            UsPID = wxuser.PID,
+                            Adzoneid = wxuser.Adzoneid,
+                            ThisMonthEstimateIncome = wxuser.ThisMonthEstimateIncome,
+                            ThisMonthSettlementMoney = wxuser.ThisMonthSettlementMoney,
+                            LastMonthEstimateIncome = wxuser.LastMonthEstimateIncome,
+                            LastMonthSettlementMoney = wxuser.LastMonthSettlementMoney,
+                            Balance = wxuser.Balance,
+                            aliaccount = wxuser.AliAccount,
+                            aliusname = wxuser.AliUserName,
+                            guid = wxuser.UserID
+                        };
+                        return Json(Comm.ToJsonResult("Success", "成功", returndata), JsonRequestBehavior.AllowGet);
+                    }
                 }
                 else
                 {
-                    var returndata = new
+                    if (tbuser == null)
                     {
+                        return Json(Comm.ToJsonResult("nofind", "用户不存在"), JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        var returndata = new
+                        {
 
-                        Memberid = user.Memberid,
-                        Siteid = user.Siteid,
-                        UsPID = user.PID,
-                        Adzoneid = user.Adzoneid,
-                        ThisMonthEstimateIncome = user.ThisMonthEstimateIncome,
-                        ThisMonthSettlementMoney = user.ThisMonthSettlementMoney,
-                        LastMonthEstimateIncome = user.LastMonthEstimateIncome,
-                        LastMonthSettlementMoney = user.LastMonthSettlementMoney,
-                        Balance = user.Balance,
-                        aliaccount = user.AliAccount,
-                        aliusname = user.AliUserName,
-                        guid = user.UserID
-                    };
-                    return Json(Comm.ToJsonResult("Success", "成功", returndata), JsonRequestBehavior.AllowGet);
+                            Memberid = tbuser.Memberid,
+                            Siteid = tbuser.Siteid,
+                            UsPID = tbuser.PID,
+                            Adzoneid = tbuser.Adzoneid,
+                            ThisMonthEstimateIncome = tbuser.ThisMonthEstimateIncome,
+                            ThisMonthSettlementMoney = tbuser.ThisMonthSettlementMoney,
+                            LastMonthEstimateIncome = tbuser.LastMonthEstimateIncome,
+                            LastMonthSettlementMoney = tbuser.LastMonthSettlementMoney,
+                            Balance = tbuser.Balance,
+                            aliaccount = tbuser.AliAccount,
+                            aliusname = tbuser.AliUserName,
+                            guid = tbuser.UserID
+                        };
+                        return Json(Comm.ToJsonResult("Success", "成功", returndata), JsonRequestBehavior.AllowGet);
+                    }
                 }
             }
             catch (Exception ex)
