@@ -314,6 +314,7 @@
     <Compile Include="Controllers\YGoodsIssuesController.cs" />
     <Compile Include="Controllers\YGoodsTypesController.cs" />
     <Compile Include="Controllers\YGOrdersController.cs" />
+    <Compile Include="Controllers\zygoodservicesController.cs" />
     <Compile Include="Controllers\zyordersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -706,6 +707,10 @@
     <Compile Include="Migrations\201911071034313_ss.Designer.cs">
       <DependentUpon>201911071034313_ss.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911111315012_addgoodservice.cs" />
+    <Compile Include="Migrations\201911111315012_addgoodservice.Designer.cs">
+      <DependentUpon>201911111315012_addgoodservice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BalanceDetail.cs" />
@@ -740,6 +745,9 @@
     <Compile Include="Models\YGoodsIssue.cs" />
     <Compile Include="Models\YGoodsType.cs" />
     <Compile Include="Models\YGOrder.cs" />
+    <Compile Include="Models\zyactivity.cs" />
+    <Compile Include="Models\zygoodservice.cs" />
+    <Compile Include="Models\zygoodservicetemp.cs" />
     <Compile Include="Models\zyorder.cs" />
     <Compile Include="Notify\PersistentNotifyUrl.aspx.cs">
       <DependentUpon>PersistentNotifyUrl.aspx</DependentUpon>
@@ -1381,6 +1389,11 @@
     <Content Include="Views\zyorders\Details.cshtml" />
     <Content Include="Views\zyorders\Edit.cshtml" />
     <Content Include="Views\zyorders\Index.cshtml" />
+    <Content Include="Views\zygoodservices\Create.cshtml" />
+    <Content Include="Views\zygoodservices\Delete.cshtml" />
+    <Content Include="Views\zygoodservices\Details.cshtml" />
+    <Content Include="Views\zygoodservices\Edit.cshtml" />
+    <Content Include="Views\zygoodservices\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1689,6 +1702,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911071034313_ss.resx">
       <DependentUpon>201911071034313_ss.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911111315012_addgoodservice.resx">
+      <DependentUpon>201911111315012_addgoodservice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -356,6 +356,94 @@ namespace RpshopingMvc.Controllers
                 return Json(Comm.ToJsonResult("Error", ex.Message), JsonRequestBehavior.AllowGet);
             }
         }
+
+        //获取商品服务
+        [HttpPost]
+        [AllowCrossSiteJson]
+        public ActionResult getgoodservice()
+        {
+            try
+            {
+                string sql = string.Format(@"SELECT ID,Name FROM dbo.zygoodservices");
+                List<goodstypeshow> data = db.Database.SqlQuery<goodstypeshow>(sql).ToList();
+                return Json(Comm.ToJsonResult("Success", "成功", data), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Error", ex.Message), JsonRequestBehavior.AllowGet);
+            }
+        }
+        //获取商品当前服务
+        [HttpPost]
+        [AllowCrossSiteJson]
+        public ActionResult getgoodsthiservice(int id)
+        {
+            try
+            {
+                string sql = string.Format(@"SELECT gt.ID,gs.Name FROM dbo.zygoodservicetemps gt
+                                            INNER JOIN dbo.zygoodservices gs ON gt.serviceid=gs.ID
+                                            WHERE gt.goodsid={0}", id);
+                List<goodstypeshow> data = db.Database.SqlQuery<goodstypeshow>(sql).ToList();
+                return Json(Comm.ToJsonResult("Success", "成功", data), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Error", ex.Message), JsonRequestBehavior.AllowGet);
+            }
+        }
+        //获取商品当前服务
+        [HttpPost]
+        [AllowCrossSiteJson]
+        public ActionResult addgoodservice(int goodsid, int goodserviceid)
+        {
+            try
+            {
+                zygoodservicetemp model = db.zygoodservicetemp.FirstOrDefault(s => s.goodsid == goodsid && s.serviceid == goodserviceid);
+                if (model != null)
+                {
+                    return Json(Comm.ToJsonResult("Exist", "该商品已经添加了此服务"), JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    zygoodservicetemp tempmodel = new zygoodservicetemp();
+                    tempmodel.serviceid = goodserviceid;
+                    tempmodel.goodsid = goodsid;
+                    db.zygoodservicetemp.Add(tempmodel);
+                    db.SaveChanges();
+                    return Json(Comm.ToJsonResult("Success", "成功"), JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Error", ex.Message), JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        //删除商品服务
+        [HttpPost]
+        [AllowCrossSiteJson]
+        public ActionResult deletegoodservice(int id)
+        {
+            try
+            {
+                zygoodservicetemp model = db.zygoodservicetemp.FirstOrDefault(s => s.ID == id);
+                if (model == null)
+                {
+                    return Json(Comm.ToJsonResult("NotFind", "商品服务不存在"), JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    db.zygoodservicetemp.Remove(model);
+                    db.SaveChanges();
+                    return Json(Comm.ToJsonResult("Success", "删除成功"), JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Error", ex.Message), JsonRequestBehavior.AllowGet);
+            }
+        }
+
         /// <summary>
         /// 获取自营商品详情
         /// </summary>
