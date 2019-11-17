@@ -80,6 +80,10 @@ namespace RpshopingMvc.Models
         public DbSet<zygoodservicetemp> zygoodservicetemp { get; set; }
         //自营产品服务
         public DbSet<zygoodservice> zygoodservice { get; set; }
+        //自营商品活动
+        public DbSet<zyactivity> zyactivity { get; set; }
+        //活动商品
+        public DbSet<zyactivitygoods> zyactivitygoods { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

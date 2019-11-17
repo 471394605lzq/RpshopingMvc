@@ -224,7 +224,7 @@ namespace RpshopingMvc.Controllers
                                     integraldetailmodel.IntegralNumber = sumnumber;
                                     db.IntegralDetails.Add(integraldetailmodel);
                                     //修改用户积分
-                                    usmodel.Balance = usmodel.Balance - sumnumber;
+                                    usmodel.Integral = usmodel.Integral - sumnumber;
                                     //如果购买数量等于剩余数量则锁住云购商品期数
                                     if (buynumber == issuemodel.SurplusNumber)
                                     {

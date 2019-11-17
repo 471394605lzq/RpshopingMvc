@@ -391,7 +391,7 @@ namespace RpshopingMvc.Controllers
                 return Json(Comm.ToJsonResult("Error", ex.Message), JsonRequestBehavior.AllowGet);
             }
         }
-        //获取商品当前服务
+        //添加商品当前服务
         [HttpPost]
         [AllowCrossSiteJson]
         public ActionResult addgoodservice(int goodsid, int goodserviceid)
@@ -434,6 +434,97 @@ namespace RpshopingMvc.Controllers
                 else
                 {
                     db.zygoodservicetemp.Remove(model);
+                    db.SaveChanges();
+                    return Json(Comm.ToJsonResult("Success", "删除成功"), JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Error", ex.Message), JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        //获取商品活动
+        [HttpPost]
+        [AllowCrossSiteJson]
+        public ActionResult getgoodactivity()
+        {
+            try
+            {
+                string sql = string.Format(@"SELECT ID,Name FROM dbo.zyactivities");
+                List<goodstypeshow> data = db.Database.SqlQuery<goodstypeshow>(sql).ToList();
+                return Json(Comm.ToJsonResult("Success", "成功", data), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Error", ex.Message), JsonRequestBehavior.AllowGet);
+            }
+        }
+        //获取商品当前参加的活动
+        [HttpPost]
+        [AllowCrossSiteJson]
+        public ActionResult getgoodsthisactivity(int id)
+        {
+            try
+            {
+                string sql = string.Format(@"SELECT gt.ID,gs.Name FROM dbo.zyactivitygoods gt
+                                            INNER JOIN dbo.zyactivities gs ON gt.activityid=gs.ID
+                                            WHERE gt.goodsid={0}", id);
+                List<goodstypeshow> data = db.Database.SqlQuery<goodstypeshow>(sql).ToList();
+                return Json(Comm.ToJsonResult("Success", "成功", data), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Error", ex.Message), JsonRequestBehavior.AllowGet);
+            }
+        }
+        //添加商品当前活动
+        [HttpPost]
+        [AllowCrossSiteJson]
+        public ActionResult addgoodactivity(int goodsid, int goodactivityid, int postage, decimal acctivityprice, string remark)
+        {
+            try
+            {
+                zyactivitygoods model = db.zyactivitygoods.FirstOrDefault(s => s.goodsid == goodsid && s.activityid == goodactivityid);
+                if (model != null)
+                {
+                    return Json(Comm.ToJsonResult("Exist", "该商品已经添加了此服务"), JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    zyactivitygoods models = new zyactivitygoods();
+                    models.activityid = goodactivityid;
+                    models.goodsid = goodsid;
+                    models.acrivityprice = acctivityprice;
+                    models.Postage = postage;
+                    models.remark = remark;
+                    db.zyactivitygoods.Add(models);
+                    db.SaveChanges();
+                    return Json(Comm.ToJsonResult("Success", "成功"), JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Error", ex.Message), JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        //删除商品活动
+        [HttpPost]
+        [AllowCrossSiteJson]
+        public ActionResult deletegoodactivity(int id)
+        {
+            try
+            {
+                zyactivitygoods model = db.zyactivitygoods.FirstOrDefault(s => s.ID == id);
+                if (model == null)
+                {
+                    return Json(Comm.ToJsonResult("NotFind", "商品服务不存在"), JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    db.zyactivitygoods.Remove(model);
                     db.SaveChanges();
                     return Json(Comm.ToJsonResult("Success", "删除成功"), JsonRequestBehavior.AllowGet);
                 }
