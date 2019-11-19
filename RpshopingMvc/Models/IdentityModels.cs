@@ -84,6 +84,8 @@ namespace RpshopingMvc.Models
         public DbSet<zyactivity> zyactivity { get; set; }
         //活动商品
         public DbSet<zyactivitygoods> zyactivitygoods { get; set; }
+        //用户红包
+        public DbSet<RedPacket> RedPpacket { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

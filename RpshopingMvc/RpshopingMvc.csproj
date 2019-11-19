@@ -716,6 +716,10 @@
     <Compile Include="Migrations\201911170328310_addacrivity.Designer.cs">
       <DependentUpon>201911170328310_addacrivity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911191356111_addredpacket.cs" />
+    <Compile Include="Migrations\201911191356111_addredpacket.Designer.cs">
+      <DependentUpon>201911191356111_addredpacket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BalanceDetail.cs" />
@@ -736,6 +740,7 @@
     <Compile Include="Models\IntegralDetails.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PayOrder.cs" />
+    <Compile Include="Models\RedPpacket.cs" />
     <Compile Include="Models\Tborder.cs" />
     <Compile Include="Models\tb_Favorites.cs" />
     <Compile Include="Models\tb_goods.cs" />
@@ -1719,6 +1724,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911170328310_addacrivity.resx">
       <DependentUpon>201911170328310_addacrivity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911191356111_addredpacket.resx">
+      <DependentUpon>201911191356111_addredpacket.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

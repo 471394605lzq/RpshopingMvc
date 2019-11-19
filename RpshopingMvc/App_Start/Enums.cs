@@ -239,5 +239,11 @@ namespace RpshopingMvc.Enums
             [Display(Name = "是")]
             Yes
         }
+        public enum RedPacketType
+        {
+            [Display(Name = "新人红包")]
+            NewUser=0,
+
+        }
     }
 }
