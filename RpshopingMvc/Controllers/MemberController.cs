@@ -429,5 +429,43 @@ namespace RpshopingMvc.Controllers
                 return Json(Comm.ToJsonResult("Error", "操作失败"), JsonRequestBehavior.AllowGet);
             }
         }
+        //新人领取红包
+        [HttpPost]
+        [AllowCrossSiteJson]
+        public ActionResult AddUserRedPacket(string userid)
+        {
+            try
+            {
+                var usermodel = db.tb_userinfos.FirstOrDefault(s => s.UserID == userid);
+                if (usermodel != null)
+                {
+                    //if () { }
+                    var redpacket = db.RedPpacket.FirstOrDefault(s => s.userid == usermodel.ID && s.packtype == RedPacketType.NewUser);
+                    if (redpacket!=null)
+                    {
+                        return Json(Comm.ToJsonResult("IsGet", "已领取新人红包"), JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        RedPacket model = new RedPacket();
+                        model.userid = usermodel.ID;
+                        model.CreateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                        model.packtype = RedPacketType.NewUser;
+                        model.quota = (decimal)9.9;
+                        db.RedPpacket.Add(model);
+                        db.SaveChanges();
+                        return Json(Comm.ToJsonResult("Success", "成功"), JsonRequestBehavior.AllowGet);
+                    }
+                }
+                else
+                {
+                    return Json(Comm.ToJsonResult("NotFind", "用户不存在"), JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Error", "操作失败", ex.Message), JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }
