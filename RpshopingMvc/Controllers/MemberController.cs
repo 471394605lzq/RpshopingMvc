@@ -4,6 +4,7 @@ using RpshopingMvc.App_Start.Qiniu;
 using RpshopingMvc.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -439,22 +440,39 @@ namespace RpshopingMvc.Controllers
                 var usermodel = db.tb_userinfos.FirstOrDefault(s => s.UserID == userid);
                 if (usermodel != null)
                 {
-                    //if () { }
-                    var redpacket = db.RedPpacket.FirstOrDefault(s => s.userid == usermodel.ID && s.packtype == RedPacketType.NewUser);
-                    if (redpacket!=null)
+                    if (!string.IsNullOrWhiteSpace(usermodel.createtime))
                     {
-                        return Json(Comm.ToJsonResult("IsGet", "已领取新人红包"), JsonRequestBehavior.AllowGet);
+                        DateTime dt1 = DateTime.Parse(usermodel.createtime);
+                        DateTime dt2 = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd"));
+                        TimeSpan ts = dt2 - dt1;//计算时间差
+                                                //如果注册时间小于等于7天则为新人，可领取红包
+                        if (ts.TotalDays <= 7)
+                        {
+                            var redpacket = db.RedPpacket.FirstOrDefault(s => s.userid == usermodel.ID && s.packtype == RedPacketType.NewUser);
+                            if (redpacket != null)
+                            {
+                                return Json(Comm.ToJsonResult("IsGet", "已领取新人红包"), JsonRequestBehavior.AllowGet);
+                            }
+                            else
+                            {
+                                RedPacket model = new RedPacket();
+                                model.userid = usermodel.ID;
+                                model.CreateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                                model.packtype = RedPacketType.NewUser;
+                                model.quota = (decimal)9.9;
+                                db.RedPpacket.Add(model);
+                                db.SaveChanges();
+                                return Json(Comm.ToJsonResult("Success", "成功"), JsonRequestBehavior.AllowGet);
+                            }
+                        }
+                        else
+                        {
+                            return Json(Comm.ToJsonResult("usertimeout", "新人时间过期"), JsonRequestBehavior.AllowGet);
+                        }
                     }
                     else
                     {
-                        RedPacket model = new RedPacket();
-                        model.userid = usermodel.ID;
-                        model.CreateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                        model.packtype = RedPacketType.NewUser;
-                        model.quota = (decimal)9.9;
-                        db.RedPpacket.Add(model);
-                        db.SaveChanges();
-                        return Json(Comm.ToJsonResult("Success", "成功"), JsonRequestBehavior.AllowGet);
+                        return Json(Comm.ToJsonResult("usertimeout", "新人时间过期"), JsonRequestBehavior.AllowGet);
                     }
                 }
                 else
@@ -466,6 +484,43 @@ namespace RpshopingMvc.Controllers
             {
                 return Json(Comm.ToJsonResult("Error", "操作失败", ex.Message), JsonRequestBehavior.AllowGet);
             }
+        }
+        //获取最新的新人领取红包记录
+        [HttpGet]
+        [AllowCrossSiteJson]
+        public ActionResult GetNewUserReadpacketlist()
+        {
+            try
+            {
+                string sql = string.Format(@"SELECT TOP 20 us.UserName,us.UserImage FROM dbo.RedPackets r 
+                                            INNER JOIN dbo.tb_userinfo us ON us.ID=r.userid
+                                            ORDER BY r.CreateTime DESC");
+                List<tempuserinfo> list = new List<tempuserinfo>();
+                list = db.Database.SqlQuery<tempuserinfo>(sql).ToList();
+                string goodssql = string.Format(@"SELECT top 30 g.* FROM dbo.goods g 
+                                                INNER JOIN dbo.goodstypetemps gt ON g.ID=gt.goodstypeid
+                                                INNER JOIN dbo.goodstypes gy ON gy.ID=gt.goodstypeid WHERE gy.Name ='新人福利'");
+                List<goodsshow> data = new List<goodsshow>();
+                var tempdata = db.Database.SqlQuery<goodsshow>(goodssql).ToList();
+                if (tempdata.Count==1&&tempdata[0].ID!=0)
+                {
+                    data = tempdata;
+                }
+                var returndata = new
+                {
+                    goodslist = data,
+                    redpacketlist = list
+                };
+                return Json(Comm.ToJsonResult("Success", "成功", returndata), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Error", "获取失败", ex.Message), JsonRequestBehavior.AllowGet);
+            }
+        }
+        public class tempuserinfo {
+            public string UserName { get; set; }
+            public string UserImage { get; set; }
         }
     }
 }

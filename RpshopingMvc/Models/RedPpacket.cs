@@ -19,4 +19,15 @@ namespace RpshopingMvc.Models
         [Display(Name = "红包领取时间")]
         public string CreateTime { get; set; }
     }
+
+    public class RedPacketshow
+    {
+        public int userid { get; set; }
+        [Display(Name = "红包额度")]
+        public decimal quota { get; set; }
+        [Display(Name = "红包类型")]
+        public RedPacketType packtype { get; set; }
+        [Display(Name = "红包领取时间")]
+        public string CreateTime { get; set; }
+    }
 }
