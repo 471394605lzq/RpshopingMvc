@@ -27,7 +27,9 @@ namespace RpshopingMvc
             menus.Add(new Menu { Name = "品牌", Title = "品牌", Url = "~/Brands/Index", IconImage = "pinpaiguanli" });
             menus.Add(new Menu { Name = "自营商品服务", Title = "自营商品服务", Url = "~/zygoodservices/Index", IconImage = "fuwu" });
             menus.Add(new Menu { Name = "商品活动", Title = "商品活动", Url = "~/zyactivities/Index", IconImage = "huodong" });
+            menus.Add(new Menu { Name = "轮播图", Title = "轮播图", Url = "~/Selides/Index", IconImage = "huodong" });
             
+
 
             //if (p.IsInRole(SysRole.UserManageRead))
             //{

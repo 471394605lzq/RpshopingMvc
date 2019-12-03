@@ -245,5 +245,13 @@ namespace RpshopingMvc.Enums
             NewUser=0,
 
         }
+        //轮播图类别
+        public enum SelideType
+        {
+            [Display(Name = "商品")]
+            goods = 0,
+            [Display(Name = "展示")]
+            show = 1
+        }
     }
 }

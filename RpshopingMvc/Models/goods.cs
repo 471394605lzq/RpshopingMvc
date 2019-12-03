@@ -118,6 +118,7 @@ namespace RpshopingMvc.Models
 
     public class goodsshow
     {
+        [Display(Name = "商品编号")]
         public int ID { get; set; }
         [Display(Name = "商品名称")]
         [MaxLength(200)]

@@ -27,6 +27,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.GoodsName)
             </th>
             <th>
@@ -53,47 +56,50 @@
             <th>
                 @Html.DisplayNameFor(model => model.Postage)
             </th>
-            <th></th>
+            <th style="width:200px;">操作</th>
         </tr>
     </thead>
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.GoodsName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.zkprice)
-            </td>
-            <td>
-                @Html.TableImg(item.ImagePath == "" ? "" : item.ImagePath.Split(',')[0].ToString())
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Specs)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SalesVolume)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IncomeRatio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Brokerage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Postage)
-            </td>
-            <td>
-                @Html.ActionLink("编辑", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("删除", "Delete", new { id = item.ID })|
-                <div id="looktype" style="cursor:pointer;" onclick="looktype(@item.ID)">查看分类|</div>
-                <div id="lookservice" style="cursor:pointer;" onclick="lookservice(@item.ID)">查看服务|</div>
-                <div id="joinactivity" style="cursor:pointer;" onclick="joinactivity(@item.ID)">参加活动</div>
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GoodsName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.zkprice)
+        </td>
+        <td>
+            @Html.TableImg(item.ImagePath == "" ? "" : item.ImagePath.Split(',')[0].ToString())
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Specs)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SalesVolume)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IncomeRatio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Brokerage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Postage)
+        </td>
+        <td style="width:200px;">
+            <a href="@Url.Action("Edit",new { id = item.ID })" style="cursor:pointer;font-size:12px;float:left;">编辑 | </a>
+            <a href="@Url.Action("Delete",new { id = item.ID })" style="cursor:pointer;font-size:12px;float:left;">删除 | </a>
+            <div id="looktype" style="cursor:pointer;font-size:12px;float:left;" onclick="looktype(@item.ID)">查看分类 | </div>
+            <div id="lookservice" style="cursor:pointer;font-size:12px;float:left;" onclick="lookservice(@item.ID)">查看服务 | </div>
+            <div id="joinactivity" style="cursor:pointer;font-size:12px;float:left;" onclick="joinactivity(@item.ID)">参加活动</div>
+        </td>
+    </tr>
     }
 </table>
 <div id="alldiv">

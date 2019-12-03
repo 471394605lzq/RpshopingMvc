@@ -288,6 +288,7 @@
     <Compile Include="App_Start\Common\WxPayData.cs" />
     <Compile Include="App_Start\Unite.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AppApiController.cs" />
     <Compile Include="Controllers\BrandsController.cs" />
     <Compile Include="Controllers\CollegeInfoesController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
@@ -301,6 +302,7 @@
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\PayCommonController.cs" />
     <Compile Include="Controllers\RechargeController.cs" />
+    <Compile Include="Controllers\SelidesController.cs" />
     <Compile Include="Controllers\TaobaoController.cs" />
     <Compile Include="Controllers\tb_FavoritesController.cs" />
     <Compile Include="Controllers\tb_goodsController.cs" />
@@ -720,6 +722,14 @@
     <Compile Include="Migrations\201911191356111_addredpacket.Designer.cs">
       <DependentUpon>201911191356111_addredpacket.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912030302022_selide.cs" />
+    <Compile Include="Migrations\201912030302022_selide.Designer.cs">
+      <DependentUpon>201912030302022_selide.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912030958511_selidegoodsid.cs" />
+    <Compile Include="Migrations\201912030958511_selidegoodsid.Designer.cs">
+      <DependentUpon>201912030958511_selidegoodsid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BalanceDetail.cs" />
@@ -741,6 +751,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PayOrder.cs" />
     <Compile Include="Models\RedPpacket.cs" />
+    <Compile Include="Models\Selide.cs" />
     <Compile Include="Models\Tborder.cs" />
     <Compile Include="Models\tb_Favorites.cs" />
     <Compile Include="Models\tb_goods.cs" />
@@ -1410,9 +1421,15 @@
     <Content Include="Views\zyactivities\Details.cshtml" />
     <Content Include="Views\zyactivities\Edit.cshtml" />
     <Content Include="Views\zyactivities\Index.cshtml" />
+    <Content Include="Views\Selides\Create.cshtml" />
+    <Content Include="Views\Selides\Delete.cshtml" />
+    <Content Include="Views\Selides\Details.cshtml" />
+    <Content Include="Views\Selides\Edit.cshtml" />
+    <Content Include="Views\Selides\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\AppApi\" />
     <Folder Include="Views\Common\" />
     <Folder Include="Views\Member\" />
     <Folder Include="Views\PayCommon\" />
@@ -1727,6 +1744,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911191356111_addredpacket.resx">
       <DependentUpon>201911191356111_addredpacket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912030302022_selide.resx">
+      <DependentUpon>201912030302022_selide.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912030958511_selidegoodsid.resx">
+      <DependentUpon>201912030958511_selidegoodsid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

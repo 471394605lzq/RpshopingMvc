@@ -215,6 +215,12 @@ namespace RpshopingMvc.Controllers
         public ActionResult GetDefaultDeliveryAddress(string uid) {
             try
             {
+                var usmodel = db.tb_userinfos.FirstOrDefault(s=>s.UserID==uid);
+                List<RedPacket> redpacketlist = new List<RedPacket>();
+                if (usmodel!=null)
+                {
+                    string getredpacket = string.Format(@"");
+                }
                 DeliveryAddress model = db.DeliveryAddress.FirstOrDefault(s => s.U_ID == uid && s.DA_IsDefault == "1");
                 if (model != null)
                 {
