@@ -243,6 +243,8 @@ namespace RpshopingMvc.Enums
         {
             [Display(Name = "新人红包")]
             NewUser=0,
+            [Display(Name = "会员红包")]
+            Member = 1,
 
         }
         //轮播图类别

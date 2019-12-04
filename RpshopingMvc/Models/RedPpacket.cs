@@ -18,6 +18,8 @@ namespace RpshopingMvc.Models
         public RedPacketType packtype { get; set; }
         [Display(Name = "红包领取时间")]
         public string CreateTime { get; set; }
+        [Display(Name = "红包标题")]
+        public string Title { get; set; }
     }
 
     public class RedPacketshow
@@ -29,5 +31,7 @@ namespace RpshopingMvc.Models
         public RedPacketType packtype { get; set; }
         [Display(Name = "红包领取时间")]
         public string CreateTime { get; set; }
+        [Display(Name = "红包标题")]
+        public string Title { get; set; }
     }
 }

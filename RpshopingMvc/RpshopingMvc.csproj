@@ -730,6 +730,10 @@
     <Compile Include="Migrations\201912030958511_selidegoodsid.Designer.cs">
       <DependentUpon>201912030958511_selidegoodsid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912040704166_addredtitle.cs" />
+    <Compile Include="Migrations\201912040704166_addredtitle.Designer.cs">
+      <DependentUpon>201912040704166_addredtitle.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BalanceDetail.cs" />
@@ -1750,6 +1754,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912030958511_selidegoodsid.resx">
       <DependentUpon>201912030958511_selidegoodsid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912040704166_addredtitle.resx">
+      <DependentUpon>201912040704166_addredtitle.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

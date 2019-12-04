@@ -460,6 +460,7 @@ namespace RpshopingMvc.Controllers
                                 model.CreateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                                 model.packtype = RedPacketType.NewUser;
                                 model.quota = (decimal)9.9;
+                                model.Title = "新人福利红包";
                                 db.RedPpacket.Add(model);
                                 db.SaveChanges();
                                 return Json(Comm.ToJsonResult("Success", "成功"), JsonRequestBehavior.AllowGet);
@@ -512,6 +513,26 @@ namespace RpshopingMvc.Controllers
                     redpacketlist = list
                 };
                 return Json(Comm.ToJsonResult("Success", "成功", returndata), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Error", "获取失败", ex.Message), JsonRequestBehavior.AllowGet);
+            }
+        }
+        //获取用户红包
+        [HttpGet]
+        [AllowCrossSiteJson]
+        public ActionResult GetUserRedPacket(string userid) {
+            try
+            {
+                var usmodel = db.tb_userinfos.FirstOrDefault(s => s.UserID == userid);
+                List<RedPacket> redpacketlist = new List<RedPacket>();
+                if (usmodel != null)
+                {
+                    string sql = string.Format(@"SELECT *  FROM dbo.RedPackets WHERE userid={0}", usmodel.ID);
+                    redpacketlist = db.Database.SqlQuery<RedPacket>(sql).ToList();
+                }
+                return Json(Comm.ToJsonResult("Success", "成功", redpacketlist), JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
