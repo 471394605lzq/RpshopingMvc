@@ -130,13 +130,18 @@ namespace RpshopingMvc.Controllers
             {
                 var usmodel = db.tb_userinfos.FirstOrDefault(s => s.UserID == usid);
                 var goodsmodel = db.goods.FirstOrDefault(s => s.ID == model.GoodsID);
-                if (usmodel==null)
+                var redmodel = db.RedPpacket.FirstOrDefault(s => s.ID == model.RedID);
+                if (usmodel == null)
                 {
                     return Json(Comm.ToJsonResult("UserIdIsNull", "用户不存在"), JsonRequestBehavior.AllowGet);
                 }
-                else if (goodsmodel==null)
+                else if (goodsmodel == null)
                 {
                     return Json(Comm.ToJsonResult("GoodsIsNull", "商品不存在"), JsonRequestBehavior.AllowGet);
+                }
+                else if (redmodel==null)
+                {
+                    return Json(Comm.ToJsonResult("RedIsNull", "红包不可用"), JsonRequestBehavior.AllowGet);
                 }
                 else
                 {

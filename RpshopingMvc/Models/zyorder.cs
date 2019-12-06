@@ -47,5 +47,7 @@ namespace RpshopingMvc.Models
 
         [Display(Name = "邮费")]
         public int Postage { get; set; }
+        [Display(Name = "红包id")]
+        public int RedID { get; set; }
     }
 }

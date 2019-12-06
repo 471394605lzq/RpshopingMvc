@@ -734,6 +734,10 @@
     <Compile Include="Migrations\201912040704166_addredtitle.Designer.cs">
       <DependentUpon>201912040704166_addredtitle.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912061003142_redid.cs" />
+    <Compile Include="Migrations\201912061003142_redid.Designer.cs">
+      <DependentUpon>201912061003142_redid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BalanceDetail.cs" />
@@ -1757,6 +1761,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912040704166_addredtitle.resx">
       <DependentUpon>201912040704166_addredtitle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912061003142_redid.resx">
+      <DependentUpon>201912061003142_redid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
