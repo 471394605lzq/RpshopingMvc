@@ -139,7 +139,7 @@ namespace RpshopingMvc.Controllers
                 {
                     return Json(Comm.ToJsonResult("GoodsIsNull", "商品不存在"), JsonRequestBehavior.AllowGet);
                 }
-                else if (redmodel==null)
+                else if (model.RedID > 0 && redmodel == null)
                 {
                     return Json(Comm.ToJsonResult("RedIsNull", "红包不可用"), JsonRequestBehavior.AllowGet);
                 }
@@ -152,10 +152,19 @@ namespace RpshopingMvc.Controllers
                     model.CreateTime = DateTime.Now;
                     model.PayTime = "";
                     model.ExpressCode = "";
-                    model.total_fee = (goodsmodel.zkprice * model.GoodsNumber) + goodsmodel.Postage;
+
+                    if (redmodel != null)
+                    {
+                        model.total_fee = ((goodsmodel.zkprice * model.GoodsNumber) + goodsmodel.Postage) - redmodel.quota;
+                        model.RedID = redmodel.ID;
+                    }
+                    else
+                    {
+                        model.total_fee = ((goodsmodel.zkprice * model.GoodsNumber) + goodsmodel.Postage);
+                    }
                     db.zyorder.Add(model);
                     db.SaveChanges();
-                    return Json(Comm.ToJsonResult("Success", "添加成功",model.OrderCode), JsonRequestBehavior.AllowGet);
+                    return Json(Comm.ToJsonResult("Success", "添加成功", model.OrderCode), JsonRequestBehavior.AllowGet);
                 }
             }
             catch (Exception ex)

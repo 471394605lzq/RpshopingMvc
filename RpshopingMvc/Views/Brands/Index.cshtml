@@ -34,27 +34,33 @@
             <th>
                 @Html.DisplayNameFor(model => model.Image)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Explain)
+            </th>
             <th></th>
         </tr>
     </thead>
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sort)
-            </td>
-            <td>
-                @Html.TableImg(item.Image == "" ? "" : item.Image.Split(',')[0].ToString())
-            </td>
-            <td>
-                @Html.ActionLink("编辑", "Edit", new { id = item.ID }) |
-                @*@Html.ActionLink("详情", "Details", new { id = item.ID }) |*@
-                @Html.ActionLink("删除", "Delete", new { id = item.ID })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sort)
+        </td>
+        <td>
+            @Html.TableImg(item.Image == "" ? "" : item.Image.Split(',')[0].ToString())
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Explain)
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "Edit", new { id = item.ID }) |
+            @*@Html.ActionLink("详情", "Details", new { id = item.ID }) |*@
+            @Html.ActionLink("删除", "Delete", new { id = item.ID })
+        </td>
+    </tr>
     }
 
 </table>

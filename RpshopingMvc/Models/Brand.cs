@@ -16,6 +16,8 @@ namespace RpshopingMvc.Models
         public string Image { get; set; }
         [Display(Name = "排序")]
         public int Sort { get; set; }
+        [Display(Name = "说明")]
+        public string Explain { get; set; }
 
     }
     public class BrandShow
@@ -27,6 +29,8 @@ namespace RpshopingMvc.Models
         public string Image { get; set; }
         [Display(Name = "排序")]
         public int Sort { get; set; }
+        [Display(Name = "说明")]
+        public string Explain { get; set; }
 
     }
     public class BrandView
@@ -46,8 +50,8 @@ namespace RpshopingMvc.Models
         };
         [Display(Name = "排序")]
         public int Sort { get; set; }
-
-
+        [Display(Name = "说明")]
+        public string Explain { get; set; }
     }
 
 }

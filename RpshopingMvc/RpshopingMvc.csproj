@@ -738,6 +738,10 @@
     <Compile Include="Migrations\201912061003142_redid.Designer.cs">
       <DependentUpon>201912061003142_redid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912070817223_brandexplain.cs" />
+    <Compile Include="Migrations\201912070817223_brandexplain.Designer.cs">
+      <DependentUpon>201912070817223_brandexplain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BalanceDetail.cs" />
@@ -1764,6 +1768,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912061003142_redid.resx">
       <DependentUpon>201912061003142_redid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912070817223_brandexplain.resx">
+      <DependentUpon>201912070817223_brandexplain.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

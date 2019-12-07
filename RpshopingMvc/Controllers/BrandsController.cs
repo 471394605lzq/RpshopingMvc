@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using RpshopingMvc.App_Start;
 using RpshopingMvc.Models;
 
 namespace RpshopingMvc.Controllers
@@ -28,7 +30,8 @@ namespace RpshopingMvc.Controllers
                         ID = e.ID,
                         Name = e.Name,
                         Image = e.Image,
-                        Sort = e.Sort
+                        Sort = e.Sort,
+                        Explain = e.Explain
                     };
 
             if (!string.IsNullOrWhiteSpace(filter))
@@ -76,7 +79,8 @@ namespace RpshopingMvc.Controllers
                 {
                     Name = brand.Name,
                     Image = string.Join(",", brand.Image.Images),
-                    Sort=brand.Sort
+                    Sort = brand.Sort,
+                    Explain = brand.Explain
                 };
                 db.Brand.Add(model);
                 db.SaveChanges();
@@ -99,7 +103,8 @@ namespace RpshopingMvc.Controllers
             {
                 ID = model.ID,
                 Name = model.Name,
-                Sort = model.Sort
+                Sort = model.Sort,
+                Explain = model.Explain
             };
             models.Image.Images = model.Image?.Split(',') ?? new string[0];
             if (models == null)
@@ -123,6 +128,7 @@ namespace RpshopingMvc.Controllers
                 t.Name = brand.Name;
                 t.Image = string.Join(",", brand.Image.Images);
                 t.Sort = brand.Sort;
+                t.Explain = brand.Explain;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -154,7 +160,60 @@ namespace RpshopingMvc.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        //获取品牌
+        [HttpGet]
+        [AllowCrossSiteJson]
+        public ActionResult GetBrand(int? page = 1, int? pageSize = 5)
+        {
+            try
+            {
+                int starpagesize = page.Value * pageSize.Value - pageSize.Value;
+                int endpagesize = page.Value * pageSize.Value;
+                string sql = string.Format(@"SELECT * FROM (SELECT CAST(ROW_NUMBER() over(order by COUNT(g.ID) DESC) AS INTEGER) AS Ornumber,g.*,(SELECT COUNT(1) FROM dbo.goods WHERE Brand=g.ID) AS pcount
+                                        FROM dbo.Brands g WHERE g.Name<>'无' 
+                                        GROUP BY g.ID,g.Name,g.Image,g.Sort,g.Explain
+                                        ) t WHERE t.Ornumber > {0} AND t.Ornumber<={1}", starpagesize, endpagesize);
+                List<Brandlist> data = db.Database.SqlQuery<Brandlist>(sql).ToList();
+                if (data.Count > 0)
+                {
+                    //循环取出每个品牌下的3个商品
+                    for (int i = 0; i < data.Count; i++)
+                    {
+                        string getbrandlistsql = string.Format(@"SELECT top 3 ID,GoodsName,Price,zkprice,ImagePath FROM dbo.goods WHERE Brand={0} ORDER BY ByIndex ASC", data[i].ID);
+                        List<BrandProduct> productlist = db.Database.SqlQuery<BrandProduct>(getbrandlistsql).ToList();
+                        data[i].BrandProducts = productlist;
+                    }
+                }
+                return Json(Comm.ToJsonResult("Success", "成功", data), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(Comm.ToJsonResult("Error", "获取失败"), JsonRequestBehavior.AllowGet);
+            }
+        }
 
+        public class Brandlist
+        {
+            public int ID { get; set; }
+            public string Name { get; set; }//品牌名称
+            public string Image { get; set; }//品牌图片
+            public string Explain { get; set; }//品牌说明
+            public int pcount { get; set; }//品牌下产品数量
+            public List<BrandProduct> BrandProducts { get; set; }//品牌商品
+        }
+        public class BrandProduct {
+            [Display(Name = "商品编号")]
+            public int ID { get; set; }
+            [Display(Name = "商品名称")]
+            [MaxLength(200)]
+            public string GoodsName { get; set; }
+            [Display(Name = "商品价格")]
+            public decimal Price { get; set; }
+            [Display(Name = "折扣价")]
+            public decimal zkprice { get; set; }
+            [Display(Name = "商品主图")]
+            public string ImagePath { get; set; }
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
