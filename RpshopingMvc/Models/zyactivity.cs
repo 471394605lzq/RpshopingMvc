@@ -14,6 +14,8 @@ namespace RpshopingMvc.Models
         public string Name { get; set; }
         [Display(Name = "用户等级要求")]
         public UserGrade GradeAsk { get; set; }
+        [Display(Name = "有效期")]
+        public DateTime EffectiveTime { get; set; }
     }
     public class zyactivityshow
     {
@@ -22,6 +24,8 @@ namespace RpshopingMvc.Models
         public string Name { get; set; }
         [Display(Name = "用户等级要求")]
         public string GradeAsk { get; set; }
+        [Display(Name = "有效期")]
+        public DateTime EffectiveTime { get; set; }
     }
 
     public class zyactivityview
@@ -31,5 +35,7 @@ namespace RpshopingMvc.Models
         public string Name { get; set; }
         [Display(Name = "用户等级要求")]
         public UserGrade GradeAsk { get; set; }
+        [Display(Name = "有效期")]
+        public DateTime EffectiveTime { get; set; }
     }
 }

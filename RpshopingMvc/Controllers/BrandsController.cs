@@ -191,6 +191,26 @@ namespace RpshopingMvc.Controllers
                 return Json(Comm.ToJsonResult("Error", "获取失败"), JsonRequestBehavior.AllowGet);
             }
         }
+        //获取品牌商品
+        [HttpGet]
+        [AllowCrossSiteJson]
+        public ActionResult GetBrandProduct(int brandid, int? page = 1, int? pageSize = 5)
+        {
+            try
+            {
+                int starpagesize = page.Value * pageSize.Value - pageSize.Value;
+                int endpagesize = page.Value * pageSize.Value;
+                string sql = string.Format(@"SELECT * FROM (SELECT CAST(ROW_NUMBER() over(order by COUNT(g.ID) DESC) AS INTEGER) AS Ornumber,g.ID,g.GoodsName,g.Price,g.zkprice,g.ImagePath,g.SalesVolume FROM dbo.goods g WHERE Brand={0} 
+                                        GROUP BY g.ID,g.GoodsName,g.Price,g.zkprice,g.ImagePath,g.SalesVolume
+                                        ) t WHERE t.Ornumber > {1} AND t.Ornumber<={2}", brandid, starpagesize, endpagesize);
+                List<BrandProduct> data = db.Database.SqlQuery<BrandProduct>(sql).ToList();
+                return Json(Comm.ToJsonResult("Success", "成功", data), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(Comm.ToJsonResult("Error", "获取失败"), JsonRequestBehavior.AllowGet);
+            }
+        }
 
         public class Brandlist
         {
@@ -199,6 +219,7 @@ namespace RpshopingMvc.Controllers
             public string Image { get; set; }//品牌图片
             public string Explain { get; set; }//品牌说明
             public int pcount { get; set; }//品牌下产品数量
+           
             public List<BrandProduct> BrandProducts { get; set; }//品牌商品
         }
         public class BrandProduct {
@@ -213,6 +234,8 @@ namespace RpshopingMvc.Controllers
             public decimal zkprice { get; set; }
             [Display(Name = "商品主图")]
             public string ImagePath { get; set; }
+            [Display(Name = "销量")]
+            public int SalesVolume { get; set; }//销量
         }
         protected override void Dispose(bool disposing)
         {
