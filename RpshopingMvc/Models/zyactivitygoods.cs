@@ -21,5 +21,7 @@ namespace RpshopingMvc.Models
         public string remark { get; set; }
         [Display(Name = "活动数量")]
         public int activenumber { get; set; }
+        [Display(Name = "活动数量")]
+        public int surplusnumber { get; set; }
     }
 }
