@@ -49,5 +49,9 @@ namespace RpshopingMvc.Models
         public int Postage { get; set; }
         [Display(Name = "红包id")]
         public int RedID { get; set; }
+        [Display(Name = "是否是活动订单")]
+        public int isactive { get; set; }
+        [Display(Name = "活动id")]
+        public int activeid { get; set; }
     }
 }

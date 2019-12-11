@@ -37,7 +37,8 @@ namespace RpshopingMvc.Controllers
                         Code = e.Code,
                         Postage = e.Postage,
                         zkprice = e.zkprice,
-                        Specs=e.Specs
+                        Specs = e.Specs,
+                        SendAddress = e.SendAddress
                     };
 
             if (!string.IsNullOrWhiteSpace(filter))
@@ -101,7 +102,8 @@ namespace RpshopingMvc.Controllers
                     Brand = goods.Brand,
                     GetPath = goods.GetPath,
                     IsRecommend = goods.IsRecommend,
-                    Specs = goods.Specs
+                    Specs = goods.Specs,
+                    SendAddress = goods.SendAddress
                 };
                 db.goods.Add(model);
                 db.SaveChanges();
@@ -137,7 +139,8 @@ namespace RpshopingMvc.Controllers
                 GetPath = model.GetPath,
                 IsRecommend = model.IsRecommend,
                 Brand = model.Brand,
-                Specs = model.Specs
+                Specs = model.Specs,
+                SendAddress = model.SendAddress
             };
             models.ImagePath.Images = model.ImagePath?.Split(',') ?? new string[0];
             models.SamllImages.Images = model.SmallImages?.Split(',') ?? new string[0];
@@ -181,6 +184,7 @@ namespace RpshopingMvc.Controllers
                 t.Specs = goods.Specs;
                 t.IsRecommend = goods.IsRecommend;
                 t.GetPath = goods.GetPath;
+                t.SendAddress = goods.SendAddress;
                 db.SaveChanges();
 
                 return RedirectToAction("Index");
@@ -240,7 +244,7 @@ namespace RpshopingMvc.Controllers
                 }
                 string sql = string.Format(@"SELECT * FROM (SELECT CAST(ROW_NUMBER() over(order by COUNT(g.ID) DESC) AS INTEGER) AS Ornumber,g.* FROM dbo.goods g {0}
                                         GROUP BY g.GoodsName,g.Code,g.Price,g.Price,g.zkprice,g.ImagePath,g.SmallImages,g.DetailPath,g.SalesVolume,g.IncomeRatio,g.Brokerage,
-                                        g.BrokerageExplain,g.Postage,g.Stock,g.ByIndex,g.GoodsState,g.ID,g.IsRecommend,g.GetPath,g.Brand,g.Specs
+                                        g.BrokerageExplain,g.Postage,g.Stock,g.ByIndex,g.GoodsState,g.ID,g.IsRecommend,g.GetPath,g.Brand,g.Specs,g.SendAddress
                                         ) t WHERE GoodsState=0 AND t.Ornumber > {1} AND t.Ornumber<={2} ORDER BY ByIndex DESC", wherestr, starpagesize, endpagesize);
                 List<goodsshow> data = db.Database.SqlQuery<goodsshow>(sql).ToList();
                 return Json(Comm.ToJsonResult("Success", "成功", data), JsonRequestBehavior.AllowGet);
@@ -261,7 +265,7 @@ namespace RpshopingMvc.Controllers
                 int endpagesize = page.Value * pageSize.Value;
                 string sql = string.Format(@"SELECT * FROM (SELECT CAST(ROW_NUMBER() over(order by COUNT(g.ID) DESC) AS INTEGER) AS Ornumber,g.* FROM dbo.goods g where  IsRecommend=1
                                         GROUP BY g.GoodsName,g.Code,g.Price,g.Price,g.zkprice,g.ImagePath,g.SmallImages,g.DetailPath,g.SalesVolume,g.IncomeRatio,g.Brokerage,
-                                        g.BrokerageExplain,g.Postage,g.Stock,g.ByIndex,g.GoodsState,g.ID,g.IsRecommend,g.GetPath,g.Brand,g.Specs
+                                        g.BrokerageExplain,g.Postage,g.Stock,g.ByIndex,g.GoodsState,g.ID,g.IsRecommend,g.GetPath,g.Brand,g.Specs,g.SendAddress
                                         ) t WHERE t.Ornumber > {0} AND t.Ornumber<={1} ORDER BY ByIndex DESC", starpagesize, endpagesize);
                 List<goodsshow> data = db.Database.SqlQuery<goodsshow>(sql).ToList();
                 return Json(Comm.ToJsonResult("Success", "成功", data), JsonRequestBehavior.AllowGet);
@@ -539,22 +543,65 @@ namespace RpshopingMvc.Controllers
         /// 获取自营商品详情
         /// </summary>
         /// <param name="id">id</param>
+        /// <param name="isactive">是否是活动商品(0：否 1：是)</param>
         /// <returns></returns>
         [HttpPost]
         [AllowCrossSiteJson]
-        public ActionResult GetGoodsDetail(int id)
+        public ActionResult GetGoodsDetail(int id, int isactive)
         {
             try
             {
-                goods g = db.goods.FirstOrDefault(s => s.ID == id);
-                if (g != null)
+                //如果是活动商品
+                if (isactive == 1)
                 {
-                    return Json(Comm.ToJsonResult("Success", "获取成功", g), JsonRequestBehavior.AllowGet);
+                    var activegood = db.zyactivitygoods.FirstOrDefault(s => s.ID == id);
+                    if (activegood != null)
+                    {
+                        goods g = db.goods.FirstOrDefault(s => s.ID == activegood.goodsid);
+                        if (g != null)
+                        {
+                            activegoods agmodel = new activegoods();
+                            agmodel.activenumber = activegood.activenumber;
+                            agmodel.GoodsName = g.GoodsName;
+                            agmodel.Price = g.Price;
+                            agmodel.ImagePath = g.ImagePath;
+                            agmodel.SmallImages = g.SmallImages;
+                            agmodel.zkprice = activegood.acrivityprice;
+                            agmodel.Postage = activegood.Postage;
+                            agmodel.DetailPath = g.DetailPath;
+                            agmodel.SalesVolume = g.SalesVolume;
+                            agmodel.Stock = g.Stock;
+                            agmodel.Brokerage = g.Brokerage;
+                            agmodel.Specs = g.Specs;
+                            agmodel.SendAddress = g.SendAddress;
+                            agmodel.surplusnumber = activegood.surplusnumber;
+
+                            return Json(Comm.ToJsonResult("Success", "获取成功", agmodel), JsonRequestBehavior.AllowGet);
+                        }
+                        else
+                        {
+                            return Json(Comm.ToJsonResult("NotFind", "商品不存在"), JsonRequestBehavior.AllowGet);
+                        }
+                    }
+                    else
+                    {
+                        return Json(Comm.ToJsonResult("NotFind", "活动不存在"), JsonRequestBehavior.AllowGet);
+                    }
+
                 }
                 else
                 {
-                    return Json(Comm.ToJsonResult("NotFind", "商品不存在"), JsonRequestBehavior.AllowGet);
+                    goods g = db.goods.FirstOrDefault(s => s.ID == id);
+                    if (g != null)
+                    {
+                        return Json(Comm.ToJsonResult("Success", "获取成功", g), JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(Comm.ToJsonResult("NotFind", "商品不存在"), JsonRequestBehavior.AllowGet);
+                    }
                 }
+
             }
             catch (Exception ex)
             {

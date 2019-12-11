@@ -750,6 +750,10 @@
     <Compile Include="Migrations\201912100840562_surolusnumber.Designer.cs">
       <DependentUpon>201912100840562_surolusnumber.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912110802411_sendaddress.cs" />
+    <Compile Include="Migrations\201912110802411_sendaddress.Designer.cs">
+      <DependentUpon>201912110802411_sendaddress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BalanceDetail.cs" />
@@ -1785,6 +1789,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912100840562_surolusnumber.resx">
       <DependentUpon>201912100840562_surolusnumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912110802411_sendaddress.resx">
+      <DependentUpon>201912110802411_sendaddress.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

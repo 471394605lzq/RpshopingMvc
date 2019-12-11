@@ -29,7 +29,7 @@ namespace RpshopingMvc.Controllers
                 //获取推荐商品
                 string goodssql = string.Format(@"SELECT * FROM (SELECT CAST(ROW_NUMBER() over(order by COUNT(g.ID) DESC) AS INTEGER) AS Ornumber,g.* FROM dbo.goods g {0}
                                         GROUP BY g.GoodsName,g.Code,g.Price,g.Price,g.zkprice,g.ImagePath,g.SmallImages,g.DetailPath,g.SalesVolume,g.IncomeRatio,g.Brokerage,
-                                        g.BrokerageExplain,g.Postage,g.Stock,g.ByIndex,g.GoodsState,g.ID,g.IsRecommend,g.GetPath,g.Brand,g.Specs
+                                        g.BrokerageExplain,g.Postage,g.Stock,g.ByIndex,g.GoodsState,g.ID,g.IsRecommend,g.GetPath,g.Brand,g.Specs,g.SendAddress
                                         ) t WHERE GoodsState=0 AND t.Ornumber > {1} AND t.Ornumber<={2} ORDER BY ByIndex DESC", "", 0, 20);
                 List<goodsshow> gooddata = db.Database.SqlQuery<goodsshow>(goodssql).ToList();
 

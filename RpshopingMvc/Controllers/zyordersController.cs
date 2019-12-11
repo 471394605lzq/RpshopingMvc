@@ -129,7 +129,19 @@ namespace RpshopingMvc.Controllers
             try
             {
                 var usmodel = db.tb_userinfos.FirstOrDefault(s => s.UserID == usid);
-                var goodsmodel = db.goods.FirstOrDefault(s => s.ID == model.GoodsID);
+                goods goodsmodel = new goods();
+                if (model.isactive==0)
+                {
+                    goodsmodel = db.goods.FirstOrDefault(s => s.ID == model.GoodsID);
+                }
+                else
+                {
+                    var activegood = db.zyactivitygoods.FirstOrDefault(s => s.ID == model.GoodsID);
+                    goodsmodel = db.goods.FirstOrDefault(s => s.ID == activegood.goodsid);
+                    model.GoodsID = activegood.goodsid;
+                    model.activeid = activegood.ID;
+                    model.isactive = 1;
+                }
                 var redmodel = db.RedPpacket.FirstOrDefault(s => s.ID == model.RedID);
                 if (usmodel == null)
                 {
@@ -152,7 +164,6 @@ namespace RpshopingMvc.Controllers
                     model.CreateTime = DateTime.Now;
                     model.PayTime = "";
                     model.ExpressCode = "";
-
                     if (redmodel != null)
                     {
                         model.total_fee = ((goodsmodel.zkprice * model.GoodsNumber) + goodsmodel.Postage) - redmodel.quota;
