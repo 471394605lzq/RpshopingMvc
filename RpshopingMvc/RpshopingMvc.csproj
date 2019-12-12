@@ -300,6 +300,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\MyZyGoodsCollectsController.cs" />
     <Compile Include="Controllers\PayCommonController.cs" />
     <Compile Include="Controllers\RechargeController.cs" />
     <Compile Include="Controllers\SelidesController.cs" />
@@ -754,6 +755,14 @@
     <Compile Include="Migrations\201912110802411_sendaddress.Designer.cs">
       <DependentUpon>201912110802411_sendaddress.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912120323467_sendaddress1.cs" />
+    <Compile Include="Migrations\201912120323467_sendaddress1.Designer.cs">
+      <DependentUpon>201912120323467_sendaddress1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912120955039_myzygoodscollect.cs" />
+    <Compile Include="Migrations\201912120955039_myzygoodscollect.Designer.cs">
+      <DependentUpon>201912120955039_myzygoodscollect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BalanceDetail.cs" />
@@ -773,6 +782,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\IntegralDetails.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MyZyGoodsCollect.cs" />
     <Compile Include="Models\PayOrder.cs" />
     <Compile Include="Models\RedPpacket.cs" />
     <Compile Include="Models\Selide.cs" />
@@ -1456,6 +1466,7 @@
     <Folder Include="Views\AppApi\" />
     <Folder Include="Views\Common\" />
     <Folder Include="Views\Member\" />
+    <Folder Include="Views\MyZyGoodsCollect\" />
     <Folder Include="Views\PayCommon\" />
     <Folder Include="Views\Recharge\" />
     <Folder Include="Views\Uploader\" />
@@ -1792,6 +1803,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201912110802411_sendaddress.resx">
       <DependentUpon>201912110802411_sendaddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912120323467_sendaddress1.resx">
+      <DependentUpon>201912120323467_sendaddress1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912120955039_myzygoodscollect.resx">
+      <DependentUpon>201912120955039_myzygoodscollect.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

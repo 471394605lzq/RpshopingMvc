@@ -130,6 +130,7 @@ namespace RpshopingMvc.Controllers
             {
                 var usmodel = db.tb_userinfos.FirstOrDefault(s => s.UserID == usid);
                 goods goodsmodel = new goods();
+                //如果不是活动商品
                 if (model.isactive==0)
                 {
                     goodsmodel = db.goods.FirstOrDefault(s => s.ID == model.GoodsID);

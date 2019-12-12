@@ -299,7 +299,11 @@ namespace RpshopingMvc.Controllers
                         var goodsmodel = db.goods.FirstOrDefault(s => s.ID == zyordermodel.GoodsID);
                         zyordermodel.OrderState = GoodsOrderState.StaySend;
                         zyordermodel.PayTime = query.PayTime;
-                        usermodel.Integral = usermodel.Integral + Convert.ToInt32(goodsmodel.Brokerage);
+                        //如果不是活动商品则返积分
+                        if (zyordermodel.isactive==0)
+                        {
+                            usermodel.Integral = usermodel.Integral + Convert.ToInt32(goodsmodel.Brokerage);
+                        }                        
                         db.SaveChanges();
                     }
                 }
