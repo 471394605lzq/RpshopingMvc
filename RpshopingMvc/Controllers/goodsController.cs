@@ -608,6 +608,48 @@ namespace RpshopingMvc.Controllers
                 return Json(Comm.ToJsonResult("Error", "获取失败"), JsonRequestBehavior.AllowGet);
             }
         }
+
+        [HttpGet]
+        [AllowCrossSiteJson]
+        public ActionResult GetGoodsCollect(string uid, int goodsid, int isactive)
+        {
+            try
+            {
+                var usmodel = db.tb_userinfos.FirstOrDefault(s => s.UserID == uid);
+                goods goodsmodel = new goods();
+                //如果不是活动商品
+                if (isactive == 0)
+                {
+                    goodsmodel = db.goods.FirstOrDefault(s => s.ID == goodsid);
+                }
+                else
+                {
+                    var activegood = db.zyactivitygoods.FirstOrDefault(s => s.ID == goodsid);
+                    goodsmodel = db.goods.FirstOrDefault(s => s.ID == activegood.goodsid);
+                }
+
+                if (usmodel != null)
+                {
+                    var collectmodel = db.MyZyGoodsCollect.FirstOrDefault(s => s.userid == usmodel.ID && s.goodid == goodsmodel.ID);
+                    if (collectmodel != null)
+                    {
+                        return Json(Comm.ToJsonResult("Success", "成功", "1"), JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(Comm.ToJsonResult("Success", "成功", "0"), JsonRequestBehavior.AllowGet);
+                    }
+                }
+                else
+                {
+                    return Json(Comm.ToJsonResult("NotFind", "用户不存在"), JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Error", "获取失败"), JsonRequestBehavior.AllowGet);
+            }
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
