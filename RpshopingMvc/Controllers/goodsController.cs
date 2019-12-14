@@ -650,6 +650,51 @@ namespace RpshopingMvc.Controllers
                 return Json(Comm.ToJsonResult("Error", "获取失败"), JsonRequestBehavior.AllowGet);
             }
         }
+        /// <summary>
+        /// 购物前检查用户信息(用户是否合法，如果是活动商品的话用户等级是否符合)
+        /// </summary>
+        /// <param name="uid"></param>
+        /// <param name="goodsid"></param>
+        /// <param name="isactive"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [AllowCrossSiteJson]
+        public ActionResult GetBuyTerm(string uid, int goodsid, int isactive)
+        {
+            try
+            {
+                var usmodel = db.tb_userinfos.FirstOrDefault(s => s.UserID == uid);
+                goods goodsmodel = new goods();
+                if (usmodel != null)
+                {
+                    int fitusergrade = 0;
+                    //如果不是活动商品
+                    if (isactive == 1)
+                    {
+                        var activegood = db.zyactivitygoods.FirstOrDefault(s => s.ID == goodsid);
+                        var activemodel = db.zyactivity.FirstOrDefault(s => s.ID == activegood.activityid);
+                        if (activemodel.GradeAsk == usmodel.UserGrade)
+                        {
+                            fitusergrade = 1;
+                        }
+                    }
+                    var returndata = new
+                    {
+                        userok = 1,
+                        usgradeok = fitusergrade
+                    };
+                    return Json(Comm.ToJsonResult("Success", "成功", returndata), JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(Comm.ToJsonResult("NotFind", "用户不存在"), JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(Comm.ToJsonResult("Error", "获取失败"), JsonRequestBehavior.AllowGet);
+            }
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
